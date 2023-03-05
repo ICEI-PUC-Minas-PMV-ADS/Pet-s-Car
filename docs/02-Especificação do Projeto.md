@@ -1,50 +1,68 @@
 # Especificações do Projeto
 
-<span style="color:red">Pré-requisitos: <a href="1-Documentação de Contexto.md"> Documentação de Contexto</a></span>
+Por meio da técnica de observação e brainstorming foram analisadas as necessidades dos usuários do sistema de forma a atender suas demandas.
 
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
-
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
+A partir das informações coletadas, foram determinadas as personas e histórias de usuários que serão de suma importância para a definição das funcionalidades.
 
 ## Personas
 
-Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente através de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros.
+As personas, ou seja, os usuários ideais do site foram definidos abaixo:
 
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
+### Pedro
 
-> **Links Úteis**:
-> - [Rock Content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [Mapa de Empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Mapa de Stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
->
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
+- Pedro tem 19 anos, mora em Alterosa e possui um cachorro da raça Golden.
+- Pedro quer utilizar os serviços de um pet shop para dar banho em seu cachorro, pois ele acha difícil fazer por si mesmo, devido ao tamanho do cachorro.
+- Ele não possui meio de transporte próprio.
+- Pedro entrou em contato com o pet shop e a atendente informou que no momento eles não possuem meio de transporte para buscar o animal.
+- Pedro resolve utilizar serviços de transporte particular como a Uber, mas percebe que alguns motoristas não aceitam animais em seu carro.
+
+### Cristiana
+
+- Cristiana tem 24 anos, mora em Alterosa e possui um gato.
+- Ela se encontra em uma situação complicada pois seu gato necessita realizar um tratamento em uma clínica veterinária.
+- Cristiana possui uma moto, utilizada geralmente para ir ao trabalho.
+- Ela tem a ideia de procurar algum aplicativo que faça o transporte adequado de animais, porém não obteve êxito.
+
+### Priscila
+
+- Priscila tem 29 anos e mora em Alterosa.
+- Ela trabalha como motorista para a empresa Pet’s Car.
+- Priscila precisa ter a opção de recusar ou confirmar os agendamentos de seus clientes de acordo com sua disponibilidade.
+- Ela tem a necessidade de saber quais horários e locais precisa buscar os pet’s de seus clientes para se organizar durante seu expediente.
+
+### Vinícius
+
+- Vinícius tem 30 anos, mora em Alterosa e atua como motorista a 8 anos.
+- Ele atualmente trabalha para a empresa Pet’s Car.
+- Vinícius ao informar para seu cliente que está disponível para fazer o transporte do pet, também tem a necessidade de informar o custo final do serviço.
+- Vinícius ao finalizar o serviço deve registrar que o mesmo foi finalizado, e se possível realizar a avaliação do seu cliente.
 
 ## Histórias de Usuários
 
-Com base na análise das personas forma identificadas as seguintes histórias de usuários:
+Com a observação do cotidiano das personas e a compreensão de suas necessidades, foram definidas as seguintes histórias de usuários.
 
 |EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
 |--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
+|Pedro               | Realizar o seu cadastro e login no aplicativo  | Poder realizar o agendamento do transporte de seu pet  |
+|Cristiana           | Cadastrar seu gato no aplicativo  | Facilmente selecionar os pets que deseja agendar o transporte  |
+|Vinícius            | Fazer seu cadastro e login no aplicativo da empresa  | Acompanhar os agendamentos |
+|Pedro               | Realizar o agendamento do transporte do seu cachorro para o Petshop   | Possa ir trabalhar sem se preocupar em se atrasar  |
+|Priscila            | Visualizar, em forma de lista, os agendamentos de transporte disponíveis para confirmação   | Escolher e confirmar o agendamento com o cliente   |
+|Priscila            | Retorno da aplicação com a confirmação do agendamento com o valor da corrida    | Poder saber que sua corrida foi aceita   |
+|Vinícius            | Ser informado por e-mail que possuí agendamento feito por clientes   | Confirmar rapidamente a corrida solicitada   |
+|Vinícius            | Informar o valor da corrida para o cliente   | Ambas as partes estarem cientes do custo   |
+|Cristiana           | Alterar sua senha de usuário   | Conseguir realizar o login, pois esqueceu a antiga senha   |
+|Cristiana           | Avaliar a corrida do motorista e seu cuidado com sua gata   | Ajudar a outras pessoas se sentirem seguras ao enviar seu pet    |
+|Priscila            | Ter a opção de avaliar seu cliente em relação a educação e pontualidade  | Os clientes ficarem atentos aos seus atos   |
+|Pedro               | Editar seus dados cadastrais    | Atualizar seu novo endereço e e-mail   |
+|Vinícius            | Fazer alterações em seus dados cadastrais   | Concertar o e-mail que utilizou no cadastro  |
+|Cristiana           | Adicionar, editar ou remover o pet cadastrado em seu perfil do aplicativo   | Ter mais controle do pet em seu perfil   |
 
-Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
-
-> **Links Úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User Stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de Usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 Common User Story Mistakes](https://airfocus.com/blog/user-story-mistakes/)
-
-## Modelagem do Processo de Negócio 
+## Modelagem do Processo de Negócio
 
 ### Análise da Situação Atual
 
-Apresente aqui os problemas existentes que viabilizam sua proposta. Apresente o modelo do sistema como ele funciona hoje. Caso sua proposta seja inovadora e não existam processos claramente definidos, apresente como as tarefas que o seu sistema pretende implementar são executadas atualmente, mesmo que não se utilize tecnologia computacional. 
+Apresente aqui os problemas existentes que viabilizam sua proposta. Apresente o modelo do sistema como ele funciona hoje. Caso sua proposta seja inovadora e não existam processos claramente definidos, apresente como as tarefas que o seu sistema pretende implementar são executadas atualmente, mesmo que não se utilize tecnologia computacional.
 
 ### Descrição Geral da Proposta
 
@@ -52,7 +70,7 @@ Apresente aqui uma descrição da sua proposta abordando seus limites e suas lig
 
 ### Processo 1 – NOME DO PROCESSO
 
-Apresente aqui o nome e as oportunidades de melhorias para o processo 1. Em seguida, apresente o modelo do processo 1, descrito no padrão BPMN. 
+Apresente aqui o nome e as oportunidades de melhorias para o processo 1. Em seguida, apresente o modelo do processo 1, descrito no padrão BPMN.
 
 ![Processo 1](img/02-bpmn-proc1.png)
 
@@ -64,110 +82,152 @@ Apresente aqui o nome e as oportunidades de melhorias para o processo 2. Em segu
 
 ## Indicadores de Desempenho
 
-Apresente aqui os principais indicadores de desempenho e algumas metas para o processo. Atenção: as informações necessárias para gerar os indicadores devem estar contempladas no diagrama de classe. Colocar no mínimo 5 indicadores. 
+Apresente aqui os principais indicadores de desempenho e algumas metas para o processo. Atenção: as informações necessárias para gerar os indicadores devem estar contempladas no diagrama de classe. Colocar no mínimo 5 indicadores.
 
-Usar o seguinte modelo: 
+Usar o seguinte modelo:
 
 ![Indicadores de Desempenho](img/02-indic-desemp.png)
-Obs.: todas as informações para gerar os indicadores devem estar no diagrama de classe a ser apresentado a posteriori. 
+Obs.: todas as informações para gerar os indicadores devem estar no diagrama de classe a ser apresentado a posteriori.
 
 ## Requisitos
 
-As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto. Para determinar a prioridade de requisitos, aplicar uma técnica de priorização de requisitos e detalhar como a técnica foi aplicada.
+No projeto, sua estrutura e suas funções são determinadas a partir dos requisitos funcionais e não-funcionais.
+
+Os requisitos funcionais podem ser definidos como a descrição das funções que os usuários poderão utilizar para satisfazer suas necessidades. Já os requisitos não funcionais são aqueles que descrevem as características de usabilidade e outros aspectos que o site necessita apresentar de maneira geral.
+
+Portanto, com os estudos das personas e histórias dos usuários identificadas para o projeto, foram definidos os seguintes requisitos.
 
 ### Requisitos Funcionais
 
-|ID    | Descrição do Requisito  | Prioridade |
-|------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+Os requisitos funcionais do projeto e seus respectivos níveis de prioridade de entrega são apresentados na tabela a seguir.
+
+|ID    | Descrição do Requisito                  | Prioridade |
+|------|-----------------------------------------|------------|
+|RF-01 | A aplicação deve permitir a criação de usuários clientes, com os seguintes campos de preenchimento: E-mail, senha, telefone e endereço.  | ALTA |
+|RF-02 | A aplicação deve permitir a criação de usuários para motoristas, com os seguintes campos de preenchimento: E-mail, senha e telefone.    | ALTA |
+|RF-03 | A aplicação deve permitir o cadastro do(s) pet(s) de cada cliente, que conterá informações como: raça, porte e nome do animal.  | ALTA |
+|RF-04 | A aplicação deve permitir o login de clientes utilizando e-mail e senha.  | ALTA |
+|RF-05 | A aplicação deve permitir o login de motoristas utilizando e-mail e senha.  | ALTA |
+|RF-06 | A aplicação deve permitir o agendamento do transporte especificando horário, endereços, informações de contato e seleção do animal transportado, por parte do usuário. | ALTA |
+|RF-07 | A aplicação deve permitir a visualização da confirmação da corrida com o valor especificado pelo motorista e as informações de contato do mesmo, por parte do usuário. | ALTA |
+|RF-08 | A aplicação deve disparar um e-mail para os motoristas após um cliente fazer agendamento no aplicativo.  | BAIXA |
+|RF-09 | A aplicação deve permitir a especificação do valor da corrida, conforme horário e local cadastrado, após ou no ato do aceite, por parte do motorista.  | ALTA  |
+|RF-10 | A aplicação deve permitir recuperação de senha para usuários e motoristas.  | MÉDIA  |
+|RF-11 | A aplicação deve ter a opção de o cliente avaliar o motorista após finalizado a corrida.  | MÉDIA  |
+|RF-12 | A aplicação deve ter a opção de o motorista avaliar o cliente após finalizada a corrida.  | MÉDIA  |
+|RF-13 | A aplicação deve ter a opção de o cliente editar seus dados cadastrais e excluir seu perfil.  | ALTO  |
+|RF-14 | A aplicação deve ter a opção de o motorista editar seus dados cadastrais e excluir seu perfil.  | ALTO  |
+|RF-15 | A aplicação deve ter a opção de o cliente adicionar, editar, remover os pets cadastrados no seu perfil.  | ALTO  |
 
 ### Requisitos não Funcionais
 
+Os requisitos não funcionais que a equipe deverá seguir durante o desenvolvimento, como também seus respectivos níveis de prioridade de entrega são apresentados na tabela a seguir.
+
 |ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
-
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
+|-------|-------------------------|-----------|
+|RNF-01 | A aplicação deve funcionar 7 dias por semana, 24h por dia. | ALTA |
+|RNF-02 | O banco de dados da aplicação terá senhas criptografadas.  | ALTA  |
+|RNF-03 | A aplicação deverá funcionar em IOS e Android.  | ALTA  |
+|RNF-04 | A interface deve ser agradável, intuitiva, de fácil utilização para o usuário e deve ser organizado de tal maneira que os erros dos usuários sejam minimizados.  | MÉDIA  |
+|RNF-05 | Os formulários devem informar ao usuário quais são os campos de preenchimento obrigatório.  | MÉDIA  |
+|RNF-06 | Utilizar símbolo e ícone para ajudar no entendimento e conseguir uma associação imediata sobre aplicações de reconhecimento.  | MÉDIA |
 
 ## Restrições
 
 O projeto está restrito pelos itens apresentados na tabela a seguir.
 
-|ID| Restrição                                             |
-|--|-------------------------------------------------------|
-|01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
-
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
+|ID    | Restrição                                             |
+|------|-------------------------------------------------------|
+|RE-01 | O projeto deve ser entregue até dia 23/06/2023.  |
+|RE-02 | A equipe não pode contratar terceiros para o desenvolvimento do projeto.   |
+|RE-03 | O site deve ser desenvolvido utilizando linguagens de programação Mobile, mais especificamente HTML, CSS, JavaScript, TypeScript e bem como o framework React Native.    |
 
 ## Diagrama de Casos de Uso
 
-O diagrama de casos de uso é o próximo passo após a elicitação de requisitos, que utiliza um modelo gráfico e uma tabela com as descrições sucintas dos casos de uso e dos atores. Ele contempla a fronteira do sistema e o detalhamento dos requisitos funcionais com a indicação dos atores, casos de uso e seus relacionamentos. 
+Os diagramas são utilizados na documentação e modelagem dos sistemas e de suas funcionalidades, de modo geral, podemos dizer que são essenciais para a construção de um software coeso.
 
-As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de Casos de Uso”.
+Em linhas gerais, o diagrama de casos de uso documenta o que o sistema deve fazer do ponto de vista de quem o utiliza, dessa forma, ele apresenta as principais funcionalidades do sistema e a interação dessas com os usuários.
 
-> **Links Úteis**:
-> - [Criando Casos de Uso](https://www.ibm.com/docs/pt-br/elm/6.0?topic=requirements-creating-use-cases)
-> - [Como Criar Diagrama de Caso de Uso: Tutorial Passo a Passo](https://gitmind.com/pt/fazer-diagrama-de-caso-uso.html/)
-> - [Lucidchart](https://www.lucidchart.com/)
-> - [Astah](https://astah.net/)
-> - [Diagrams](https://app.diagrams.net/)
+O diagrama a seguir diz respeito ao projeto em questão:
+
+*imagem
 
 # Matriz de Rastreabilidade
 
-A matriz de rastreabilidade é uma ferramenta usada para facilitar a visualização dos relacionamento entre requisitos e outros artefatos ou objetos, permitindo a rastreabilidade entre os requisitos e os objetivos de negócio. 
+A matriz de rastreabilidade é uma ferramenta utilizada na gestão de projetos para monitorar e rastrear as relações entre diferentes requisitos, objetivos, atividades e entregas ao longo do ciclo de vida do projeto. A matriz de rastreabilidade é uma tabela que lista os requisitos em uma das colunas e, nas outras colunas, as diferentes fases do projeto, como planejamento, design, desenvolvimento, teste e implementação.
 
-A matriz deve contemplar todos os elementos relevantes que fazem parte do sistema, conforme a figura meramente ilustrativa apresentada a seguir.
+O objetivo da matriz de rastreabilidade é garantir que todos os requisitos do projeto estejam sendo atendidos e que cada fase do projeto esteja alinhada com os objetivos gerais do projeto. Ao rastrear cada requisito em cada fase, é possível garantir que todos os requisitos estejam sendo implementados corretamente e que qualquer alteração em um requisito possa ser rastreada ao longo de todo o ciclo de vida do projeto.
 
-![Exemplo de matriz de rastreabilidade](img/02-matriz-rastreabilidade.png)
-
-> **Links Úteis**:
-> - [Artigo Engenharia de Software 13 - Rastreabilidade](https://www.devmedia.com.br/artigo-engenharia-de-software-13-rastreabilidade/12822/)
-> - [Verificação da rastreabilidade de requisitos usando a integração do IBM Rational RequisitePro e do IBM ClearQuest Test Manager](https://developer.ibm.com/br/tutorials/requirementstraceabilityverificationusingrrpandcctm/)
-> - [IBM Engineering Lifecycle Optimization – Publishing](https://www.ibm.com/br-pt/products/engineering-lifecycle-optimization/publishing/)
-
+A matriz de rastreabilidade é uma ferramenta importante para garantir a qualidade do projeto e para ajudar a gerenciar as mudanças no projeto. Ela é especialmente útil em projetos complexos que envolvem muitos requisitos e atividades diferentes.
 
 # Gerenciamento de Projeto
 
-De acordo com o PMBoK v6 as dez áreas que constituem os pilares para gerenciar projetos, e que caracterizam a multidisciplinaridade envolvida, são: Integração, Escopo, Cronograma (Tempo), Custos, Qualidade, Recursos, Comunicações, Riscos, Aquisições, Partes Interessadas. Para desenvolver projetos um profissional deve se preocupar em gerenciar todas essas dez áreas. Elas se complementam e se relacionam, de tal forma que não se deve apenas examinar uma área de forma estanque. É preciso considerar, por exemplo, que as áreas de Escopo, Cronograma e Custos estão muito relacionadas. Assim, se eu amplio o escopo de um projeto eu posso afetar seu cronograma e seus custos.
+A gerência de projetos é a aplicação de conhecimentos, habilidades e técnicas para projetar atividades que visem atingir os requisitos de projeto. Gerenciar projetos envolve planejar a atividade, definir e contratar recursos necessários para fazer, monitorar e controlar a atividade e encerrar a atividade.
+
+Segundo o PMBOK (Project Management Body of Knowledge), projeto pode ser definido como: “Um empreendimento único, com início e fim pré determinados, sendo executado por pessoas, confinado por recursos limitados, planejado, executado e controlado.”
+
+Um projeto possui os seguintes processos de gerenciamento: iniciação, planejamento, execução, monitoramento e controle e encerramento.  
 
 ## Gerenciamento de Tempo
 
-Com diagramas bem organizados que permitem gerenciar o tempo nos projetos, o gerente de projetos agenda e coordena tarefas dentro de um projeto para estimar o tempo necessário de conclusão.
+O gerenciamento do tempo é uma parte fundamental nos projetos pois está relacionado ao prazo de entrega do produto final.  
 
-![Diagrama de rede simplificado notação francesa (método francês)](img/02-diagrama-rede-simplificado.png)
+Para uma melhor gestão, foi construído um cronograma com as atividades necessárias para a entrega do projeto, com as estimativas de tempo para sua execução. O cronograma foi construído a partir da ferramenta de gestão da microsoft: MS-Project, que contém o gráfico de Gantt, uma ferramenta interessante para melhor visualização do projeto como um todo.
 
-O gráfico de Gantt ou diagrama de Gantt também é uma ferramenta visual utilizada para controlar e gerenciar o cronograma de atividades de um projeto. Com ele, é possível listar tudo que precisa ser feito para colocar o projeto em prática, dividir em atividades e estimar o tempo necessário para executá-las.
-
-![Gráfico de Gantt](img/02-grafico-gantt.png)
+*imagem
 
 ## Gerenciamento de Equipe
 
-O gerenciamento adequado de tarefas contribuirá para que o projeto alcance altos níveis de produtividade. Por isso, é fundamental que ocorra a gestão de tarefas e de pessoas, de modo que os times envolvidos no projeto possam ser facilmente gerenciados. 
+Para mais agilidade na gestão do projeto, a equipe optou pelo Scrum, metodologia ágil na otimização do processo de desenvolvimento.
 
-![Simple Project Timeline](img/02-project-timeline.png)
+A equipe está organizada da seguinte maneira:  
+
+- Scrum Master: Isabela Oliveira
+- Product Owner: João Paulo
+- Equipe de Desenvolvimento: Mariano Teixeira, Jéssica Gonçalves
+= Equipe de Design: Thiago Terra  
+
+ O Scrum se diferencia porque promove a junção de profissionais com diferentes papéis em um único time, dessa forma todos participam do desenvolvimento do projeto, sendo, de fato, uma só equipe.
+
+O time ágil é organizado de forma que pessoas fiquem responsáveis por garantir a qualidade, eficácia e eficiência do projeto. Isso é alcançado através dos pequenos ciclos de atividades e reuniões constantes para que a equipe possa alinhar o que vem fazendo e pensar formas de melhorar o processo com agilidade.  
+
+Inicialmente, o P.O reuniu a equipe e apresentou o pacote de funcionalidades do projeto (o product backlog). A partir disso, as Sprints (os ciclos) foram definidas para a realização das tarefas. A Daily Scrum do grupo acontecia às 21:00 e, no início de cada sprint, acontecia a Sprint Planning Meeting para o planejamento e priorização dos itens do Product Backlog para aquele período.
+
+Para acompanhar o processo, a equipe utiliza o Kanban disponível na aba projects no repositório do GitHub Classroom, que contém as seguintes colunas:
+
+*imagem
+
+- Meetings: esta coluna apresenta os dias que aconteceram as reuniões da equipe, assim como os principais tópicos tratados.  
+
+- Backlog: esta coluna apresenta as atividades a serem desenvolvidas, ou seja, o Product Backlog. Todas as atividades que acontecerão no projeto estarão dispostas nessa coluna.  
+
+- To Do: esta coluna representa o Sprint Backlog. Este é o Sprint atual que estamos trabalhando.  
+
+- In progress: quando uma tarefa tiver sido iniciada é movida para esta coluna.  
+
+- Testing: esta coluna é para checar a qualidade do que está sendo produzido. Antes de qualquer entrega todos os tópicos dessa coluna deverão ser finalizados.  
+
+- Done: nesta coluna são colocadas as tarefas que passaram pelos testes e controle de qualidade e estão prontos para ser entregues ao usuário.   
+
+Além disso, utilizamos o recurso Issues do GitHub, atribuindo as tarefas-problema a cada pessoa da equipe. Com isso, além do acompanhamento por meio do Kanban, temos uma visualização completa da lista de problemas.
+
+*imagem
 
 ## Gestão de Orçamento
 
 O processo de determinar o orçamento do projeto é uma tarefa que depende, além dos produtos (saídas) dos processos anteriores do gerenciamento de custos, também de produtos oferecidos por outros processos de gerenciamento, como o escopo e o tempo.
 
-![Orçamento](img/02-orcamento.png)
+Logo, com base nas informações fornecidas, serviços e soluções escolhidas, segue o descritivo do que será contratado para melhor atender às necessidades e objetivos.
+
+*imagem
+
+- Vigência de Contrato: De acordo com o cronograma.
+- Validade desta proposta: 30 dias corridos, contados após a data da sua emissão.  
+
+Os valores dessa proposta serão faturados em 5 parcelas sendo uma entrada, três pagamentos intermediários e outro no término após o Diagnóstico, entrega da solução e apresentação, conforme tabela abaixo. Após o aceite formal desta proposta, a parcela será faturada após o aceito formal do cliente da entrega da etapa. A CONTRATADA emitirá uma fatura/boleto, obedecendo os prazos, parcelas e valores desta proposta e, junto com o último faturamento, emitirá a Nota Fiscal de Serviço correspondente ao Valor Total da parcela Projeto ou conforme exceção descrita abaixo.
+
+*imagem
+
+- Inadimplência: O inadimplemento de qualquer fatura emitida em razão deste Contrato, nos seus respectivos vencimentos, implicará na incidência automática de multa moratória de 2% (dois por cento), acrescido de juros de mora de 1% (um por cento) ao mês, proporcional aos dias em atraso, sobre o débito não liquidado, e devidamente corrigido pelo IGP-M/FGV (Índice Geral de Preços – Mercado). O não pagamento pelo prazo superior a 30 dias, autoriza a Pet’s Car - LTDA a suspender os serviços após notificação prévia por meio eletrônico.
+
+*imagem
