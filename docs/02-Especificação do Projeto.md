@@ -185,7 +185,7 @@ A equipe está organizada da seguinte maneira:
 - Scrum Master: Isabela Oliveira
 - Product Owner: João Paulo
 - Equipe de Desenvolvimento: Mariano Teixeira, Jéssica Gonçalves
-= Equipe de Design: Thiago Terra  
+- Equipe de Design: Thiago Terra  
 
  O Scrum se diferencia porque promove a junção de profissionais com diferentes papéis em um único time, dessa forma todos participam do desenvolvimento do projeto, sendo, de fato, uma só equipe.
 
@@ -207,7 +207,7 @@ Para acompanhar o processo, a equipe utiliza o Kanban disponível na aba project
 
 - Testing: esta coluna é para checar a qualidade do que está sendo produzido. Antes de qualquer entrega todos os tópicos dessa coluna deverão ser finalizados.  
 
-- Done: nesta coluna são colocadas as tarefas que passaram pelos testes e controle de qualidade e estão prontos para ser entregues ao usuário.   
+- Done: nesta coluna são colocadas as tarefas que passaram pelos testes e controle de qualidade e estão prontos para ser entregues ao usuário.
 
 Além disso, utilizamos o recurso Issues do GitHub, atribuindo as tarefas-problema a cada pessoa da equipe. Com isso, além do acompanhamento por meio do Kanban, temos uma visualização completa da lista de problemas.
 

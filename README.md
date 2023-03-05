@@ -1,23 +1,24 @@
-# TÍTULO DO PROJETO
+# Pet's Car
 
-`CURSO`
+`ANÁLISE E DESENVOLVIMENTO DE SISTEMAS`
 
-`DISCIPLINA`
+`DESENVOLVIMENTO DE UMA APLICAÇÃO MÓVEL EM UM AMBIENTE DE NEGÓCIO`
 
-`SEMESTRE`
+`3° SEMESTRE`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+Esse projeto é direcionado a empresa Pet’s Car. A aplicação será desenvolvida como solução para o negócio, que é um serviço de transporte para animais domésticos.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* Isabela Oliveira de Castro Silva  
+* Jessica Gonçalves dos Santos
+* João Paulo Jorges da Silva  
+* Mariano Teixeira Barbosa Contin
+* Thiago Terra da Silva
 
 ## Orientador
 
-* Nome completo do professor 1
+* Will Ricardo dos Santos Machado
 
 ## Instruções de utilização
 
