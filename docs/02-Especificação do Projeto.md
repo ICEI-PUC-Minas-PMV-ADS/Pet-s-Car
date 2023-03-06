@@ -150,15 +150,11 @@ Em linhas gerais, o diagrama de casos de uso documenta o que o sistema deve faze
 
 O diagrama a seguir diz respeito ao projeto em questão:
 
-*imagem
+![Diagrama de Casos de Uso](img/diagrama-uml.jpg)
 
 # Matriz de Rastreabilidade
 
-A matriz de rastreabilidade é uma ferramenta utilizada na gestão de projetos para monitorar e rastrear as relações entre diferentes requisitos, objetivos, atividades e entregas ao longo do ciclo de vida do projeto. A matriz de rastreabilidade é uma tabela que lista os requisitos em uma das colunas e, nas outras colunas, as diferentes fases do projeto, como planejamento, design, desenvolvimento, teste e implementação.
-
-O objetivo da matriz de rastreabilidade é garantir que todos os requisitos do projeto estejam sendo atendidos e que cada fase do projeto esteja alinhada com os objetivos gerais do projeto. Ao rastrear cada requisito em cada fase, é possível garantir que todos os requisitos estejam sendo implementados corretamente e que qualquer alteração em um requisito possa ser rastreada ao longo de todo o ciclo de vida do projeto.
-
-A matriz de rastreabilidade é uma ferramenta importante para garantir a qualidade do projeto e para ajudar a gerenciar as mudanças no projeto. Ela é especialmente útil em projetos complexos que envolvem muitos requisitos e atividades diferentes.
+![Matriz de Rastreabilidade](img/matrix-de-rastreabilidade.png)
 
 # Gerenciamento de Projeto
 
@@ -174,7 +170,7 @@ O gerenciamento do tempo é uma parte fundamental nos projetos pois está relaci
 
 Para uma melhor gestão, foi construído um cronograma com as atividades necessárias para a entrega do projeto, com as estimativas de tempo para sua execução. O cronograma foi construído a partir da ferramenta de gestão da microsoft: MS-Project, que contém o gráfico de Gantt, uma ferramenta interessante para melhor visualização do projeto como um todo.
 
-*imagem
+![Gerenciamento de Tempo](img/cronograma-projeto.png)
 
 ## Gerenciamento de Equipe
 
@@ -195,7 +191,7 @@ Inicialmente, o P.O reuniu a equipe e apresentou o pacote de funcionalidades do 
 
 Para acompanhar o processo, a equipe utiliza o Kanban disponível na aba projects no repositório do GitHub Classroom, que contém as seguintes colunas:
 
-*imagem
+![Kanban GitHub](img/kanban-github.png)
 
 - Meetings: esta coluna apresenta os dias que aconteceram as reuniões da equipe, assim como os principais tópicos tratados.  
 
@@ -211,7 +207,9 @@ Para acompanhar o processo, a equipe utiliza o Kanban disponível na aba project
 
 Além disso, utilizamos o recurso Issues do GitHub, atribuindo as tarefas-problema a cada pessoa da equipe. Com isso, além do acompanhamento por meio do Kanban, temos uma visualização completa da lista de problemas.
 
-*imagem
+![Milestones GitHub](img/milestones-github.png)
+
+![Issues GitHub](img/issues-github.png)
 
 ## Gestão de Orçamento
 
@@ -219,15 +217,15 @@ O processo de determinar o orçamento do projeto é uma tarefa que depende, alé
 
 Logo, com base nas informações fornecidas, serviços e soluções escolhidas, segue o descritivo do que será contratado para melhor atender às necessidades e objetivos.
 
-*imagem
+![Descrição dos Custos](img/descri%C3%A7%C3%A3o-custos.png)
 
 - Vigência de Contrato: De acordo com o cronograma.
 - Validade desta proposta: 30 dias corridos, contados após a data da sua emissão.  
 
 Os valores dessa proposta serão faturados em 5 parcelas sendo uma entrada, três pagamentos intermediários e outro no término após o Diagnóstico, entrega da solução e apresentação, conforme tabela abaixo. Após o aceite formal desta proposta, a parcela será faturada após o aceito formal do cliente da entrega da etapa. A CONTRATADA emitirá uma fatura/boleto, obedecendo os prazos, parcelas e valores desta proposta e, junto com o último faturamento, emitirá a Nota Fiscal de Serviço correspondente ao Valor Total da parcela Projeto ou conforme exceção descrita abaixo.
 
-*imagem
+![Custos](img/custos.png)
 
 - Inadimplência: O inadimplemento de qualquer fatura emitida em razão deste Contrato, nos seus respectivos vencimentos, implicará na incidência automática de multa moratória de 2% (dois por cento), acrescido de juros de mora de 1% (um por cento) ao mês, proporcional aos dias em atraso, sobre o débito não liquidado, e devidamente corrigido pelo IGP-M/FGV (Índice Geral de Preços – Mercado). O não pagamento pelo prazo superior a 30 dias, autoriza a Pet’s Car - LTDA a suspender os serviços após notificação prévia por meio eletrônico.
 
-*imagem
+![Dados de Faturamento](img/dados-de-faturamento-custos.png)
