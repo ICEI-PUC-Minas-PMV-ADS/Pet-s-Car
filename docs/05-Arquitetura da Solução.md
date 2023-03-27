@@ -61,7 +61,12 @@ No contexto de desenvolvimento de software, qualidade pode ser entendida como um
 A norma internacional ISO/IEC 25010, que é uma atualização da ISO/IEC 9126, define oito características e 30 subcaracterísticas de qualidade para produtos de software.
 Com base nessas características e nas respectivas sub-características, identifique as sub-características que sua equipe utilizará como base para nortear o desenvolvimento do projeto de software considerando-se alguns aspectos simples de qualidade. Justifique as subcaracterísticas escolhidas pelo time e elenque as métricas que permitirão a equipe avaliar os objetos de interesse.
 
-![image](https://user-images.githubusercontent.com/123743005/227828996-b0eec7c7-101c-46e9-933e-a00ac7e078b9.png)
+![image](https://user-images.githubusercontent.com/123743005/227829765-9c3aecf1-37f2-43e7-a317-c47b003ae1db.png)
+![image](https://user-images.githubusercontent.com/123743005/227829796-fb59f56f-3032-405d-be18-0754cbdc34d7.png)
+![image](https://user-images.githubusercontent.com/123743005/227829836-93a473cb-4822-4398-915a-f11b476d3175.png)
+
+
+
 
 							
 
