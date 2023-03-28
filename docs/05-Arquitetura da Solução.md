@@ -66,9 +66,11 @@ Já o grau da qualidade é resultante do conjunto de requisitos do produto e da 
 
 A norma internacional ISO/IEC 25010, que é uma atualização da ISO/IEC 9126, define oito características e 30 subcaracterísticas de qualidade para produtos de software. 
 
-![image](https://user-images.githubusercontent.com/123743005/227829765-9c3aecf1-37f2-43e7-a317-c47b003ae1db.png)
-![image](https://user-images.githubusercontent.com/123743005/227829796-fb59f56f-3032-405d-be18-0754cbdc34d7.png)
-![image](https://user-images.githubusercontent.com/123743005/227829836-93a473cb-4822-4398-915a-f11b476d3175.png)
+![image](https://user-images.githubusercontent.com/123743005/228100853-4d2bbc0d-5ff6-43c1-965d-c01f6fe5aaf4.png)
+![image](https://user-images.githubusercontent.com/123743005/228100913-0ffcc4d1-fee3-43ce-8185-6c17c643a3dd.png)
+![image](https://user-images.githubusercontent.com/123743005/228100956-ea9aa93b-2ba1-40b7-815e-e37e7b5fc363.png)
+![image](https://user-images.githubusercontent.com/123743005/228101043-39439414-955f-42b6-b7c0-d6a85551d419.png)
+
 
 
 
