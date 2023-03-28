@@ -37,9 +37,18 @@ Entregar um arquivo banco.sql contendo os scripts de criação das tabelas do ba
 
 ## Tecnologias Utilizadas
 
-Descreva aqui qual(is) tecnologias você vai usar para resolver o seu problema, ou seja, implementar a sua solução. Liste todas as tecnologias envolvidas, linguagens a serem utilizadas, serviços web, frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas.
+As ferramentas empregadas no projeto são:  
 
-Apresente também uma figura explicando como as tecnologias estão relacionadas ou como uma interação do usuário com o sistema vai ser conduzida, por onde ela passa até retornar uma resposta ao usuário.
+Editor de código: Visual Studio Code. 
+Repositório do código: Github. 
+Documentos do projeto: Github, OneDrive. 
+Ferramentas de comunicação: Microsoft Teams, Discord e WhatsApp. 
+Ferramentas para criação de diagramas: Draw.io. 
+Ferramentas de desenho de tela (wireframing): Figma. 
+
+![image](https://user-images.githubusercontent.com/123743005/228109529-989c88f1-82b3-46f4-b07f-9ed55f17049f.png)
+
+Escolhemos o VS Code pela facilidade e experiência que temos em relação ao uso da IDE e a integração com o GitHub. Optamos por usar o OneDrive disponibilizado pela PUC Minas para o compartilhamento de documentos. O Teams, Discord e WhatsApp também são constantemente utilizados por todos nós como meio de comunicação ao longo dos semestres. O Draw.io é simples e gratuito, pode ser utilizado sem limites para exportar arquivos. 
 
 ## Hospedagem
 
