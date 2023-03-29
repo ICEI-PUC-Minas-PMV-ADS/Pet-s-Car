@@ -1,15 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import WelcomePage from './pages/Mariano/welcomePage';
+
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <WelcomePage/>
+      
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
