@@ -98,7 +98,7 @@ As métricas são parte do nosso esforço de medir um software. São perguntas f
 
 Processo de avaliação
 
-O propósito do processo de avalição, se dá com o objetivo de mensurar a usabilidade, funcionalidade e segurança da aplicação, pra ambos os usuários: cliente e motorista. Para o aplicativo pet’s car, iremos utilizar as métricas acima pertencentes as suas respectivas características/subcaracterísticas. As métricas implícitas, serão avaliadas por uma das pesonas do projeto, Criatiane, uma das usuárias ideais do sistema, e as métrica explícitas serão avaliadas pela gerencia de qualidade.
+O propósito do nosso processo de avalição, se dá com o objetivo de mensurar, com o foco, na a usabilidade, funcionalidade e segurança da aplicação, pra ambos os usuários: cliente e motorista. Para o aplicativo pet’s car, iremos utilizar as métricas acima pertencentes as suas respectivas características/subcaracterísticas. As métricas implícitas, serão avaliadas por uma das pesonas do projeto, Criatiane, uma das usuárias ideais do sistema, e as métrica explícitas serão avaliadas pela gerencia de qualidade.
 
 
 
