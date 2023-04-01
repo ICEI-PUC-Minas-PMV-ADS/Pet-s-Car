@@ -2,9 +2,17 @@
 
 <span style="color:red">Pré-requisitos: <a href="3-Projeto de Interface.md"> Projeto de Interface</a></span>
 
-Definição de como o software é estruturado em termos dos componentes que fazem parte da solução e do ambiente de hospedagem da aplicação.
+A Arquitetura de Soluções desenha e implementa recursos e ferramentas de TI para atender as necessidades do negócio. No caso da nossa aplicação, Pet’s Car, iremos tratar o desenvolvimento de uma aplicação voltada para o sistema Android. 
 
-![Arquitetura da Solução](img/02-mob-arch.png)
+O nosso código será armazenado no GitHub para que o processo de desenvolvimento seja facilmente acompanhado ou alterado, caso necessário. 
+
+Será necessário a utilização de um banco de dados, pois iremos manter as informações dos clientes e motoristas nele, sendo também necessário a utilização da internet, como única forma de comunicação com o servidor e o banco de dados. Sendo caracterizado como arquitetura cliente/servidor. Os dispositivos móveis se caracterizam como Thin Clients, pois dependem da internet, para o acesso ao servidor e ao BD para atualização e obtenção de dados.
+
+A aplicação será desenvolvida como solução para o negócio, sendo um serviço de transporte para animais domésticos. O cliente irá armazenar os seus dados pessoais e os dados do “pet” podendo agendar o melhor horário que estiver disponível no aplicativo para a busca do animal em sua residência pelo motorista. Esse horário escolhido pelo cliente, é disponibilizado pelo motorista dentro do aplicativo, onde ele também irá poderá armazenar os seus dados pessoais.
+
+![image](https://user-images.githubusercontent.com/123743005/229313548-52128c85-1278-43a6-807e-18e6fe54ab45.png)
+
+
 
 ## Diagrama de Classes
 
