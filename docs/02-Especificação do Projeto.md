@@ -178,6 +178,8 @@ O diagrama a seguir diz respeito ao projeto em questão:
 
 # Matriz de Rastreabilidade
 
+Para identificarmos a correlação entre os requisitos utilizamos a método a Matrix de Rastreabilidade entre Funcionalidades, representada no quadro abaixo:
+
 ![Matriz de Rastreabilidade](img/matrix-de-rastreabilidade.png)
 
 # Gerenciamento de Projeto

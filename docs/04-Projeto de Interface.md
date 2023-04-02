@@ -1,36 +1,50 @@
 
 # Projeto de Interface
 
-<span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a></span>
-
-Visão geral da interação do usuário pelas telas do sistema e protótipo interativo das telas com as funcionalidades que fazem parte do sistema (wireframes).
-
- Apresente as principais interfaces da plataforma. Discuta como ela foi elaborada de forma a atender os requisitos funcionais, não funcionais e histórias de usuário abordados nas <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a>.
+O detalhamento da interface do sistema levou em consideração questões como acessibilidade, usabilidade e agilidade. Assim sendo, o projeto possui uma identidade padronizada em todas as telas e foram projetadas para permitir a navegabilidade em dispositivos móveis.
 
 ## Diagrama de Fluxo
 
-O diagrama apresenta o estudo do fluxo de interação do usuário com o sistema interativo e  muitas vezes sem a necessidade do desenho do design das telas da interface. Isso permite que o design das interações seja bem planejado e gere impacto na qualidade no design do wireframe interativo que será desenvolvido logo em seguida.
+No diagrama de fluxo apresentado a seguir, demonstramos com detalhes o fluxo para cada ação desejada pelo Cliente e Motorista após realizar o login na aplicação.
 
-O diagrama de fluxo pode ser desenvolvido com “boxes” que possuem internamente a indicação dos principais elementos de interface - tais como menus e acessos - e funcionalidades, tais como editar, pesquisar, filtrar, configurar - e a conexão entre esses boxes a partir do processo de interação. Você pode ver mais explicações e exemplos https://www.lucidchart.com/blog/how-to-make-a-user-flow-diagram.
-
-![Exemplo de Diagrama de Fluxo](img/diagramafluxo2.jpg)
-
-As referências abaixo irão auxiliá-lo na geração do artefato “Diagramas de Fluxo”.
-
-> **Links Úteis**:
-> - [Fluxograma online: seis sites para fazer gráfico sem instalar nada | Produtividade | TechTudo](https://www.techtudo.com.br/listas/2019/03/fluxograma-online-seis-sites-para-fazer-grafico-sem-instalar-nada.ghtml)
+![Fluxograma](img/diagrama-de-fluxo.png)
 
 ## Wireframes
 
-![Exemplo de Wireframe](img/wireframe-example.png)
+Cada uma das telas representadas nos fluxos será detalhada nos itens que seguem. [Clicando aqui](https://www.figma.com/file/RUaNZ9sLa6RtcGo8K9Oydg/Pet'sCar-App?node-id=0-1&t=ZwKxjBOXfmCKvr7e-0), é possível acessar o Wireframe criado na plataforma Figma.
 
-São protótipos usados em design de interface para sugerir a estrutura de um site web e seu relacionamentos entre suas páginas. Um wireframe web é uma ilustração semelhante do layout de elementos fundamentais na interface.
- 
-> **Links Úteis**:
-> - [Protótipos vs Wireframes](https://www.nngroup.com/videos/prototypes-vs-wireframes-ux-projects/)
-> - [Ferramentas de Wireframes](https://rockcontent.com/blog/wireframes/)
-> - [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
-> - [Figma](https://www.figma.com/)
-> - [Adobe XD](https://www.adobe.com/br/products/xd.html#scroll)
-> - [Axure](https://www.axure.com/edu) (Licença Educacional)
-> - [InvisionApp](https://www.invisionapp.com/) (Licença Educacional)
+- Tela Inicial
+
+![Tela Inicial](img/Wireframes/wireframe-tela-inicial-aplica%C3%A7%C3%A3o.png)
+
+- Telas de Login e Cadastro do Cliente
+
+![Telas de Login e Cadastro do Cliente](img/Wireframes/wireframe-login-cadastro-cliente.png)
+
+- Telas de Agendamento do Cliente
+
+![Telas de Agendamento do Cliente](img/Wireframes/wireframe-agendamento-cliente.png)
+
+- Telas de Pets do Cliente
+
+![Telas de Pets do Cliente](img/Wireframes/wireframe-pets-cliente.png)
+
+- Telas de Perfil do Cliente
+
+![Telas de Perfil do Cliente](img/Wireframes/wireframe-perfil-cliente.png)
+
+- Tela de Login e Cadastro do Motorista
+
+![Tela de Login e Cadastro do Motorista](img/Wireframes/wireframe-login-cadastro-motorista.png)
+
+- Telas de Agendamento do Motorista
+
+![Telas de Agendamento do Motorista](img/Wireframes/wireframe-agendamento-motorista.png)
+
+- Telas de Perfil do Motorista
+
+![Telas de Perfil do Motorista](img/Wireframes/wireframe-perfil-motorista.png)
+
+- Telas de Recuperação de Senha
+
+![Telas de Recuperação de Senha](img/Wireframes/wireframe-recupera%C3%A7%C3%A3o-senha.png)
