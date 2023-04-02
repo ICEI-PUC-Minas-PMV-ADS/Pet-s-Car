@@ -67,22 +67,22 @@ A equipe utiliza o Kanban disponível na aba projects no repositório do GitHub 
 
 As ferramentas empregadas no projeto são:
 
-Editor de código: Visual Studio Code.
+- Editor de código: Visual Studio Code.
 
 O editor de código escolhido foi o Visual Studio Code por conta da facilidade no manuseio por parte de quem está iniciando na área.
 
-Ferramentas de comunicação: Teams.
+- Ferramentas de comunicação: Teams.
 
 A ferramenta de comunicação utilizada entre o grupo é o Microsoft Teams, disponibilizado pela PUC Minas, para reuniões de planejamento do projeto.
 
-Ferramentas de desenho de tela (wireframing) e prototipação: Figma.
+- Ferramentas de desenho de tela (wireframing) e prototipação: Figma.
 
 O projeto em Wireframe foi criado na plataforma de prototipagem Figma, e a mesma ferramenta será utilizada para o protótipo de baixa fidelidade do projeto. O mesmo pode ser [acessado aqui](https://www.figma.com/file/RUaNZ9sLa6RtcGo8K9Oydg/Pet'sCar-App?node-id=0%3A1&t=lXJlSLUtAuoQdYzm-1).
 
-Ferramenta de backup dos documentos: OneDrive.
+- Ferramenta de backup dos documentos: OneDrive.
 
 O backup dos documentos está sendo feito no OneDrive para facilitar o compartilhamento dos arquivos entre a equipe.
 
-Ferramenta de gerenciamento de projeto: GitHub.
+- Ferramenta de gerenciamento de projeto: GitHub.
 
 O quadro Kanban do grupo no GitHub Classroom foi organizado e distribuído com as tarefas conforme a Figura W. A definição desta estrutura se baseou na proposta feita por Littlefield (2016) e a mesma está [disponível aqui](https://github.com/orgs/ICEI-PUC-Minas-PMV-ADS/projects/237/views/1).
