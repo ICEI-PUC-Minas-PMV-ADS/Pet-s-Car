@@ -1,5 +1,6 @@
-//Mariano: Desenvolvido o a tela de login do aplicativo e a mensagem com as informações para o login
-import { Text } from 'react-native';
+//Mariano: Desenvolvido o a tela de login do aplicativo e a mensagem com as informações para o login.
+//Feito com o auxílio das aulas da PUC e com o conhecimento prévio em front-end do Thiago.
+import { Text, StyleSheet } from 'react-native';
 
 
 const LoginMotorista = ()=>{
