@@ -4,11 +4,13 @@ import { StyleSheet, Text } from 'react-native';
 const CadastroMotorista = () => { 
     return (
         <>
-        <Text styles={styles.title}> Cadastro </Text>
-        <Text styles={styles.subtitle}> Crie uma conta para acessar todos os recursos da Pet’s Car! </Text>
+        <Text style={styles.title}> Cadastro </Text>
+        <Text style={styles.subtitle}> Crie uma conta para acessar todos os recursos da Pet’s Car! </Text>
         </>
     ) 
 }
+
+export default CadastroMorista
 
 const styles = StyleSheet.create({
     title: {
