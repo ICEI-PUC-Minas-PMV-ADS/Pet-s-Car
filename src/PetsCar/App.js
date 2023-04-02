@@ -1,10 +1,10 @@
 import { StyleSheet, View } from "react-native"
-import LoginMotorista from "./pages/Mariano/loginMotorista"
+import TelaInicial from "./pages/Thiago/telaInicial"
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <LoginMotorista />
+      <TelaInicial />
     </View>
   )
 }
