@@ -10,7 +10,6 @@ Esse projeto é direcionado a empresa Pet’s Car. A aplicação será desenvolv
 
 ## Integrantes
 
-* Isabela Oliveira de Castro Silva  
 * Jessica Gonçalves dos Santos
 * João Paulo Jorges da Silva  
 * Mariano Teixeira Barbosa Contin

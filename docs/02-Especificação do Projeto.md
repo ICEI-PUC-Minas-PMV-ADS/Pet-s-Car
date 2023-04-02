@@ -68,18 +68,35 @@ Apresente aqui os problemas existentes que viabilizam sua proposta. Apresente o 
 
 Apresente aqui uma descrição da sua proposta abordando seus limites e suas ligações com as estratégias e objetivos do negócio. Apresente aqui as oportunidades de melhorias.
 
-### Processo 1 – NOME DO PROCESSO
+### Processo 1 – Processo de Agendamento pelo Cliente
 
-Apresente aqui o nome e as oportunidades de melhorias para o processo 1. Em seguida, apresente o modelo do processo 1, descrito no padrão BPMN.
+![Processo 1](img/Diagramas%20de%20Processo/diagrama-processo-principal-user.png)
 
-![Processo 1](img/02-bpmn-proc1.png)
+### Processo 2 – Processo da Confirmação do Agendamento pelo Motorista
 
-### Processo 2 – NOME DO PROCESSO
+![Processo 2](img/Diagramas%20de%20Processo/diagrama-processo-principal-motorista.png)
+### Processo 3 – Processo de Cadastrar um novo, editar ou excluir um Pet
 
-Apresente aqui o nome e as oportunidades de melhorias para o processo 2. Em seguida, apresente o modelo do processo 2, descrito no padrão BPMN.
+![Processo 3](img/Diagramas%20de%20Processo/diagrama-processo-cadastrar-novo-editar-excluir-pet.png)
+### Processo 4 – Editar ou excluir Conta do Usuário
 
-![Processo 2](img/02-bpmn-proc2.png)
+![Processo 4](img/Diagramas%20de%20Processo/diagrama-processo-editar-excluir-conta.png)
 
+### Processo 5 – Visualizar a avaliação recebida do Cliente ou Motorista
+
+![Processo 5](img/Diagramas%20de%20Processo/diagrama-processo-acessar-avalia%C3%A7%C3%A3o-perfil.png)
+
+### Processo 6 – Recuperação de Senha
+
+![Processo 6](img/Diagramas%20de%20Processo/diagrama-processo-recuperacao-senha.png)
+
+### Processo 7 – Avaliação do Motorista
+
+![Processo 7](img/Diagramas%20de%20Processo/diagrama-processo-avalia%C3%A7%C3%B5es-motorista.png)
+
+### Processo 8 – Avaliação do Cliente
+
+![Processo 8](img/Diagramas%20de%20Processo/diagrama-processo-avalia%C3%A7%C3%B5es-motorista.png)
 ## Indicadores de Desempenho
 
 Apresente aqui os principais indicadores de desempenho e algumas metas para o processo. Atenção: as informações necessárias para gerar os indicadores devem estar contempladas no diagrama de classe. Colocar no mínimo 5 indicadores.
@@ -142,6 +159,13 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |RE-02 | A equipe não pode contratar terceiros para o desenvolvimento do projeto.   |
 |RE-03 | O site deve ser desenvolvido utilizando linguagens de programação Mobile, mais especificamente HTML, CSS, JavaScript, TypeScript e bem como o framework React Native.    |
 
+### Técnica de Priorização de Requisitos
+
+Ao usar a matriz GUT na tecnologia, é possível avaliar fatores como a complexidade do projeto, a qualidade do código, a experiência da equipe de desenvolvimento e a disponibilidade de recursos.
+
+Cada um desses fatores pode ser avaliado de acordo com sua importância relativa para o sucesso do projeto, permitindo que a equipe de gerenciamento de projetos priorize os recursos e o tempo de acordo com as necessidades do projeto.
+
+![Priorização de Requisitos](img/priorizacao-de-requisitos.png)
 ## Diagrama de Casos de Uso
 
 Os diagramas são utilizados na documentação e modelagem dos sistemas e de suas funcionalidades, de modo geral, podemos dizer que são essenciais para a construção de um software coeso.
@@ -174,36 +198,9 @@ Para uma melhor gestão, foi construído um cronograma com as atividades necess�
 
 ## Gerenciamento de Equipe
 
-Para mais agilidade na gestão do projeto, a equipe optou pelo Scrum, metodologia ágil na otimização do processo de desenvolvimento.
-
-A equipe está organizada da seguinte maneira:  
-
-- Scrum Master: Isabela Oliveira
-- Product Owner: João Paulo
-- Equipe de Desenvolvimento: Mariano Teixeira, Jéssica Gonçalves
-- Equipe de Design: Thiago Terra  
-
- O Scrum se diferencia porque promove a junção de profissionais com diferentes papéis em um único time, dessa forma todos participam do desenvolvimento do projeto, sendo, de fato, uma só equipe.
-
-O time ágil é organizado de forma que pessoas fiquem responsáveis por garantir a qualidade, eficácia e eficiência do projeto. Isso é alcançado através dos pequenos ciclos de atividades e reuniões constantes para que a equipe possa alinhar o que vem fazendo e pensar formas de melhorar o processo com agilidade.  
-
-Inicialmente, o P.O reuniu a equipe e apresentou o pacote de funcionalidades do projeto (o product backlog). A partir disso, as Sprints (os ciclos) foram definidas para a realização das tarefas. A Daily Scrum do grupo acontecia às 21:00 e, no início de cada sprint, acontecia a Sprint Planning Meeting para o planejamento e priorização dos itens do Product Backlog para aquele período.
-
-Para acompanhar o processo, a equipe utiliza o Kanban disponível na aba projects no repositório do GitHub Classroom, que contém as seguintes colunas:
+A equipe utiliza o Scrum, uma metodologia Agile responsável por auxiliar a gestão de projetos. Para acompanhar o processo, a equipe utiliza o Kanban disponível na aba projects no repositório do GitHub Classroom, que contém as seguintes colunas:
 
 ![Kanban GitHub](img/kanban-github.png)
-
-- Meetings: esta coluna apresenta os dias que aconteceram as reuniões da equipe, assim como os principais tópicos tratados.  
-
-- Backlog: esta coluna apresenta as atividades a serem desenvolvidas, ou seja, o Product Backlog. Todas as atividades que acontecerão no projeto estarão dispostas nessa coluna.  
-
-- To Do: esta coluna representa o Sprint Backlog. Este é o Sprint atual que estamos trabalhando.  
-
-- In progress: quando uma tarefa tiver sido iniciada é movida para esta coluna.  
-
-- Testing: esta coluna é para checar a qualidade do que está sendo produzido. Antes de qualquer entrega todos os tópicos dessa coluna deverão ser finalizados.  
-
-- Done: nesta coluna são colocadas as tarefas que passaram pelos testes e controle de qualidade e estão prontos para ser entregues ao usuário.
 
 Além disso, utilizamos o recurso Issues do GitHub, atribuindo as tarefas-problema a cada pessoa da equipe. Com isso, além do acompanhamento por meio do Kanban, temos uma visualização completa da lista de problemas.
 
