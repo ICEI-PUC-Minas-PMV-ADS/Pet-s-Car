@@ -10,7 +10,7 @@ const CadastroMotorista = () => {
     ) 
 }
 
-export default CadastroMorista
+export default CadastroMotorista
 
 const styles = StyleSheet.create({
     title: {
