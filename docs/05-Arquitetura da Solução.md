@@ -37,18 +37,11 @@ Para o esquema relacional foram representadas todas as tabelas que serão armaze
 
 ## Tecnologias Utilizadas
 
-As ferramentas empregadas no projeto são:  
-
-Editor de código: Visual Studio Code. 
-Repositório do código: Github. 
-Documentos do projeto: Github, OneDrive. 
-Ferramentas de comunicação: Microsoft Teams, Discord e WhatsApp. 
-Ferramentas para criação de diagramas: Draw.io. 
-Ferramentas de desenho de tela (wireframing): Figma. 
+Para o desenvolvimento do projeto Pet’s Car, utilizaremos o VS Code como IDE para a utilização do Expo & React Native, que utiliza o JavaScript como linguagem. Para o banco de dados, utilizaremos o Json Server.  
 
 ![image](https://user-images.githubusercontent.com/123743005/228109529-989c88f1-82b3-46f4-b07f-9ed55f17049f.png)
 
-Escolhemos o VS Code pela facilidade e experiência que temos em relação ao uso da IDE e a integração com o GitHub. Optamos por usar o OneDrive disponibilizado pela PUC Minas para o compartilhamento de documentos. O Teams, Discord e WhatsApp também são constantemente utilizados por todos nós como meio de comunicação ao longo dos semestres. O Draw.io é simples e gratuito, pode ser utilizado sem limites para exportar arquivos. 
+
 
 ## Hospedagem
 
