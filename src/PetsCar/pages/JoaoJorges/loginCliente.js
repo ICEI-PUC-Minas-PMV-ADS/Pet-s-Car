@@ -4,11 +4,13 @@ import { StyleSheet, Text } from 'react-native';
 const LoginCliente = () => { 
     return (
         <>
-        <Text styles={styles.title}>Login de Cliente</Text>
-        <Text styles={styles.subtitle}>Insira seu e-mail e senha e faça seu agendamento!</Text>
+        <Text style={styles.title}>Login de Cliente</Text>
+        <Text style={styles.subtitle}>Insira seu e-mail e senha e faça seu agendamento!</Text>
         </>
     ) 
 }
+
+export default LoginCliente
 
 const styles = StyleSheet.create({
     title: {
