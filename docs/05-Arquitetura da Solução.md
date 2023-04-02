@@ -25,23 +25,15 @@ As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de
 
 ## Modelo ER
 
-O Modelo ER representa através de um diagrama como as entidades (coisas, objetos) se relacionam entre si na aplicação interativa.]
+O modelo ER proposta representa através de um diagrama como as entidades do sistema de relacionam entre si na aplicação. Por meio deste também é possível verificar os atributos que cada entidade possui e a cardinalidade entre as relações. 
 
-As referências abaixo irão auxiliá-lo na geração do artefato “Modelo ER”.
-
-> - [Como fazer um diagrama entidade relacionamento | Lucidchart](https://www.lucidchart.com/pages/pt/como-fazer-um-diagrama-entidade-relacionamento)
+![modeloERImagem](img/modeloER.png)
 
 ## Esquema Relacional
 
-O Esquema Relacional corresponde à representação dos dados em tabelas juntamente com as restrições de integridade e chave primária.
- 
-As referências abaixo irão auxiliá-lo na geração do artefato “Esquema Relacional”.
+Para o esquema relacional foram representadas todas as tabelas que serão armazenadas no banco de dados, bem como suas respectivas colunas, chaves e tipo de dados para garantir a integridade de restrições. 
 
-> - [Criando um modelo relacional - Documentação da IBM](https://www.ibm.com/docs/pt-br/cognos-analytics/10.2.2?topic=designer-creating-relational-model)
-
-## Modelo Físico
-
-Entregar um arquivo banco.sql contendo os scripts de criação das tabelas do banco de dados. Este arquivo deverá ser incluído dentro da pasta src\bd.
+![esquemaRelacionalImagem](img/tabelasBD.png)
 
 ## Tecnologias Utilizadas
 
