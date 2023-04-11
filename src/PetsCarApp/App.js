@@ -1,32 +1,36 @@
 //Thiago: desenvolvi as primeiras informações da tela Inicial com apoio do material das aulas de Desenvolvimento Mobile da PUC.
 
-import { Image, StyleSheet, Text } from "react-native"
+import { StyleSheet, View, Text, Image } from "react-native"
 
-const TelaInicial = () => {
+export default function App() {
   return (
-    <>
-      <Image source={require("assets/logo-petscar.png")} />
+    <View style={styles.container}>
+      <Image source={require("./assets/logo.png")} />
       <Text style={styles.subtitle}>
         <Text style={styles.spanSubtitle}>Segurança</Text> e
         <Text style={styles.spanSubtitle}> conforto</Text> para seu melhor
         amigo!
       </Text>
-    </>
+    </View>
   )
 }
 
-export default TelaInicial
-
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   subtitle: {
     color: "#131313",
-    fontSize: "18px",
-    fontWeight: "500",
-    marginTop: "40px",
+    fontSize: 18,
+    fontWeight: 500,
+    marginTop: 40,
   },
   spanSubtitle: {
     color: "#4060FF",
-    fontSize: "18px",
-    fontWeight: "700",
+    fontSize: 18,
+    fontWeight: 700,
   },
 })

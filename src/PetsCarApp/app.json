@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "PetsCar",
-    "slug": "PetsCar",
+    "name": "PetsCarApp",
+    "slug": "PetsCarApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
