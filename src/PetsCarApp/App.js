@@ -1,36 +1,48 @@
 //Thiago: desenvolvi as primeiras informações da tela Inicial com apoio do material das aulas de Desenvolvimento Mobile da PUC.
+import { useFonts } from "expo-font"
+import { NavigationContainer } from "@react-navigation/native"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { LoginCliente } from "./pages/viewsCliente/loginCliente"
+import { LoginMotorista } from "./pages/viewsMotorista/loginMotorista"
+import { WelcomePage } from "./pages/welcomePage/welcomePage"
 
-import { StyleSheet, View, Text, Image } from "react-native"
+const Stack = createNativeStackNavigator()
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    "Raleway-400": require("./assets/fonts/Raleway-Regular.ttf"),
+    "Raleway-Italic-400": require("./assets/fonts/Raleway-Italic.ttf"),
+    "Raleway-500": require("./assets/fonts/Raleway-Medium.ttf"),
+    "Raleway-600": require("./assets/fonts/Raleway-SemiBold.ttf"),
+    "Raleway-700": require("./assets/fonts/Raleway-Bold.ttf"),
+  })
+
+  if (!fontsLoaded) {
+    return null
+  }
+
   return (
-    <View style={styles.container}>
-      <Image source={require("./assets/logo.png")} />
-      <Text style={styles.subtitle}>
-        <Text style={styles.spanSubtitle}>Segurança</Text> e
-        <Text style={styles.spanSubtitle}> conforto</Text> para seu melhor
-        amigo!
-      </Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName={"WelcomePage"}
+        screenOptions={{ headerShadowVisible: false }}
+      >
+        <Stack.Screen
+          name='WelcomePage'
+          options={{ title: "" }}
+          component={WelcomePage}
+        />
+        <Stack.Screen
+          name='LoginCliente'
+          options={{ title: "" }}
+          component={LoginCliente}
+        />
+        <Stack.Screen
+          name='LoginMotorista'
+          options={{ title: "" }}
+          component={LoginMotorista}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  subtitle: {
-    color: "#131313",
-    fontSize: 18,
-    fontWeight: 500,
-    marginTop: 40,
-  },
-  spanSubtitle: {
-    color: "#4060FF",
-    fontSize: 18,
-    fontWeight: 700,
-  },
-})
