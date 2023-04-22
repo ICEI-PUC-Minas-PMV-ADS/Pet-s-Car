@@ -102,7 +102,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={'CadastroCliente'}
+        initialRouteName={'WelcomePage'}
         screenOptions={{ headerShadowVisible: false }}
       >
         <Stack.Screen
