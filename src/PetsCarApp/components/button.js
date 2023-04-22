@@ -1,20 +1,22 @@
-import { StyleSheet, TouchableOpacity, Text, Image } from "react-native"
+import React from "react";
+import { StyleSheet, TouchableOpacity, Text } from "react-native";
+import { IconCliente, IconMais, IconMotorista } from "./icons";
 
-TouchableOpacity.defaultProps = { activeOpacity: 0.8 }
+TouchableOpacity.defaultProps = { activeOpacity: 0.8 };
 
-export const ButtonPrimary = ({ onPress, title, icon }) => {
+export const ButtonCliente = ({ onPress, title, icon }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={stylesButtonPrimary.appButtonContainer}
+      style={stylesButtonCliente.appButtonContainer}
     >
-      <Image source={icon} />
-      <Text style={stylesButtonPrimary.appButtonText}>{title}</Text>
+      <IconCliente color={"#FFFFFF"} />
+      <Text style={stylesButtonCliente.appButtonText}>{title}</Text>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
-const stylesButtonPrimary = StyleSheet.create({
+const stylesButtonCliente = StyleSheet.create({
   appButtonContainer: {
     marginTop: 11,
     backgroundColor: "#4060FF",
@@ -33,21 +35,21 @@ const stylesButtonPrimary = StyleSheet.create({
     alignSelf: "center",
     fontFamily: "Raleway-700",
   },
-})
+});
 
-export const ButtonSecundary = ({ onPress, title, icon }) => {
+export const ButtonMotorista = ({ onPress, title }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={stylesButtonSecundary.appButtonContainer}
+      style={stylesButtonMotorista.appButtonContainer}
     >
-      <Image source={icon} />
-      <Text style={stylesButtonSecundary.appButtonText}>{title}</Text>
+      <IconMotorista color={"#4060FF"} />
+      <Text style={stylesButtonMotorista.appButtonText}>{title}</Text>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
-const stylesButtonSecundary = StyleSheet.create({
+const stylesButtonMotorista = StyleSheet.create({
   appButtonContainer: {
     marginTop: 11,
     backgroundColor: "#EBEEFF",
@@ -66,4 +68,36 @@ const stylesButtonSecundary = StyleSheet.create({
     alignSelf: "center",
     fontFamily: "Raleway-700",
   },
-})
+});
+
+export const ButtonHeaderAdd = ({ onPress, title }) => {
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={stylesButtonHeaderAdd.appButtonContainer}
+    >
+      <Text style={stylesButtonHeaderAdd.appButtonText}>{title}</Text>
+      <IconMais color={"#FFF"} />
+    </TouchableOpacity>
+  );
+};
+
+const stylesButtonHeaderAdd = StyleSheet.create({
+  appButtonContainer: {
+    borderRadius: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    borderColor: "#FFFFFF",
+    borderWidth: 1,
+    padding: 12,
+  },
+  appButtonText: {
+    marginRight: 10,
+    fontSize: 16,
+    lineHeight: 16,
+    color: "#FFFFFF",
+    alignSelf: "center",
+    fontFamily: "Raleway-500",
+  },
+});

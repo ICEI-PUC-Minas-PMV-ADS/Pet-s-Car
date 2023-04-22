@@ -1,12 +1,14 @@
 //Thiago: desenvolvi as primeiras informações da tela Inicial com apoio do material das aulas de Desenvolvimento Mobile da PUC.
-import { StyleSheet, View, Text, Image } from "react-native"
-import { ButtonPrimary, ButtonSecundary } from "../../components/button"
+import { StyleSheet, View, Text } from "react-native";
+import { ButtonCliente, ButtonMotorista } from "../../components/button";
+import { LogoPetsCar } from "../../components/logo";
+import { IconCliente, IconMotorista } from "../../components/icons";
 
 export function WelcomePage({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.container1}>
-        <Image source={require("../../assets/logo.png")} />
+        <LogoPetsCar />
         <Text style={styles.subtitle}>
           <Text style={styles.spanSubtitle}>Segurança</Text> e
           <Text style={styles.spanSubtitle}> conforto</Text> para seu melhor
@@ -14,23 +16,21 @@ export function WelcomePage({ navigation }) {
         </Text>
       </View>
       <View style={styles.container2}>
-        <ButtonPrimary
+        <ButtonCliente
           title={"Sou Cliente"}
-          icon={require("../../assets/cliente-inicio.png")}
           onPress={() => {
-            navigation.navigate("LoginCliente")
+            navigation.navigate("ClienteTabNavegation");
           }}
         />
-        <ButtonSecundary
+        <ButtonMotorista
           title={"Sou Motorista"}
-          icon={require("../../assets/motorista-inicio.png")}
           onPress={() => {
-            navigation.navigate("LoginMotorista")
+            navigation.navigate("LoginMotorista");
           }}
         />
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "Raleway-700",
   },
-})
+});

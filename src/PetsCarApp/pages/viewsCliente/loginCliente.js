@@ -1,5 +1,5 @@
 // João Jorges - Desenvolvi o ínicio da tela utilizando o material disponível na disciplina e com a ajuda do Thiago
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, Text, View } from "react-native";
 
 export function LoginCliente() {
   return (
@@ -9,7 +9,7 @@ export function LoginCliente() {
         Insira seu e-mail e senha e faça seu agendamento!
       </Text>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 400,
   },
-})
+});
