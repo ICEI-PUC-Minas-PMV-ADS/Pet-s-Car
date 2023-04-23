@@ -1,26 +1,80 @@
-import { StyleSheet, View, Text } from "react-native";
+//Thiago: desenvolvi a tela de agenda com apoio do material das aulas de Desenvolvimento Mobile da PUC.
+import { FlatList, StyleSheet, View } from "react-native";
+import { CardAgenda } from "../../components/card";
 
-export function AgendaCliente() {
+const exemploAgendamentos = [
+  {
+    id: 1,
+    pet: "Jack",
+    data: "15/07/2023",
+    hora: "15:00",
+    status: "Pendente",
+  },
+  {
+    id: 2,
+    pet: "Bob",
+    data: "20/08/2023",
+    hora: "12:00",
+    status: "Aceito",
+  },
+  {
+    id: 3,
+    pet: "Luke",
+    data: "10/02/2023",
+    hora: "18:00",
+    status: "Realizada",
+  },
+  {
+    id: 4,
+    pet: "Jake",
+    data: "15/07/2023",
+    hora: "15:00",
+    status: "Realizada",
+  },
+  {
+    id: 5,
+    pet: "Melissa",
+    data: "20/08/2023",
+    hora: "12:00",
+    status: "Pendente",
+  },
+  {
+    id: 6,
+    pet: "Salsicha",
+    data: "10/02/2023",
+    hora: "18:00",
+    status: "Realizada",
+  },
+];
+
+export function AgendaCliente({ navigation }) {
   return (
     <View style={styles.container}>
-      <View style={styles.card}>
-        <View style={styles.cardText}>
-          <Text style={styles.textStrong}>Pet:</Text>
-          <Text style={styles.textInfo}>Jack</Text>
-        </View>
-        <View style={styles.cardText}>
-          <Text style={styles.textStrong}>Data:</Text>
-          <Text style={styles.textInfo}>15/07/2023</Text>
-        </View>
-        <View style={styles.cardText}>
-          <Text style={styles.textStrong}>Hora:</Text>
-          <Text style={styles.textInfo}>15:00</Text>
-        </View>
-        <View style={styles.cardText}>
-          <Text style={styles.textStrong}>Status:</Text>
-          <Text style={styles.textInfo}>Pendente</Text>
-        </View>
-      </View>
+      <FlatList
+        style={styles.containerScroll}
+        data={exemploAgendamentos}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => {
+          return (
+            <CardAgenda
+              pet={item.pet}
+              data={item.data}
+              hora={item.hora}
+              status={item.status}
+              onPressDetalhes={() => {
+                navigation.navigate("DetalhesAgendaNav");
+              }}
+              styleCard={
+                item.status == "Pendente"
+                  ? styles.cardPendente
+                  : item.status == "Aceito"
+                  ? styles.cardAceito
+                  : styles.cardRealizado
+              }
+            />
+          );
+        }}
+      />
     </View>
   );
 }
@@ -31,27 +85,41 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "#fff",
   },
-  card: {
-    backgroundColor: "#F4F4F4",
-    marginHorizontal: 18,
-    marginVertical: 15,
-    borderRadius: 10,
+  containerScroll: {
+    paddingHorizontal: 18,
+    paddingVertical: 15,
+  },
+  cardPendente: {
     borderLeftColor: "#4060FF",
+    backgroundColor: "#F4F4F4",
+    marginBottom: 15,
+    borderRadius: 10,
     borderLeftWidth: 6,
     padding: 15,
-  },
-  cardText: {
-    fontSize: 14,
-    color: "#131313",
     display: "flex",
     flexDirection: "row",
-    alignItems: "flex-end",
+    justifyContent: "space-between",
   },
-  textStrong: {
-    fontFamily: "Raleway-700",
-    marginRight: 5,
+  cardAceito: {
+    borderLeftColor: "#A5960D",
+    backgroundColor: "#F4F4F4",
+    marginBottom: 15,
+    borderRadius: 10,
+    borderLeftWidth: 6,
+    padding: 15,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
-  textInfo: {
-    fontFamily: "Raleway-500",
+  cardRealizado: {
+    borderLeftColor: "#1AB82A",
+    backgroundColor: "#F4F4F4",
+    marginBottom: 15,
+    borderRadius: 10,
+    borderLeftWidth: 6,
+    padding: 15,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });

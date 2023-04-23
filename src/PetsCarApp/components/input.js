@@ -1,41 +1,41 @@
-import { TextInput, StyleSheet, View, Text } from 'react-native'
-import { IconEmail, IconSenha } from './icons'
+import { TextInput, StyleSheet, View, Text } from "react-native";
+import { IconEmail, IconSenha } from "./icons";
 
-export const InputEmail = props => {
+export const InputEmail = (props) => {
   return (
     <View style={styles.containerInput}>
       <View style={styles.label}>
-        <IconEmail color={'#4060FF'} />
+        <IconEmail color={"#4060FF"} />
         <Text style={styles.textLabel}>E-mail</Text>
       </View>
       <TextInput
         style={styles.input}
-        placeholder="Ex: abc@example.com"
-        placeholderTextColor={'#CDCDCC'}
+        placeholder='Ex: abc@example.com'
+        placeholderTextColor={"#CDCDCC"}
         onChangeText={props.onChange}
       />
     </View>
-  )
-}
+  );
+};
 
-export const InputSenha = props => {
+export const InputSenha = (props) => {
   return (
     <View style={styles.containerInput}>
       <View style={styles.label}>
-        <IconSenha color={'#4060FF'} />
+        <IconSenha color={"#4060FF"} />
         <Text style={styles.textLabel}>Senha</Text>
       </View>
       <TextInput
         style={styles.input}
-        placeholder="•••••••••••••"
-        placeholderTextColor={'#CDCDCC'}
+        placeholder='•••••••••••••'
+        placeholderTextColor={"#CDCDCC"}
         onChangeText={props.onChange}
       />
     </View>
-  )
-}
+  );
+};
 
-export const InputForm = props => {
+export const InputForm = (props) => {
   return (
     <View style={styles.containerInputForm}>
       <View style={styles.label}>
@@ -44,12 +44,12 @@ export const InputForm = props => {
       <TextInput
         style={styles.input}
         placeholder={props.placeholder}
-        placeholderTextColor={'#CDCDCC'}
+        placeholderTextColor={"#CDCDCC"}
         onChangeText={props.onChange}
       />
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   input: {
@@ -59,30 +59,30 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 16,
     borderRadius: 16,
-    borderColor: '#4060FF',
-    fontFamily: 'Raleway-400',
-    fontSize: 16
+    borderColor: "#4060FF",
+    fontFamily: "Raleway-400",
+    fontSize: 16,
   },
   label: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center'
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
   },
   textLabel: {
     paddingLeft: 10,
-    fontFamily: 'Raleway-400',
+    fontFamily: "Raleway-400",
     fontSize: 16,
-    color: '#131313'
+    color: "#131313",
   },
   containerInput: {
-    marginVertical: 14
+    marginVertical: 14,
   },
   textLabelForm: {
-    fontFamily: 'Raleway-400',
+    fontFamily: "Raleway-400",
     fontSize: 16,
-    color: '#131313'
+    color: "#131313",
   },
   containerInputForm: {
-    marginVertical: 8
-  }
-})
+    marginVertical: 8,
+  },
+});
