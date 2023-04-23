@@ -16,6 +16,7 @@ import { CadastroCliente } from "./pages/viewsCliente/cadastroCliente";
 import { AdicionarAgenda } from "./pages/viewsCliente/viewsAgenda/adicionarAgenda";
 import { DetalhesAgenda } from "./pages/viewsCliente/viewsAgenda/detalhesAgenda";
 import { EditarAgenda } from "./pages/viewsCliente/viewsAgenda/editarAgenda";
+import { CadastroMotorista } from "./pages/viewsMotorista/cadastroMotorista";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -168,6 +169,11 @@ export default function App() {
           name='LoginCliente'
           options={{ title: "" }}
           component={LoginCliente}
+        />
+        <Stack.Screen
+          name='CadastroMotorista'
+          options={{ title: "" }}
+          component={CadastroMotorista}
         />
         <Stack.Screen
           name='CadastroCliente'
