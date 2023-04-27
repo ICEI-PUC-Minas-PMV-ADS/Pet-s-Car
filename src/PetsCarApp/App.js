@@ -17,6 +17,10 @@ import { AdicionarAgenda } from "./pages/viewsCliente/viewsAgenda/adicionarAgend
 import { DetalhesAgenda } from "./pages/viewsCliente/viewsAgenda/detalhesAgenda";
 import { EditarAgenda } from "./pages/viewsCliente/viewsAgenda/editarAgenda";
 import { CadastroMotorista } from "./pages/viewsMotorista/cadastroMotorista";
+import { RecuperarSenhaCliente } from "./pages/viewsCliente/recuperarSenhaCliente";
+import { RedefinirSenhaCliente } from "./pages/viewsCliente/redefinirSenhaCliente";
+import { RecuperarSenhaMotorista } from "./pages/viewsMotorista/recuperarSenhaMotorista";
+import { RedefinirSenhaMotorista } from "./pages/viewsMotorista/redefinirSenhaMotorista";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -62,7 +66,7 @@ function ClienteTabNavegation({ navigation }) {
       }}
     >
       <Tab.Screen
-        name='Agenda'
+        name="Agenda"
         component={AgendaCliente}
         options={{
           tabBarIcon: ({ color }) => <IconAgendamentos color={color} />,
@@ -80,14 +84,14 @@ function ClienteTabNavegation({ navigation }) {
         }}
       />
       <Tab.Screen
-        name='Pets'
+        name="Pets"
         component={PetsCliente}
         options={{
           tabBarIcon: ({ color }) => <IconPets color={color} />,
         }}
       />
       <Tab.Screen
-        name='Perfil'
+        name="Perfil"
         component={PerfilCliente}
         options={{
           tabBarIcon: ({ color }) => <IconPerfil color={color} />,
@@ -100,7 +104,7 @@ function ClienteTabNavegation({ navigation }) {
 function DetalhesAgendaNav({ navigation }) {
   return (
     <Stack.Navigator
-      initialRouteName='DetalhesAgenda'
+      initialRouteName="DetalhesAgenda"
       screenOptions={{
         headerStyle: {
           backgroundColor: "#4060FF",
@@ -114,7 +118,7 @@ function DetalhesAgendaNav({ navigation }) {
       }}
     >
       <Stack.Screen
-        name='DetalhesAgenda'
+        name="DetalhesAgenda"
         options={{
           title: "Detalhes",
           headerRight: () => (
@@ -129,7 +133,7 @@ function DetalhesAgendaNav({ navigation }) {
         component={DetalhesAgenda}
       />
       <Stack.Screen
-        name='EditarAgenda'
+        name="EditarAgenda"
         options={{
           title: "Editar",
         }}
@@ -161,37 +165,57 @@ export default function App() {
         }}
       >
         <Stack.Screen
-          name='WelcomePage'
+          name="WelcomePage"
           options={{ title: "" }}
           component={WelcomePage}
         />
         <Stack.Screen
-          name='LoginCliente'
+          name="LoginCliente"
           options={{ title: "" }}
           component={LoginCliente}
         />
         <Stack.Screen
-          name='CadastroMotorista'
-          options={{ title: "" }}
-          component={CadastroMotorista}
-        />
-        <Stack.Screen
-          name='CadastroCliente'
+          name="CadastroCliente"
           options={{ title: "" }}
           component={CadastroCliente}
         />
         <Stack.Screen
-          name='LoginMotorista'
+          name="RecuperarSenhaCliente"
+          options={{ title: "" }}
+          component={RecuperarSenhaCliente}
+        />
+        <Stack.Screen
+          name="RedefinirSenhaCliente"
+          options={{ title: "" }}
+          component={RedefinirSenhaCliente}
+        />
+        <Stack.Screen
+          name="LoginMotorista"
           options={{ title: "" }}
           component={LoginMotorista}
         />
         <Stack.Screen
-          name='ClienteTabNavegation'
+          name="CadastroMotorista"
+          options={{ title: "" }}
+          component={CadastroMotorista}
+        />
+        <Stack.Screen
+          name="RecuperarSenhaMotorista"
+          options={{ title: "" }}
+          component={RecuperarSenhaMotorista}
+        />
+        <Stack.Screen
+          name="RedefinirSenhaMotorista"
+          options={{ title: "" }}
+          component={RedefinirSenhaMotorista}
+        />
+        <Stack.Screen
+          name="ClienteTabNavegation"
           options={{ title: "", headerShown: false }}
           component={ClienteTabNavegation}
         />
         <Stack.Screen
-          name='AdicionarAgendaCliente'
+          name="AdicionarAgendaCliente"
           options={{
             title: "Adicionar",
             headerStyle: {
@@ -207,7 +231,7 @@ export default function App() {
           component={AdicionarAgenda}
         />
         <Stack.Screen
-          name='DetalhesAgendaNav'
+          name="DetalhesAgendaNav"
           options={{ title: "", headerShown: false }}
           component={DetalhesAgendaNav}
         />

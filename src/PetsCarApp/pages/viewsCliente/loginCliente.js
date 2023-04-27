@@ -14,7 +14,9 @@ export function LoginCliente({ navigation }) {
       <View style={styles.formLogin}>
         <InputEmail />
         <InputSenha />
-        <TouchableOpacity style={styles.esqueceuSenha}>
+        <TouchableOpacity onPress={() =>{
+          navigation.navigate('RecuperarSenhaCliente')
+        } } style={styles.esqueceuSenha}>
           <Text style={styles.botaoSenha}>Esqueceu a Senha?</Text>
         </TouchableOpacity>
         <ButtonPrimary
