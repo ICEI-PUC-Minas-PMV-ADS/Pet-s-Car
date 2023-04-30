@@ -1,22 +1,39 @@
 //Thiago: desenvolvi a tela de adição de agenda com apoio do material das aulas de Desenvolvimento Mobile da PUC.
 
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  KeyboardAvoidingView,
+} from "react-native";
 import { IconAgendamentos } from "../../../components/icons";
 import { InputForm } from "../../../components/input";
 import { ButtonPrimary } from "../../../components/button";
 
-export function AdicionarAgenda() {
+export function AdicionarAgendaCliente() {
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <ScrollView style={styles.containerScroll}>
         <View style={styles.containerTitle}>
           <IconAgendamentos color={"#4060FF"} />
-          <Text style={styles.title}>Agendamento</Text>
+          <Text style={styles.title}>Transporte</Text>
         </View>
         <View>
           <InputForm label={"Pet"} placeholder={"Ex: Jack"} />
-          <InputForm label={"Data"} placeholder={"Ex: 15/02/2023"} />
-          <InputForm label={"Hora"} placeholder={"Ex: 15:00hrs"} />
+          <InputForm
+            label={"Data"}
+            placeholder={"Ex: 15/02/2023"}
+            keyboardType={"numeric"}
+          />
+          <InputForm
+            label={"Hora"}
+            placeholder={"Ex: 15:00hrs"}
+            keyboardType={"numeric"}
+          />
         </View>
         <View>
           <View style={styles.containerSubtitle}>
@@ -28,7 +45,11 @@ export function AdicionarAgenda() {
             label={"Logradouro"}
             placeholder={"Ex: Rua Donatello Paccini"}
           />
-          <InputForm label={"Número"} placeholder={"Ex: 365"} />
+          <InputForm
+            label={"Número"}
+            placeholder={"Ex: 365"}
+            keyboardType={"numeric"}
+          />
         </View>
         <View>
           <View style={styles.containerSubtitle}>
@@ -40,13 +61,17 @@ export function AdicionarAgenda() {
             label={"Logradouro"}
             placeholder={"Ex: Rua Alcides Terra"}
           />
-          <InputForm label={"Número"} placeholder={"Ex: 2688"} />
+          <InputForm
+            label={"Número"}
+            placeholder={"Ex: 2688"}
+            keyboardType={"numeric"}
+          />
         </View>
         <View style={styles.buttonSalvar}>
           <ButtonPrimary title={"Concluir"} />
         </View>
       </ScrollView>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 

@@ -1,5 +1,12 @@
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
-import { IconCliente, IconEditar, IconMais, IconMotorista } from "./icons";
+import {
+  IconAdd,
+  IconAvaliacao,
+  IconCliente,
+  IconEditar,
+  IconMais,
+  IconMotorista,
+} from "./icons";
 
 TouchableOpacity.defaultProps = { activeOpacity: 0.8 };
 
@@ -34,6 +41,58 @@ export const ButtonExcluir = ({ onPress, title }) => {
     >
       <Text style={stylesButtonCliente.appButtonExcluirText}>{title}</Text>
     </TouchableOpacity>
+  );
+};
+
+export const ButtonMotorista = ({ onPress, title }) => {
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      style={stylesButtonMotorista.appButtonContainer}
+    >
+      <IconMotorista color={"#4060FF"} />
+      <Text style={stylesButtonMotorista.appButtonText}>{title}</Text>
+    </TouchableOpacity>
+  );
+};
+
+export const ButtonAdd = ({ onPress }) => {
+  return (
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={onPress}
+      style={stylesButtonAdd.buttonAdd}
+    >
+      <IconAdd color={"#FFF"} />
+    </TouchableOpacity>
+  );
+};
+
+export const ButtonEditar = ({ onPress, title }) => {
+  return (
+    <View>
+      <TouchableOpacity
+        onPress={onPress}
+        style={stylesButtonEdit.appButtonContainer}
+      >
+        <Text style={stylesButtonEdit.appButtonText}>{title}</Text>
+        <IconEditar color={"#4060FF"} />
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+export const ButtonAvaliar = ({ onPress, title }) => {
+  return (
+    <View>
+      <TouchableOpacity
+        onPress={onPress}
+        style={stylesButtonEdit.appButtonContainer}
+      >
+        <Text style={stylesButtonEdit.appButtonText}>{title}</Text>
+        <IconAvaliacao color={"#4060FF"} />
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -82,18 +141,6 @@ const stylesButtonCliente = StyleSheet.create({
   },
 });
 
-export const ButtonMotorista = ({ onPress, title }) => {
-  return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={stylesButtonMotorista.appButtonContainer}
-    >
-      <IconMotorista color={"#4060FF"} />
-      <Text style={stylesButtonMotorista.appButtonText}>{title}</Text>
-    </TouchableOpacity>
-  );
-};
-
 const stylesButtonMotorista = StyleSheet.create({
   appButtonContainer: {
     marginTop: 11,
@@ -115,68 +162,38 @@ const stylesButtonMotorista = StyleSheet.create({
   },
 });
 
-export const ButtonHeaderAdd = ({ onPress, title }) => {
-  return (
-    <View>
-      <TouchableOpacity
-        onPress={onPress}
-        style={stylesButtonHeaderAdd.appButtonContainer}
-      >
-        <Text style={stylesButtonHeaderAdd.appButtonText}>{title}</Text>
-        <IconMais color={"#FFF"} />
-      </TouchableOpacity>
-    </View>
-  );
-};
-
-const stylesButtonHeaderAdd = StyleSheet.create({
-  appButtonContainer: {
-    borderRadius: 8,
-    justifyContent: "center",
+const stylesButtonAdd = StyleSheet.create({
+  buttonAdd: {
+    position: "absolute",
+    width: 65,
+    height: 65,
     alignItems: "center",
-    flexDirection: "row",
-    borderColor: "#FFFFFF",
-    borderWidth: 1,
-    padding: 12,
-  },
-  appButtonText: {
-    marginRight: 10,
-    fontSize: 16,
-    lineHeight: 16,
-    color: "#FFFFFF",
-    alignSelf: "center",
-    fontFamily: "Raleway-500",
+    justifyContent: "center",
+    right: 30,
+    bottom: 120,
+    backgroundColor: "#4060FF",
+    borderRadius: 100,
   },
 });
 
-export const ButtonHeaderEditar = ({ onPress, title }) => {
-  return (
-    <View>
-      <TouchableOpacity
-        onPress={onPress}
-        style={stylesButtonHeaderEdit.appButtonContainer}
-      >
-        <Text style={stylesButtonHeaderEdit.appButtonText}>{title}</Text>
-        <IconEditar color={"#FFF"} />
-      </TouchableOpacity>
-    </View>
-  );
-};
-
-const stylesButtonHeaderEdit = StyleSheet.create({
+const stylesButtonEdit = StyleSheet.create({
   appButtonContainer: {
     borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
     paddingRight: 15,
+    borderColor: "#4060FF",
+    borderWidth: 1,
+    paddingVertical: 9,
+    paddingHorizontal: 13,
   },
   appButtonText: {
     marginRight: 10,
     fontSize: 16,
     lineHeight: 16,
-    color: "#FFFFFF",
+    color: "#4060FF",
     alignSelf: "center",
-    fontFamily: "Raleway-500",
+    fontFamily: "Raleway-600",
   },
 });

@@ -7,11 +7,15 @@ export function RecuperarSenhaCliente({ navigation }) {
   return (
     <View style={styles.container}>
       <HeaderTitle
-        title="Esqueceu sua Senha?"
-        subtitle="Recupere sua senha caso tenha esquecido! "
+        title='Esqueceu sua Senha?'
+        subtitle='Recupere sua senha caso tenha esquecido! '
       />
       <View style={styles.input}>
-        <InputForm label="E-mail" placeholder="Ex: abc@example.com" />
+        <InputForm
+          label='E-mail'
+          placeholder='Ex: abc@example.com'
+          inputMode={"email"}
+        />
       </View>
       <ButtonPrimary
         onPress={() => {

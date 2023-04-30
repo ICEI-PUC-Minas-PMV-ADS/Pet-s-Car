@@ -2,9 +2,13 @@
 
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { IconAgendamentos } from "../../../components/icons";
-import { ButtonAvaliar, ButtonEditar } from "../../../components/button";
+import { ButtonAvaliar, ButtonPrimary } from "../../../components/button";
+import { InputForm } from "../../../components/input";
+import { useState } from "react";
 
-export function DetalhesAgendaCliente({ navigation }) {
+export function DetalhesAgendaMotorista({ navigation }) {
+  const [inputValorOpen, setInputValorOpen] = useState(false);
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.containerScroll}>
@@ -13,10 +17,10 @@ export function DetalhesAgendaCliente({ navigation }) {
             <IconAgendamentos color={"#4060FF"} />
             <Text style={styles.title}>Transporte</Text>
           </View>
-          <ButtonEditar
-            title={"Editar"}
+          <ButtonAvaliar
+            title={"Avaliar"}
             onPress={() => {
-              navigation.navigate("EditarAgendaCliente");
+              navigation.navigate("AvaliacaoAgendaMotorista");
             }}
           />
         </View>
@@ -56,7 +60,7 @@ export function DetalhesAgendaCliente({ navigation }) {
             </View>
           </View>
         </View>
-        <View style={styles.lastItens}>
+        <View>
           <Text style={styles.subtitle}>Endereço de Destino</Text>
           <View style={styles.itens}>
             <View>
@@ -72,6 +76,28 @@ export function DetalhesAgendaCliente({ navigation }) {
               <Text style={styles.itemInfo}>Rua Tiradentes - 532</Text>
             </View>
           </View>
+        </View>
+        <View style={styles.lastItens}>
+          {inputValorOpen == false ? (
+            <View style={styles.button}>
+              <ButtonPrimary
+                title={"Aceitar Corrida"}
+                onPress={() => setInputValorOpen(true)}
+              />
+            </View>
+          ) : (
+            <>
+              <Text style={styles.subtitle}>Informações da Corrida</Text>
+              <InputForm
+                label={"Valor"}
+                placeholder={"R$ 0,00"}
+                keyboardType={"numeric"}
+              />
+              <View style={styles.button}>
+                <ButtonPrimary title={"Concluir"} />
+              </View>
+            </>
+          )}
         </View>
       </ScrollView>
     </View>
@@ -149,5 +175,8 @@ const styles = StyleSheet.create({
   },
   lastItens: {
     paddingBottom: 70,
+  },
+  button: {
+    paddingTop: 20,
   },
 });

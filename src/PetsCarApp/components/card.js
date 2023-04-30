@@ -1,44 +1,43 @@
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { IconExcluir, IconLupa } from "./icons";
 
-export const CardAgenda = (props) => {
+export const CardAgenda = ({
+  styleCard,
+  pet,
+  data,
+  hora,
+  status,
+  onPressDetalhes,
+}) => {
   return (
-    <View style={props.styleCard}>
-      <View>
-        <View style={styles.cardText}>
-          <Text style={styles.textStrong}>Pet:</Text>
-          <Text style={styles.textInfo}>{props.pet}</Text>
+    <TouchableOpacity onPress={onPressDetalhes}>
+      <View style={styleCard}>
+        <View>
+          <View style={styles.cardText}>
+            <Text style={styles.textStrong}>Pet:</Text>
+            <Text style={styles.textInfo}>{pet}</Text>
+          </View>
+          <View style={styles.cardText}>
+            <Text style={styles.textStrong}>Data:</Text>
+            <Text style={styles.textInfo}>{data}</Text>
+          </View>
+          <View style={styles.cardText}>
+            <Text style={styles.textStrong}>Hora:</Text>
+            <Text style={styles.textInfo}>{hora}</Text>
+          </View>
+          <View style={styles.cardText}>
+            <Text style={styles.textStrong}>Status:</Text>
+            <Text style={styles.textInfo}>{status}</Text>
+          </View>
         </View>
-        <View style={styles.cardText}>
-          <Text style={styles.textStrong}>Data:</Text>
-          <Text style={styles.textInfo}>{props.data}</Text>
-        </View>
-        <View style={styles.cardText}>
-          <Text style={styles.textStrong}>Hora:</Text>
-          <Text style={styles.textInfo}>{props.hora}</Text>
-        </View>
-        <View style={styles.cardText}>
-          <Text style={styles.textStrong}>Status:</Text>
-          <Text style={styles.textInfo}>{props.status}</Text>
+        <View style={styles.optionsCard}>
+          <View style={styles.detalhesCard}>
+            <IconLupa color={"#4060FF"} />
+            <Text style={styles.detalhesTextCard}>Ver detalhes</Text>
+          </View>
         </View>
       </View>
-      <View style={styles.optionsCard}>
-        {props.status == "Pendente" ? (
-          <TouchableOpacity onPress={props.onPressExcluir}>
-            <IconExcluir color={"#4060FF"} />
-          </TouchableOpacity>
-        ) : (
-          ""
-        )}
-        <TouchableOpacity
-          style={styles.detalhesCard}
-          onPress={props.onPressDetalhes}
-        >
-          <IconLupa color={"#4060FF"} />
-          <Text style={styles.detalhesTextCard}>Ver detalhes</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

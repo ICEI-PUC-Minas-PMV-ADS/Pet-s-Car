@@ -1,15 +1,24 @@
 // João Jorges - Desenvolvi o ínicio da tela utilizando o material disponível na disciplina e com a ajuda do Thiago
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  KeyboardAvoidingView,
+} from "react-native";
 import { InputEmail, InputSenha } from "../../components/input";
 import { ButtonPrimary } from "../../components/button";
 import { HeaderTitle } from "../../components/header";
 
 export function LoginMotorista({ navigation }) {
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <HeaderTitle
-        title="Login de Motorista"
-        subtitle="Insira seu e-mail e senha para logar e realizar diversas corridas!"
+        title='Login de Motorista'
+        subtitle='Insira seu e-mail e senha para logar e realizar diversas corridas!'
       />
       <View style={styles.formLogin}>
         <InputEmail />
@@ -25,7 +34,7 @@ export function LoginMotorista({ navigation }) {
         <ButtonPrimary
           title={"Login"}
           onPress={() => {
-            navigation.navigate("ClienteTabNavegation");
+            navigation.navigate("MotoristaNavigation");
           }}
         />
       </View>
@@ -39,7 +48,7 @@ export function LoginMotorista({ navigation }) {
           <Text style={styles.botaoCadastrar}>Cadastrar</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -49,13 +58,13 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "#fff",
     padding: 35,
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
   },
   formLogin: {
-    paddingTop: 10,
+    paddingTop: 50,
     borderBottomColor: "#F4F4F4",
     borderBottomWidth: 1,
-    paddingBottom: 30,
+    paddingBottom: 50,
   },
   botaoSenha: {
     fontFamily: "Raleway-500",
@@ -73,7 +82,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 28,
+    paddingVertical: 10,
   },
   botaoCadastrar: {
     fontFamily: "Raleway-700",

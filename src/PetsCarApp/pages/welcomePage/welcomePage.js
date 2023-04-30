@@ -18,13 +18,13 @@ export function WelcomePage({ navigation }) {
         <ButtonCliente
           title={"Sou Cliente"}
           onPress={() => {
-            navigation.navigate("LoginCliente");
+            navigation.navigate("ClienteRouter");
           }}
         />
         <ButtonMotorista
           title={"Sou Motorista"}
           onPress={() => {
-            navigation.navigate("LoginMotorista");
+            navigation.navigate("MotoristaRouter");
           }}
         />
       </View>

@@ -1,7 +1,7 @@
 import { TextInput, StyleSheet, View, Text } from "react-native";
 import { IconEmail, IconSenha } from "./icons";
 
-export const InputEmail = (props) => {
+export const InputEmail = ({ onChange }) => {
   return (
     <View style={styles.containerInput}>
       <View style={styles.label}>
@@ -12,13 +12,14 @@ export const InputEmail = (props) => {
         style={styles.input}
         placeholder='Ex: abc@example.com'
         placeholderTextColor={"#CDCDCC"}
-        onChangeText={props.onChange}
+        onChangeText={onChange}
+        inputMode='email'
       />
     </View>
   );
 };
 
-export const InputSenha = (props) => {
+export const InputSenha = ({ onChange }) => {
   return (
     <View style={styles.containerInput}>
       <View style={styles.label}>
@@ -29,23 +30,34 @@ export const InputSenha = (props) => {
         style={styles.input}
         placeholder='•••••••••••••'
         placeholderTextColor={"#CDCDCC"}
-        onChangeText={props.onChange}
+        onChangeText={onChange}
+        secureTextEntry={true}
       />
     </View>
   );
 };
 
-export const InputForm = (props) => {
+export const InputForm = ({
+  label,
+  placeholder,
+  onChange,
+  keyboardType,
+  inputMode,
+  maxLength,
+}) => {
   return (
     <View style={styles.containerInputForm}>
       <View style={styles.label}>
-        <Text style={styles.textLabelForm}>{props.label}</Text>
+        <Text style={styles.textLabelForm}>{label}</Text>
       </View>
       <TextInput
         style={styles.input}
-        placeholder={props.placeholder}
+        placeholder={placeholder}
         placeholderTextColor={"#CDCDCC"}
-        onChangeText={props.onChange}
+        onChangeText={onChange}
+        keyboardType={keyboardType}
+        inputMode={inputMode}
+        maxLength={maxLength}
       />
     </View>
   );
@@ -57,7 +69,6 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     marginTop: 8,
     paddingHorizontal: 20,
-    paddingVertical: 16,
     borderRadius: 16,
     borderColor: "#4060FF",
     fontFamily: "Raleway-400",

@@ -1,17 +1,26 @@
 //Thiago: desenvolvi a tela de edição de agenda com apoio do material das aulas de Desenvolvimento Mobile da PUC.
 
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  KeyboardAvoidingView,
+} from "react-native";
 import { IconAgendamentos } from "../../../components/icons";
 import { InputForm } from "../../../components/input";
 import { ButtonExcluir, ButtonPrimary } from "../../../components/button";
 
-export function EditarAgenda() {
+export function EditarAgendaCliente() {
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <ScrollView style={styles.containerScroll}>
         <View style={styles.containerTitle}>
           <IconAgendamentos color={"#4060FF"} />
-          <Text style={styles.title}>Agendamento</Text>
+          <Text style={styles.title}>Transporte</Text>
         </View>
         <View>
           <InputForm label={"Pet"} placeholder={"Ex: Jack"} />
@@ -47,7 +56,7 @@ export function EditarAgenda() {
           <ButtonExcluir title={"Excluir"} />
         </View>
       </ScrollView>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 

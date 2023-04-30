@@ -1,7 +1,6 @@
 //Thiago: desenvolvi a tela de agenda com apoio do material das aulas de Desenvolvimento Mobile da PUC.
 import { FlatList, StyleSheet, View } from "react-native";
 import { CardAgenda } from "../../components/card";
-import { ButtonAdd } from "../../components/button";
 
 const exemploAgendamentos = [
   {
@@ -48,7 +47,7 @@ const exemploAgendamentos = [
   },
 ];
 
-export function AgendaCliente({ navigation }) {
+export function AgendaMotorista({ navigation }) {
   return (
     <View style={styles.container}>
       <FlatList
@@ -64,7 +63,7 @@ export function AgendaCliente({ navigation }) {
               hora={item.hora}
               status={item.status}
               onPressDetalhes={() => {
-                navigation.navigate("DetalhesAgendaClienteNav");
+                navigation.navigate("DetalhesAgendaMotoristaNav");
               }}
               styleCard={
                 item.status == "Pendente"
@@ -76,9 +75,6 @@ export function AgendaCliente({ navigation }) {
             />
           );
         }}
-      />
-      <ButtonAdd
-        onPress={() => navigation.navigate("AdicionarAgendaCliente")}
       />
     </View>
   );
