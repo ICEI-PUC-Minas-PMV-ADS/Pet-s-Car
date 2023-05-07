@@ -1,13 +1,13 @@
 //João Jorges: desenvolvi a tela de perfil cliente com apoio do material das aulas de Desenvolvimento Mobile da PUC e do Thiago.
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import { IconPerfil } from '../../components/icons'
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { IconPerfil } from "../../components/icons";
 import {
   ButtonDeslogar,
   ButtonEditar,
   ButtonExcluir,
   ButtonExcluirConta,
-  ButtonViewAvaliacao
-} from '../../components/button'
+  ButtonViewAvaliacao,
+} from "../../components/button";
 
 export function PerfilCliente({ navigation }) {
   return (
@@ -15,13 +15,13 @@ export function PerfilCliente({ navigation }) {
       <ScrollView style={styles.containerScroll}>
         <View style={styles.containerTitle}>
           <View style={styles.iconTitle}>
-            <IconPerfil color={'#4060FF'} />
+            <IconPerfil color={"#4060FF"} />
             <Text style={styles.title}>Perfil</Text>
           </View>
           <ButtonEditar
-            title={'Editar'}
+            title={"Editar"}
             onPress={() => {
-              navigation.navigate('EditarPerfilCliente')
+              navigation.navigate("EditarPerfilCliente");
             }}
           />
         </View>
@@ -61,7 +61,7 @@ export function PerfilCliente({ navigation }) {
           <ButtonViewAvaliacao
             title="Vizualizar Avaliações Recebidas"
             onPress={() => {
-              navigation.navigate('AvaliacaoCliente')
+              navigation.navigate("AvaliacaoCliente");
             }}
           />
           <ButtonDeslogar title="Deslogar" />
@@ -69,76 +69,76 @@ export function PerfilCliente({ navigation }) {
         </View>
       </ScrollView>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#fff'
+    flexDirection: "column",
+    backgroundColor: "#fff",
   },
   containerScroll: {
-    paddingHorizontal: 35
+    paddingHorizontal: 35,
   },
   containerTitle: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
     gap: 13,
     paddingBottom: 30,
-    justifyContent: 'space-between',
-    paddingTop: 40
+    justifyContent: "space-between",
+    paddingTop: 40,
   },
   title: {
-    fontFamily: 'Raleway-700',
-    color: '#4060FF',
+    fontFamily: "Raleway-700",
+    color: "#4060FF",
     fontSize: 20,
-    lineHeight: 25
+    lineHeight: 25,
   },
   containerSubtitle: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingTop: 25,
-    paddingBottom: 5
+    paddingBottom: 5,
   },
   subtitle: {
-    fontFamily: 'Raleway-700',
-    color: '#4060FF',
-    fontSize: 20
+    fontFamily: "Raleway-700",
+    color: "#4060FF",
+    fontSize: 20,
   },
   iconTitle: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 13
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 13,
   },
   itens: {
-    gap: 15
+    gap: 15,
   },
   itemTitle: {
-    fontFamily: 'Raleway-400',
-    color: '#828282',
-    fontSize: 14
+    fontFamily: "Raleway-400",
+    color: "#828282",
+    fontSize: 14,
   },
   itemInfo: {
-    fontFamily: 'Raleway-400',
-    color: '#131313',
-    fontSize: 16
+    fontFamily: "Raleway-400",
+    color: "#131313",
+    fontSize: 16,
   },
   name: {
-    fontFamily: 'Raleway-700',
-    color: '#4060FF',
+    fontFamily: "Raleway-700",
+    color: "#4060FF",
     fontSize: 20,
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   buttonsFooter: {
     paddingTop: 26,
-    borderTopColor: '#F4F4F4',
+    borderTopColor: "#F4F4F4",
     borderTopWidth: 1,
     marginTop: 40,
-    paddingBottom: 200
-  }
-})
+    paddingBottom: 200,
+  },
+});
