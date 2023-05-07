@@ -27,7 +27,7 @@ O modelo ER proposta representa através de um diagrama como as entidades do sis
 
 ## Esquema Relacional
 
-Para o esquema relacional foram representadas todas as tabelas que serão armazenadas no banco de dados, bem como suas respectivas colunas, chaves e tipo de dados para garantir a integridade de restrições. 
+Para o esquema relacional foram representadas todas as tabelas que serão armazenadas no banco de dados, bem como suas respectivas colunas, chaves e tipo de dados para garantir a integridade de restrições.
 
 ![Esquema Relacional Imagem](img/tabelasBD.png)
 
@@ -37,7 +37,7 @@ Entregar um arquivo banco.sql contendo os scripts de criação das tabelas do ba
 
 ## Tecnologias Utilizadas
 
-Para o desenvolvimento do projeto Pet’s Car, utilizaremos o VS Code como IDE para a utilização do Expo & React Native, que utiliza o JavaScript como linguagem. Para o banco de dados, utilizaremos o Json Server.  
+Para o desenvolvimento do projeto Pet’s Car, utilizaremos o VS Code como IDE para a utilização do Expo & React Native, que utiliza o JavaScript como linguagem. Para o banco de dados, utilizaremos o Firebase.
 
 ![Tecnologias Usadas](https://user-images.githubusercontent.com/123743005/228109529-989c88f1-82b3-46f4-b07f-9ed55f17049f.png)
 
@@ -54,7 +54,7 @@ Explique como a hospedagem e o lançamento da plataforma foi feita.
 
 ## Qualidade de Software
 
-- O que é qualidade de software?  
+- O que é qualidade de software?
 
 Para ajudar nessa questão, a International Organization Standardization - ISO e a International Electrotechnical Comission-IEC, que são organismos normalizadores com importância internacional reconhecida no setor de software, se uniram para editar normas internacionais conjuntas. A norma internacional ISO/IEC, define qualidade de software como a totalidade de características de um produto de software que lhe confere a capacidade de satisfazer necessidades explícitas e implícitas.
 

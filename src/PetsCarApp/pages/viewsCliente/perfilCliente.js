@@ -59,13 +59,13 @@ export function PerfilCliente({ navigation }) {
 
         <View style={styles.buttonsFooter}>
           <ButtonViewAvaliacao
-            title="Vizualizar Avaliações Recebidas"
+            title='Visualizar Avaliações'
             onPress={() => {
               navigation.navigate("AvaliacaoCliente");
             }}
           />
-          <ButtonDeslogar title="Deslogar" />
-          <ButtonExcluirConta title="Excluir Conta" />
+          <ButtonDeslogar title='Deslogar' />
+          <ButtonExcluirConta title='Excluir Conta' />
         </View>
       </ScrollView>
     </View>

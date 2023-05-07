@@ -41,32 +41,30 @@ As personas, ou seja, os usuários ideais do site foram definidos abaixo:
 
 Com a observação do cotidiano das personas e a compreensão de suas necessidades, foram definidas as seguintes histórias de usuários.
 
-|EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
-|--------------------|------------------------------------|----------------------------------------|
-|Pedro               | Realizar o seu cadastro e login no aplicativo  | Poder realizar o agendamento do transporte de seu pet  |
-|Cristiana           | Cadastrar seu gato no aplicativo  | Facilmente selecionar os pets que deseja agendar o transporte  |
-|Vinícius            | Fazer seu cadastro e login no aplicativo da empresa  | Acompanhar os agendamentos |
-|Pedro               | Realizar o agendamento do transporte do seu cachorro para o Petshop   | Possa ir trabalhar sem se preocupar em se atrasar  |
-|Priscila            | Visualizar, em forma de lista, os agendamentos de transporte disponíveis para confirmação   | Escolher e confirmar o agendamento com o cliente   |
-|Priscila            | Retorno da aplicação com a confirmação do agendamento com o valor da corrida    | Poder saber que sua corrida foi aceita   |
-|Vinícius            | Ser informado por e-mail que possuí agendamento feito por clientes   | Confirmar rapidamente a corrida solicitada   |
-|Vinícius            | Informar o valor da corrida para o cliente   | Ambas as partes estarem cientes do custo   |
-|Cristiana           | Alterar sua senha de usuário   | Conseguir realizar o login, pois esqueceu a antiga senha   |
-|Cristiana           | Avaliar a corrida do motorista e seu cuidado com sua gata   | Ajudar a outras pessoas se sentirem seguras ao enviar seu pet    |
-|Priscila            | Ter a opção de avaliar seu cliente em relação a educação e pontualidade  | Os clientes ficarem atentos aos seus atos   |
-|Pedro               | Editar seus dados cadastrais    | Atualizar seu novo endereço e e-mail   |
-|Vinícius            | Fazer alterações em seus dados cadastrais   | Concertar o e-mail que utilizou no cadastro  |
-|Cristiana           | Adicionar, editar ou remover o pet cadastrado em seu perfil do aplicativo   | Ter mais controle do pet em seu perfil   |
+| EU COMO... `PERSONA` | QUERO/PRECISO ... `FUNCIONALIDADE`                                                        | PARA ... `MOTIVO/VALOR`                                       |
+| -------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| Pedro                | Realizar o seu cadastro e login no aplicativo                                             | Poder realizar o agendamento do transporte de seu pet         |
+| Cristiana            | Cadastrar seu gato no aplicativo                                                          | Facilmente selecionar os pets que deseja agendar o transporte |
+| Vinícius             | Fazer seu cadastro e login no aplicativo da empresa                                       | Acompanhar os agendamentos                                    |
+| Pedro                | Realizar o agendamento do transporte do seu cachorro para o Petshop                       | Possa ir trabalhar sem se preocupar em se atrasar             |
+| Priscila             | Visualizar, em forma de lista, os agendamentos de transporte disponíveis para confirmação | Escolher e confirmar o agendamento com o cliente              |
+| Priscila             | Retorno da aplicação com a confirmação do agendamento com o valor da corrida              | Poder saber que sua corrida foi aceita                        |
+| Vinícius             | Ser informado por e-mail que possuí agendamento feito por clientes                        | Confirmar rapidamente a corrida solicitada                    |
+| Vinícius             | Informar o valor da corrida para o cliente                                                | Ambas as partes estarem cientes do custo                      |
+| Cristiana            | Alterar sua senha de usuário                                                              | Conseguir realizar o login, pois esqueceu a antiga senha      |
+| Cristiana            | Avaliar a corrida do motorista e seu cuidado com sua gata                                 | Ajudar a outras pessoas se sentirem seguras ao enviar seu pet |
+| Priscila             | Ter a opção de avaliar seu cliente em relação a educação e pontualidade                   | Os clientes ficarem atentos aos seus atos                     |
+| Pedro                | Editar seus dados cadastrais                                                              | Atualizar seu novo endereço e e-mail                          |
+| Vinícius             | Fazer alterações em seus dados cadastrais                                                 | Concertar o e-mail que utilizou no cadastro                   |
+| Cristiana            | Adicionar, editar ou remover o pet cadastrado em seu perfil do aplicativo                 | Ter mais controle do pet em seu perfil                        |
 
 ## Modelagem do Processo de Negócio
 
 ### Análise da Situação Atual
 
-Apresente aqui os problemas existentes que viabilizam sua proposta. Apresente o modelo do sistema como ele funciona hoje. Caso sua proposta seja inovadora e não existam processos claramente definidos, apresente como as tarefas que o seu sistema pretende implementar são executadas atualmente, mesmo que não se utilize tecnologia computacional.
+O aplicativo tem por objetivo tratar o problema de deslocamento de pets utilizando a conveniência de um aplicativo, pagamento fácil e preço acessível. Nos fluxos abaixo explica-se todo o processo de agendamento, cadastro de pets, login e cadastro de motorista ou cliente.
 
 ### Descrição Geral da Proposta
-
-Apresente aqui uma descrição da sua proposta abordando seus limites e suas ligações com as estratégias e objetivos do negócio. Apresente aqui as oportunidades de melhorias.
 
 ### Processo 1 – Processo de Agendamento pelo Cliente
 
@@ -75,9 +73,11 @@ Apresente aqui uma descrição da sua proposta abordando seus limites e suas lig
 ### Processo 2 – Processo da Confirmação do Agendamento pelo Motorista
 
 ![Processo 2](img/Diagramas%20de%20Processo/diagrama-processo-principal-motorista.png)
+
 ### Processo 3 – Processo de Cadastrar um novo, editar ou excluir um Pet
 
 ![Processo 3](img/Diagramas%20de%20Processo/diagrama-processo-cadastrar-novo-editar-excluir-pet.png)
+
 ### Processo 4 – Editar ou excluir Conta do Usuário
 
 ![Processo 4](img/Diagramas%20de%20Processo/diagrama-processo-editar-excluir-conta.png)
@@ -97,14 +97,12 @@ Apresente aqui uma descrição da sua proposta abordando seus limites e suas lig
 ### Processo 8 – Avaliação do Cliente
 
 ![Processo 8](img/Diagramas%20de%20Processo/diagrama-processo-avalia%C3%A7%C3%B5es-motorista.png)
+
 ## Indicadores de Desempenho
 
-Apresente aqui os principais indicadores de desempenho e algumas metas para o processo. Atenção: as informações necessárias para gerar os indicadores devem estar contempladas no diagrama de classe. Colocar no mínimo 5 indicadores.
+Na tabela abaixo temos indicadores de desempenho utilizados no projeto:
 
-Usar o seguinte modelo:
-
-![Indicadores de Desempenho](img/02-indic-desemp.png)
-Obs.: todas as informações para gerar os indicadores devem estar no diagrama de classe a ser apresentado a posteriori.
+![Processo 8](img/indicador-desempenho.jpg)
 
 ## Requisitos
 
@@ -118,46 +116,46 @@ Portanto, com os estudos das personas e histórias dos usuários identificadas p
 
 Os requisitos funcionais do projeto e seus respectivos níveis de prioridade de entrega são apresentados na tabela a seguir.
 
-|ID    | Descrição do Requisito                  | Prioridade |
-|------|-----------------------------------------|------------|
-|RF-01 | A aplicação deve permitir a criação de usuários clientes, com os seguintes campos de preenchimento: E-mail, senha, telefone e endereço.  | ALTA |
-|RF-02 | A aplicação deve permitir a criação de usuários para motoristas, com os seguintes campos de preenchimento: E-mail, senha e telefone.    | ALTA |
-|RF-03 | A aplicação deve permitir o cadastro do(s) pet(s) de cada cliente, que conterá informações como: raça, porte e nome do animal.  | ALTA |
-|RF-04 | A aplicação deve permitir o login de clientes utilizando e-mail e senha.  | ALTA |
-|RF-05 | A aplicação deve permitir o login de motoristas utilizando e-mail e senha.  | ALTA |
-|RF-06 | A aplicação deve permitir o agendamento do transporte especificando horário, endereços, informações de contato e seleção do animal transportado, por parte do usuário. | ALTA |
-|RF-07 | A aplicação deve permitir a visualização da confirmação da corrida com o valor especificado pelo motorista e as informações de contato do mesmo, por parte do usuário. | ALTA |
-|RF-08 | A aplicação deve disparar um e-mail para os motoristas após um cliente fazer agendamento no aplicativo.  | BAIXA |
-|RF-09 | A aplicação deve permitir a especificação do valor da corrida, conforme horário e local cadastrado, após ou no ato do aceite, por parte do motorista.  | ALTA  |
-|RF-10 | A aplicação deve permitir recuperação de senha para usuários e motoristas.  | MÉDIA  |
-|RF-11 | A aplicação deve ter a opção de o cliente avaliar o motorista após finalizado a corrida.  | MÉDIA  |
-|RF-12 | A aplicação deve ter a opção de o motorista avaliar o cliente após finalizada a corrida.  | MÉDIA  |
-|RF-13 | A aplicação deve ter a opção de o cliente editar seus dados cadastrais e excluir seu perfil.  | ALTO  |
-|RF-14 | A aplicação deve ter a opção de o motorista editar seus dados cadastrais e excluir seu perfil.  | ALTO  |
-|RF-15 | A aplicação deve ter a opção de o cliente adicionar, editar, remover os pets cadastrados no seu perfil.  | ALTO  |
+| ID    | Descrição do Requisito                                                                                                                                                 | Prioridade |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| RF-01 | A aplicação deve permitir a criação de usuários clientes, com os seguintes campos de preenchimento: E-mail, senha, telefone e endereço.                                | ALTA       |
+| RF-02 | A aplicação deve permitir a criação de usuários para motoristas, com os seguintes campos de preenchimento: E-mail, senha e telefone.                                   | ALTA       |
+| RF-03 | A aplicação deve permitir o cadastro do(s) pet(s) de cada cliente, que conterá informações como: raça, porte e nome do animal.                                         | ALTA       |
+| RF-04 | A aplicação deve permitir o login de clientes utilizando e-mail e senha.                                                                                               | ALTA       |
+| RF-05 | A aplicação deve permitir o login de motoristas utilizando e-mail e senha.                                                                                             | ALTA       |
+| RF-06 | A aplicação deve permitir o agendamento do transporte especificando horário, endereços, informações de contato e seleção do animal transportado, por parte do usuário. | ALTA       |
+| RF-07 | A aplicação deve permitir a visualização da confirmação da corrida com o valor especificado pelo motorista e as informações de contato do mesmo, por parte do usuário. | ALTA       |
+| RF-08 | A aplicação deve disparar um e-mail para os motoristas após um cliente fazer agendamento no aplicativo.                                                                | BAIXA      |
+| RF-09 | A aplicação deve permitir a especificação do valor da corrida, conforme horário e local cadastrado, após ou no ato do aceite, por parte do motorista.                  | ALTA       |
+| RF-10 | A aplicação deve permitir recuperação de senha para usuários e motoristas.                                                                                             | BAIXA      |
+| RF-11 | A aplicação deve ter a opção de o cliente avaliar o motorista após finalizado a corrida.                                                                               | MÉDIA      |
+| RF-12 | A aplicação deve ter a opção de o motorista avaliar o cliente após finalizada a corrida.                                                                               | MÉDIA      |
+| RF-13 | A aplicação deve ter a opção de o cliente editar seus dados cadastrais e excluir seu perfil.                                                                           | ALTO       |
+| RF-14 | A aplicação deve ter a opção de o motorista editar seus dados cadastrais e excluir seu perfil.                                                                         | ALTO       |
+| RF-15 | A aplicação deve ter a opção de o cliente adicionar, editar, remover os pets cadastrados no seu perfil.                                                                | ALTO       |
 
 ### Requisitos não Funcionais
 
 Os requisitos não funcionais que a equipe deverá seguir durante o desenvolvimento, como também seus respectivos níveis de prioridade de entrega são apresentados na tabela a seguir.
 
-|ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|-----------|
-|RNF-01 | A aplicação deve funcionar 7 dias por semana, 24h por dia. | ALTA |
-|RNF-02 | O banco de dados da aplicação terá senhas criptografadas.  | ALTA  |
-|RNF-03 | A aplicação deverá funcionar em IOS e Android.  | ALTA  |
-|RNF-04 | A interface deve ser agradável, intuitiva, de fácil utilização para o usuário e deve ser organizado de tal maneira que os erros dos usuários sejam minimizados.  | MÉDIA  |
-|RNF-05 | Os formulários devem informar ao usuário quais são os campos de preenchimento obrigatório.  | MÉDIA  |
-|RNF-06 | Utilizar símbolo e ícone para ajudar no entendimento e conseguir uma associação imediata sobre aplicações de reconhecimento.  | MÉDIA |
+| ID     | Descrição do Requisito                                                                                                                                          | Prioridade |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| RNF-01 | A aplicação deve funcionar 7 dias por semana, 24h por dia.                                                                                                      | ALTA       |
+| RNF-02 | O banco de dados da aplicação terá senhas criptografadas.                                                                                                       | ALTA       |
+| RNF-03 | A aplicação deverá funcionar em IOS e Android.                                                                                                                  | ALTA       |
+| RNF-04 | A interface deve ser agradável, intuitiva, de fácil utilização para o usuário e deve ser organizado de tal maneira que os erros dos usuários sejam minimizados. | MÉDIA      |
+| RNF-05 | Os formulários devem informar ao usuário quais são os campos de preenchimento obrigatório.                                                                      | MÉDIA      |
+| RNF-06 | Utilizar símbolo e ícone para ajudar no entendimento e conseguir uma associação imediata sobre aplicações de reconhecimento.                                    | MÉDIA      |
 
 ## Restrições
 
 O projeto está restrito pelos itens apresentados na tabela a seguir.
 
-|ID    | Restrição                                             |
-|------|-------------------------------------------------------|
-|RE-01 | O projeto deve ser entregue até dia 23/06/2023.  |
-|RE-02 | A equipe não pode contratar terceiros para o desenvolvimento do projeto.   |
-|RE-03 | O site deve ser desenvolvido utilizando linguagens de programação Mobile, mais especificamente HTML, CSS, JavaScript, TypeScript e bem como o framework React Native.    |
+| ID    | Restrição                                                                                                                                           |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RE-01 | O projeto deve ser entregue até dia 23/06/2023.                                                                                                     |
+| RE-02 | A equipe não pode contratar terceiros para o desenvolvimento do projeto.                                                                            |
+| RE-03 | O site deve ser desenvolvido utilizando linguagens de programação Mobile, mais especificamente CSS, JavaScript e bem como o framework React Native. |
 
 ### Técnica de Priorização de Requisitos
 
@@ -166,6 +164,7 @@ Ao usar a matriz GUT na tecnologia, é possível avaliar fatores como a complexi
 Cada um desses fatores pode ser avaliado de acordo com sua importância relativa para o sucesso do projeto, permitindo que a equipe de gerenciamento de projetos priorize os recursos e o tempo de acordo com as necessidades do projeto.
 
 ![Priorização de Requisitos](img/priorizacao-de-requisitos.png)
+
 ## Diagrama de Casos de Uso
 
 Os diagramas são utilizados na documentação e modelagem dos sistemas e de suas funcionalidades, de modo geral, podemos dizer que são essenciais para a construção de um software coeso.
@@ -188,11 +187,11 @@ A gerência de projetos é a aplicação de conhecimentos, habilidades e técnic
 
 Segundo o PMBOK (Project Management Body of Knowledge), projeto pode ser definido como: “Um empreendimento único, com início e fim pré determinados, sendo executado por pessoas, confinado por recursos limitados, planejado, executado e controlado.”
 
-Um projeto possui os seguintes processos de gerenciamento: iniciação, planejamento, execução, monitoramento e controle e encerramento.  
+Um projeto possui os seguintes processos de gerenciamento: iniciação, planejamento, execução, monitoramento e controle e encerramento.
 
 ## Gerenciamento de Tempo
 
-O gerenciamento do tempo é uma parte fundamental nos projetos pois está relacionado ao prazo de entrega do produto final.  
+O gerenciamento do tempo é uma parte fundamental nos projetos pois está relacionado ao prazo de entrega do produto final.
 
 Para uma melhor gestão, foi construído um cronograma com as atividades necessárias para a entrega do projeto, com as estimativas de tempo para sua execução. O cronograma foi construído a partir da ferramenta de gestão da microsoft: MS-Project, que contém o gráfico de Gantt, uma ferramenta interessante para melhor visualização do projeto como um todo.
 
@@ -219,7 +218,7 @@ Logo, com base nas informações fornecidas, serviços e soluções escolhidas, 
 ![Descrição dos Custos](img/descri%C3%A7%C3%A3o-custos.png)
 
 - Vigência de Contrato: De acordo com o cronograma.
-- Validade desta proposta: 30 dias corridos, contados após a data da sua emissão.  
+- Validade desta proposta: 30 dias corridos, contados após a data da sua emissão.
 
 Os valores dessa proposta serão faturados em 5 parcelas sendo uma entrada, três pagamentos intermediários e outro no término após o Diagnóstico, entrega da solução e apresentação, conforme tabela abaixo. Após o aceite formal desta proposta, a parcela será faturada após o aceito formal do cliente da entrega da etapa. A CONTRATADA emitirá uma fatura/boleto, obedecendo os prazos, parcelas e valores desta proposta e, junto com o último faturamento, emitirá a Nota Fiscal de Serviço correspondente ao Valor Total da parcela Projeto ou conforme exceção descrita abaixo.
 

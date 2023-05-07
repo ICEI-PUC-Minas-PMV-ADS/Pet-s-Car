@@ -4,91 +4,91 @@ import {
   StyleSheet,
   Text,
   ScrollView,
-  KeyboardAvoidingView
-} from 'react-native'
-import SelectDropdown from 'react-native-select-dropdown'
-import { HeaderTitle } from '../../components/header'
-import { InputForm, InputSelect } from '../../components/input'
-import { ButtonAddPet, ButtonPrimary } from '../../components/button'
-import { IconDropdown } from '../../components/icons'
+  KeyboardAvoidingView,
+} from "react-native";
+import { HeaderTitle } from "../../components/header";
+import { InputForm, InputSelect } from "../../components/input";
+import { ButtonAddPet, ButtonPrimary } from "../../components/button";
 
-const selectPortePets = ['Pequeno', 'Médio', 'Grande']
-const selectTipoPets = ['Cachorro', 'Gato', 'Pássaro', 'Hamsters', 'Outro']
+const selectPortePets = ["Pequeno", "Médio", "Grande"];
+const selectTipoPets = ["Cachorro", "Gato", "Pássaro", "Hamsters", "Outro"];
 
 export function CadastroCliente() {
   return (
-    <ScrollView style={styles.container}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
+      <ScrollView style={styles.containerScroll}>
         <HeaderTitle
-          title="Cadastro"
-          subtitle="Crie uma conta para acessar todos os recursos da Pet’s Car!"
+          title='Cadastro'
+          subtitle='Crie uma conta para acessar todos os recursos da Pet’s Car!'
         />
         <View style={styles.initForm}>
-          <InputForm label="Seu Nome" placeholder="Ex. Saul Ramirez" />
-          <InputForm label="E-mail" placeholder="Ex: abc@example.com" />
-          <InputForm label="Senha" placeholder="••••••••••" />
-          <InputForm label="Telefone" placeholder="Ex:(99) 99999-9999" />
+          <InputForm label='Seu Nome' placeholder='Ex. Saul Ramirez' />
+          <InputForm label='E-mail' placeholder='Ex: abc@example.com' />
+          <InputForm label='Senha' placeholder='••••••••••' />
+          <InputForm label='Telefone' placeholder='Ex:(99) 99999-9999' />
         </View>
         <View>
           <View style={styles.containerSubtitle}>
             <Text style={styles.subtitle}>Endereço</Text>
             <Text style={styles.subtitleCity}>Alterosa-MG</Text>
           </View>
-          <InputForm label="Bairro" placeholder="Ex: Centro" />
-          <InputForm label="Logradouro" placeholder="Ex: Rua Alcides Terra" />
-          <InputForm label="Número" placeholder="Ex: 2688" />
+          <InputForm label='Bairro' placeholder='Ex: Centro' />
+          <InputForm label='Logradouro' placeholder='Ex: Rua Alcides Terra' />
+          <InputForm label='Número' placeholder='Ex: 2688' />
         </View>
         <View>
           <View style={styles.containerSubtitle}>
             <Text style={styles.subtitle}>Meu Pet</Text>
           </View>
-          <InputForm label="Nome" placeholder="Ex: Bob" />
-          <InputSelect label="Tipo" data={selectTipoPets} />
-          <InputForm label="Raça" placeholder="Ex: Pinscher" />
-          <InputSelect label="Porte" data={selectPortePets} />
-          <ButtonAddPet title={'Adicionar Mais'} />
+          <InputForm label='Nome' placeholder='Ex: Bob' />
+          <InputSelect label='Tipo' data={selectTipoPets} />
+          <InputForm label='Raça' placeholder='Ex: Pinscher' />
+          <InputSelect label='Porte' data={selectPortePets} />
+          <ButtonAddPet title={"Adicionar Mais"} />
         </View>
         <View style={styles.button}>
-          <ButtonPrimary title="Cadastrar"></ButtonPrimary>
+          <ButtonPrimary title='Cadastrar' />
         </View>
-      </KeyboardAvoidingView>
-    </ScrollView>
-  )
+      </ScrollView>
+    </KeyboardAvoidingView>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#fff',
+    flexDirection: "column",
+    backgroundColor: "#fff",
+  },
+  containerScroll: {
     paddingHorizontal: 35,
-    paddingTop: 20
   },
   containerSubtitle: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingTop: 25,
-    paddingBottom: 5
+    paddingBottom: 5,
   },
   subtitle: {
-    fontFamily: 'Raleway-700',
-    color: '#4060FF',
-    fontSize: 20
+    fontFamily: "Raleway-700",
+    color: "#4060FF",
+    fontSize: 20,
   },
   subtitleCity: {
-    fontFamily: 'Raleway-Italic-400',
-    color: '#4060FF',
-    fontSize: 16
+    fontFamily: "Raleway-Italic-400",
+    color: "#4060FF",
+    fontSize: 16,
   },
   button: {
     paddingBottom: 80,
-    paddingTop: 30
+    paddingTop: 30,
   },
   initForm: {
-    paddingTop: 46
-  }
-})
+    paddingTop: 46,
+  },
+});

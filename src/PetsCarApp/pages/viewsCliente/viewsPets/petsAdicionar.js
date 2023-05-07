@@ -1,30 +1,36 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { IconPets } from "../../components/icons";
-import { InputForm, InputSelect } from "../../components/input";
-import { ButtonPrimary } from "../../components/button";
+import {
+  KeyboardAvoidingView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import { IconPets } from "../../../components/icons";
+import { InputForm, InputSelect } from "../../../components/input";
+import { ButtonPrimary } from "../../../components/button";
 
 const selectTipoPets = ["Cachorro", "Gato", "Pássaro", "Hamsters", "Outro"];
 const selectPortePets = ["Pequeno", "Médio", "Grande"];
 
 export function AdicionarPetClient() {
   return (
-    <View styles={styles.container}>
+    <KeyboardAvoidingView style={styles.container}>
       <ScrollView style={styles.containerScroll}>
         <View style={styles.containerTitle}>
-          <IconPets color={"4060FF"} />
+          <IconPets color={"#4060FF"} />
           <Text style={styles.title}>Pet</Text>
         </View>
         <View>
-          <InputForm label="Nome" placeholder="Ex: Bob" />
-          <InputSelect label="Tipo" data={selectPortePets} />
-          <InputForm label="Raça" placeholder="Ex:Pinscher" />
-          <InputSelect label="Porte" data={selectTipoPets} />
+          <InputForm label='Nome' placeholder='Ex: Bob' />
+          <InputSelect label='Tipo' data={selectPortePets} />
+          <InputForm label='Raça' placeholder='Ex:Pinscher' />
+          <InputSelect label='Porte' data={selectTipoPets} />
         </View>
         <View style={styles.buttonConcluir}>
           <ButtonPrimary title={"Concluir"} />
         </View>
       </ScrollView>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -32,7 +38,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    background: "#fff",
+    backgroundColor: "#fff",
   },
   containerScroll: {
     paddingHorizontal: 35,

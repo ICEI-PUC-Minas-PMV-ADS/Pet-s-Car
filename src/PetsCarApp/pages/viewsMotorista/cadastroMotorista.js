@@ -10,10 +10,11 @@ import { ButtonPrimary } from "../../components/button";
 
 export function CadastroMotorista({ navigation }) {
   return (
-    <ScrollView style={styles.container}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
+      <ScrollView style={styles.containerScroll}>
         <HeaderTitle
           title='Cadastro'
           subtitle='Crie uma conta para acessar todos os recursos da Pet’s Car!'
@@ -40,8 +41,8 @@ export function CadastroMotorista({ navigation }) {
             }}
           />
         </View>
-      </KeyboardAvoidingView>
-    </ScrollView>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -50,8 +51,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     backgroundColor: "#fff",
+  },
+  containerScroll: {
     paddingHorizontal: 35,
-    paddingTop: 20,
   },
   formContainer: {
     paddingVertical: 45,

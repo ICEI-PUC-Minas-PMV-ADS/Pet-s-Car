@@ -1,39 +1,39 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { IconPets } from "../../components/icons";
-import { ButtonEditar } from "../../components/button";
+import { IconPets } from "../../../components/icons";
+import { ButtonEditar } from "../../../components/button";
 
 export function DetalhesPetClient({ navigation }) {
   return (
-    <View styles={styles.container}>
+    <View style={styles.container}>
       <ScrollView style={styles.containerScroll}>
         <View style={styles.containerTitle}>
           <View style={styles.iconTitle}>
-            <IconPets color={"4060FF"} />
+            <IconPets color={"#4060FF"} />
             <Text style={styles.title}>Pet</Text>
           </View>
           <ButtonEditar
             title={"Editar"}
             onPress={() => {
-              navigation.navigate("EditarPetCliente");
+              navigation.navigate("EditarPetClient");
             }}
           />
         </View>
         <View style={styles.itens}>
           <View>
-            <Text styles={styles.itemTitle}>Nome</Text>
-            <Text styles={styles.itemInfo}>Jack</Text>
+            <Text style={styles.itemTitle}>Nome</Text>
+            <Text style={styles.itemInfo}>Jack</Text>
           </View>
           <View>
-            <Text styles={styles.itemTitle}>Tipo</Text>
-            <Text styles={styles.itemInfo}>Cachorro</Text>
+            <Text style={styles.itemTitle}>Tipo</Text>
+            <Text style={styles.itemInfo}>Cachorro</Text>
           </View>
           <View>
-            <Text styles={styles.itemTitle}>Raça</Text>
-            <Text styles={styles.itemInfo}>Pinscher</Text>
+            <Text style={styles.itemTitle}>Raça</Text>
+            <Text style={styles.itemInfo}>Pinscher</Text>
           </View>
           <View>
-            <Text styles={styles.itemTitle}>Porte</Text>
-            <Text styles={styles.itemInfo}>Pequeno</Text>
+            <Text style={styles.itemTitle}>Porte</Text>
+            <Text style={styles.itemInfo}>Pequeno</Text>
           </View>
         </View>
       </ScrollView>

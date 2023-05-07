@@ -1,12 +1,20 @@
-
 # Metodologia
 
 A metodologia adotada neste projeto busca seguir uma ordem para sua eficiência e organização, a qual é detalhada nos tópicos seguintes.
 
 ## Relação de Ambientes de Trabalho
 
-Os artefatos do projeto são desenvolvidos a partir de diversas plataformas e a relação dos ambientes com seu respectivo propósito deverá ser apresentada em uma tabela que especifica que detalha Ambiente, Plataforma e Link de Acesso.
-Nota: Vide documento modelo do estudo de caso "Portal de Notícias" e defina também os ambientes e frameworks que serão utilizados no desenvolvimento de aplicações móveis.
+Os artefatos do projeto foram desenvolvidos utilizando:
+
+1. Código-fonte: Visual Studio Code
+
+2. Script de banco de dados: Firebase
+
+3. Documentação do projeto: Word
+
+4. Artefatos de design: Figma
+
+5. Pacotes de software: Aplicação local, não havendo necessidade de deploy.
 
 ## Controle de Versão
 
@@ -32,7 +40,7 @@ Assim sendo, o projeto segue a seguinte convenção para o nome de branches:
 
 ### Divisão de Papéis
 
-Para o gerenciamento do projeto, a equipe optou pelo Scrum, metodologia ágil na otimização do processo de desenvolvimento. 
+Para o gerenciamento do projeto, a equipe optou pelo Scrum, metodologia ágil na otimização do processo de desenvolvimento.
 
 A equipe está organizada da seguinte forma:
 
@@ -43,23 +51,23 @@ A equipe está organizada da seguinte forma:
 
 ### Processo
 
-A equipe utiliza o Scrum, essa metodologia Ágil se diferencia porque promove a junção de profissionais com diferentes papéis em um único time, dessa forma todos participam do desenvolvimento do projeto, sendo, de fato, uma só equipe.   
+A equipe utiliza o Scrum, essa metodologia Ágil se diferencia porque promove a junção de profissionais com diferentes papéis em um único time, dessa forma todos participam do desenvolvimento do projeto, sendo, de fato, uma só equipe.
 
-O time ágil é organizado de forma que pessoas fiquem responsáveis por garantir a qualidade, eficácia e eficiência do projeto. Isso é alcançado através dos pequenos ciclos de atividades e reuniões constantes para que a equipe possa alinhar o que vem fazendo e pensar formas de melhorar o processo com agilidade.  
+O time ágil é organizado de forma que pessoas fiquem responsáveis por garantir a qualidade, eficácia e eficiência do projeto. Isso é alcançado através dos pequenos ciclos de atividades e reuniões constantes para que a equipe possa alinhar o que vem fazendo e pensar formas de melhorar o processo com agilidade.
 
-Inicialmente, o P.O reuniu a equipe e apresentou o pacote de funcionalidades do projeto (o product backlog). A partir disso, as Sprints (os ciclos) foram definidas para a realização das tarefas. A Daily Scrum do grupo acontecia às 21:00 e, no início de cada sprint, acontecia a Sprint Planning Meeting para o planejamento e priorização dos itens do Product Backlog para aquele período. 
+Inicialmente, o P.O reuniu a equipe e apresentou o pacote de funcionalidades do projeto (o product backlog). A partir disso, as Sprints (os ciclos) foram definidas para a realização das tarefas. A Daily Scrum do grupo acontecia às 21:00 e, no início de cada sprint, acontecia a Sprint Planning Meeting para o planejamento e priorização dos itens do Product Backlog para aquele período.
 
-A equipe utiliza o Kanban disponível na aba projects no repositório do GitHub Classroom com as seguintes colunas: 
+A equipe utiliza o Kanban disponível na aba projects no repositório do GitHub Classroom com as seguintes colunas:
 
-- Meetings: esta coluna apresenta os dias que aconteceram as reuniões da equipe, assim como os principais tópicos tratados.  
+- Meetings: esta coluna apresenta os dias que aconteceram as reuniões da equipe, assim como os principais tópicos tratados.
 
-- Backlog: esta coluna apresenta as atividades a serem desenvolvidas, ou seja, o Product Backlog. Todas as atividades que acontecerão no projeto estarão dispostas nessa coluna.  
+- Backlog: esta coluna apresenta as atividades a serem desenvolvidas, ou seja, o Product Backlog. Todas as atividades que acontecerão no projeto estarão dispostas nessa coluna.
 
-- To Do: esta coluna representa o Sprint Backlog. Este é o Sprint atual que estamos trabalhando.  
+- To Do: esta coluna representa o Sprint Backlog. Este é o Sprint atual que estamos trabalhando.
 
-- In progress: quando uma tarefa tiver sido iniciada é movida para esta coluna.  
+- In progress: quando uma tarefa tiver sido iniciada é movida para esta coluna.
 
-- Testing: esta coluna é para checar a qualidade do que está sendo produzido. Antes de qualquer entrega todos os tópicos dessa coluna deverão ser finalizados.  
+- Testing: esta coluna é para checar a qualidade do que está sendo produzido. Antes de qualquer entrega todos os tópicos dessa coluna deverão ser finalizados.
 
 - Done: nesta coluna são colocadas as tarefas que passaram pelos testes e controle de qualidade e estão prontos para ser entregues ao usuário.
 
