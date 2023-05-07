@@ -1,27 +1,7 @@
+//Mariano: desenvolvi a tela de pets com apoio do material das aulas de Desenvolvimento Mobile da PUC.
 import { StyleSheet, View, FlatList } from "react-native";
 import { CardPets } from "../../components/card";
 import { ButtonAdd } from "../../components/button";
-
-const petsExemplos = [
-  {
-    id: 1,
-    nome: "Jack",
-    tipo: "Cachorro",
-    raca: "Pinscher",
-  },
-  {
-    id: 2,
-    nome: "Jack",
-    tipo: "Cachorro",
-    raca: "Pinscher",
-  },
-  {
-    id: 3,
-    nome: "Jack",
-    tipo: "Cachorro",
-    raca: "Pinscher",
-  },
-];
 
 export function PetsCliente({ navigation }) {
   return (
@@ -63,3 +43,24 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
 });
+
+const petsExemplos = [
+  {
+    id: 1,
+    nome: "Jack",
+    tipo: "Cachorro",
+    raca: "Pinscher",
+  },
+  {
+    id: 2,
+    nome: "Jack",
+    tipo: "Cachorro",
+    raca: "Pinscher",
+  },
+  {
+    id: 3,
+    nome: "Jack",
+    tipo: "Cachorro",
+    raca: "Pinscher",
+  },
+];

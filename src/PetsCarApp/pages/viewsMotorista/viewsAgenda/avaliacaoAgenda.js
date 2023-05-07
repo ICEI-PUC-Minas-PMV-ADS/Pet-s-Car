@@ -1,3 +1,5 @@
+//Thiago: desenvolvi a tela de avaliação do motorista com apoio do material das aulas de Desenvolvimento Mobile da PUC.
+
 import { View, StyleSheet, Text, ScrollView, TextInput } from "react-native";
 import { ButtonPrimary } from "../../../components/button";
 
@@ -5,10 +7,10 @@ export function AvaliacaoAgendaMotorista() {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.containerScroll}>
-        <Text style={styles.motorista}>
-          <Text style={styles.motoristaBold}>Motorista:</Text> Thiago Terra
+        <Text style={styles.cliente}>
+          <Text style={styles.clienteBold}>Cliente:</Text> Thiago Terra
         </Text>
-        <Text style={styles.motorista}>O que achou do cliente e seu pet?</Text>
+        <Text style={styles.cliente}>O que achou do cliente e seu pet?</Text>
         <TextInput
           style={styles.input}
           multiline
@@ -32,11 +34,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 35,
     paddingTop: 35,
   },
-  motoristaBold: {
+  clienteBold: {
     color: "#4060FF",
     fontFamily: "Raleway-700",
   },
-  motorista: {
+  cliente: {
     fontSize: 16,
     color: "#131313",
     fontFamily: "Raleway-400",

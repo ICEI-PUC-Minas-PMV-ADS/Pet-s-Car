@@ -1,4 +1,4 @@
-//Thiago: desenvolvi a tela de detalhes da agenda com apoio do material das aulas de Desenvolvimento Mobile da PUC.
+//Thiago: desenvolvi a tela de detalhes da agenda do motorista com apoio do material das aulas de Desenvolvimento Mobile da PUC.
 
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { IconAgendamentos } from "../../../components/icons";

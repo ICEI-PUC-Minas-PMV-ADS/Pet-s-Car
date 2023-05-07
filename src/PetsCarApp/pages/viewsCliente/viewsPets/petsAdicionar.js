@@ -1,3 +1,4 @@
+//Mariano: desenvolvi a tela de adicionar pet com apoio do material das aulas de Desenvolvimento Mobile da PUC.
 import {
   KeyboardAvoidingView,
   ScrollView,

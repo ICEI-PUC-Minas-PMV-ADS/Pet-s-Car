@@ -1,3 +1,4 @@
+//Jéssica: desenvolvi a tela de cadastro de motorista com apoio do material das aulas de Desenvolvimento Mobile da PUC e do Thiago.
 import {
   View,
   StyleSheet,

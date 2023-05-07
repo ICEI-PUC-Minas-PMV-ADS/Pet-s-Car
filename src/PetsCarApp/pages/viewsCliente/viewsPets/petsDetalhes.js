@@ -1,3 +1,4 @@
+//Mariano: desenvolvi a tela de detalhes do pet com apoio do material das aulas de Desenvolvimento Mobile da PUC.
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { IconPets } from "../../../components/icons";
 import { ButtonEditar } from "../../../components/button";

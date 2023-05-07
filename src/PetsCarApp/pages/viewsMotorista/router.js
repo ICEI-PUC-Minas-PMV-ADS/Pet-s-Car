@@ -9,6 +9,8 @@ import { AgendaMotorista } from "./agendaMotorista";
 import { PerfilMotorista } from "./perfilMotorista";
 import { DetalhesAgendaMotoristaNav } from "./viewsAgenda/router";
 import { LogoPetsCarMenor } from "../../components/logo";
+import { EditarPerfilMotorista } from "./viewsPerfil/editarPerfil";
+import { AvaliacaoMotorista } from "./viewsPerfil/avaliacoesMotorista";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -67,6 +69,40 @@ export function MotoristaNavigation() {
         name='DetalhesAgendaMotoristaNav'
         options={{ title: "", headerShown: false }}
         component={DetalhesAgendaMotoristaNav}
+      />
+      <Stack.Screen
+        name='EditarPerfilMotorista'
+        options={{
+          title: "Editar",
+          headerStyle: {
+            backgroundColor: "#4060FF",
+          },
+          headerTitleStyle: {
+            color: "#FFFFFF",
+            fontFamily: "Raleway-600",
+            fontSize: 16,
+          },
+          headerTintColor: "#FFFFFF",
+          headerTitleAlign: "center",
+        }}
+        component={EditarPerfilMotorista}
+      />
+      <Stack.Screen
+        name='AvaliacaoMotorista'
+        options={{
+          title: "Avaliações Recebidas",
+          headerStyle: {
+            backgroundColor: "#4060FF",
+          },
+          headerTitleStyle: {
+            color: "#FFFFFF",
+            fontFamily: "Raleway-600",
+            fontSize: 16,
+          },
+          headerTintColor: "#FFFFFF",
+          headerTitleAlign: "center",
+        }}
+        component={AvaliacaoMotorista}
       />
     </Stack.Navigator>
   );

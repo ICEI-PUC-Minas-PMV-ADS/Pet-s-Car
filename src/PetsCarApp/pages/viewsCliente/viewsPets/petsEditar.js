@@ -1,3 +1,4 @@
+//Mariano: desenvolvi a tela de editar pet com apoio do material das aulas de Desenvolvimento Mobile da PUC.
 import {
   StyleSheet,
   View,

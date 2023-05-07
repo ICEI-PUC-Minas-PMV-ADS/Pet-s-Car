@@ -1,3 +1,5 @@
+//Thiago: desenvolvi a tela de avaliação do cliente com apoio do material das aulas de Desenvolvimento Mobile da PUC.
+
 import { View, StyleSheet, Text, ScrollView, TextInput } from "react-native";
 import { ButtonPrimary } from "../../../components/button";
 

@@ -1,4 +1,4 @@
-//Thiago: desenvolvi as primeiras informações da tela Inicial com apoio do material das aulas de Desenvolvimento Mobile da PUC.
+//Thiago: desenvolvi as rotas com apoio do material das aulas de Desenvolvimento Mobile da PUC.
 import { useFonts } from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";

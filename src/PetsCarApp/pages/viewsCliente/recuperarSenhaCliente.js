@@ -1,3 +1,4 @@
+//Mariano: desenvolvi a tela de recuperar senha do cliente com apoio do material das aulas de Desenvolvimento Mobile da PUC.
 import { StyleSheet, Text, View } from "react-native";
 import { HeaderTitle } from "../../components/header";
 import { InputForm } from "../../components/input";

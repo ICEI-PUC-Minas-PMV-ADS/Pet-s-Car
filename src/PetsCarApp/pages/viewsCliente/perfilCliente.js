@@ -4,7 +4,6 @@ import { IconPerfil } from "../../components/icons";
 import {
   ButtonDeslogar,
   ButtonEditar,
-  ButtonExcluir,
   ButtonExcluirConta,
   ButtonViewAvaliacao,
 } from "../../components/button";
