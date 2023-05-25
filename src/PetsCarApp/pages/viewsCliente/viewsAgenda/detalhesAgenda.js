@@ -4,7 +4,9 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { IconAgendamentos } from "../../../components/icons";
 import { ButtonEditar } from "../../../components/button";
 
-export function DetalhesAgendaCliente({ navigation }) {
+export function DetalhesAgendaCliente({ navigation, route }) {
+  const infosAgendamento = route.params.infosAgendamento;
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.containerScroll}>
@@ -22,21 +24,34 @@ export function DetalhesAgendaCliente({ navigation }) {
         </View>
         <View style={styles.statusCard}>
           <Text style={styles.statusTitle}>
-            Status: <Text style={styles.statusInfo}>Pendente</Text>
+            Status:{" "}
+            <Text style={styles.statusInfo}>{infosAgendamento.status}</Text>
           </Text>
         </View>
         <View style={styles.itens}>
           <View>
             <Text style={styles.itemTitle}>Pet</Text>
-            <Text style={styles.itemInfo}>Jack</Text>
+            <Text style={styles.itemInfo}>{infosAgendamento.nomePet}</Text>
+          </View>
+          <View>
+            <Text style={styles.itemTitle}>Tipo</Text>
+            <Text style={styles.itemInfo}>{infosAgendamento.tipoPet}</Text>
+          </View>
+          <View>
+            <Text style={styles.itemTitle}>Raça</Text>
+            <Text style={styles.itemInfo}>{infosAgendamento.racaPet}</Text>
+          </View>
+          <View>
+            <Text style={styles.itemTitle}>Porte</Text>
+            <Text style={styles.itemInfo}>{infosAgendamento.portePet}</Text>
           </View>
           <View>
             <Text style={styles.itemTitle}>Data</Text>
-            <Text style={styles.itemInfo}>15/07/2023</Text>
+            <Text style={styles.itemInfo}>{infosAgendamento.data}</Text>
           </View>
           <View>
             <Text style={styles.itemTitle}>Hora</Text>
-            <Text style={styles.itemInfo}>15:00</Text>
+            <Text style={styles.itemInfo}>{infosAgendamento.hora}</Text>
           </View>
         </View>
         <View>
@@ -48,11 +63,16 @@ export function DetalhesAgendaCliente({ navigation }) {
             </View>
             <View>
               <Text style={styles.itemTitle}>Bairro</Text>
-              <Text style={styles.itemInfo}>Centro</Text>
+              <Text style={styles.itemInfo}>
+                {infosAgendamento.bairroPartida}
+              </Text>
             </View>
             <View>
               <Text style={styles.itemTitle}>Logradouro e Número</Text>
-              <Text style={styles.itemInfo}>Rua Donatello Paccini - 365</Text>
+              <Text style={styles.itemInfo}>
+                {infosAgendamento.logradouroPartida} -{" "}
+                {infosAgendamento.numeroPartida}
+              </Text>
             </View>
           </View>
         </View>
@@ -64,12 +84,23 @@ export function DetalhesAgendaCliente({ navigation }) {
               <Text style={styles.itemInfo}>Alterosa - MG</Text>
             </View>
             <View>
+              <Text style={styles.itemTitle}>Estabelecimento</Text>
+              <Text style={styles.itemInfo}>
+                {infosAgendamento.estabelecimentoDestino}
+              </Text>
+            </View>
+            <View>
               <Text style={styles.itemTitle}>Bairro</Text>
-              <Text style={styles.itemInfo}>Jardim Silveira</Text>
+              <Text style={styles.itemInfo}>
+                {infosAgendamento.bairroDestino}
+              </Text>
             </View>
             <View>
               <Text style={styles.itemTitle}>Logradouro e Número</Text>
-              <Text style={styles.itemInfo}>Rua Tiradentes - 532</Text>
+              <Text style={styles.itemInfo}>
+                {infosAgendamento.logradouroDestino} -{" "}
+                {infosAgendamento.numeroDestino}
+              </Text>
             </View>
           </View>
         </View>

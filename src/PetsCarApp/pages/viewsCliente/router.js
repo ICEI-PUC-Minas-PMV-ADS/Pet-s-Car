@@ -152,7 +152,9 @@ export function ClienteNavigation() {
   );
 }
 
-export function ClienteTabNavegation() {
+export function ClienteTabNavegation({ route }) {
+  const idCliente = route.params.idCliente;
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -202,6 +204,7 @@ export function ClienteTabNavegation() {
         options={{
           tabBarIcon: ({ color }) => <IconAgendamentos color={color} />,
         }}
+        initialParams={{ idCliente: idCliente }}
       />
       <Tab.Screen
         name='Pets'
@@ -209,6 +212,7 @@ export function ClienteTabNavegation() {
         options={{
           tabBarIcon: ({ color }) => <IconPets color={color} />,
         }}
+        initialParams={{ idCliente: idCliente }}
       />
       <Tab.Screen
         name='Perfil'
@@ -216,6 +220,7 @@ export function ClienteTabNavegation() {
         options={{
           tabBarIcon: ({ color }) => <IconPerfil color={color} />,
         }}
+        initialParams={{ idCliente: idCliente }}
       />
     </Tab.Navigator>
   );
