@@ -45,6 +45,7 @@ export const InputForm = ({
   keyboardType,
   inputMode,
   maxLength,
+  defaultValue,
 }) => {
   return (
     <View style={styles.containerInputForm}>
@@ -59,12 +60,19 @@ export const InputForm = ({
         keyboardType={keyboardType}
         inputMode={inputMode}
         maxLength={maxLength}
+        defaultValue={defaultValue}
       />
     </View>
   );
 };
 
-export const InputSelect = ({ data, label, onChange }) => {
+export const InputSelect = ({
+  data,
+  label,
+  onChange,
+  defaultValue,
+  defaultValueByIndex,
+}) => {
   return (
     <View style={styles.containerInputForm}>
       <View style={styles.label}>
@@ -80,6 +88,8 @@ export const InputSelect = ({ data, label, onChange }) => {
         dropdownStyle={styles.selectDropdown}
         renderDropdownIcon={() => <IconDropdown />}
         onSelect={onChange}
+        defaultValue={defaultValue}
+        defaultValueByIndex={defaultValueByIndex}
       />
     </View>
   );

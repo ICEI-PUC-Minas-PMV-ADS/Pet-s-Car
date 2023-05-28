@@ -2,8 +2,32 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { IconPets } from "../../../components/icons";
 import { ButtonEditar } from "../../../components/button";
+import { Pet } from "../../../interfaces/interface_pets";
+import { useEffect, useState } from "react";
+import { db } from "../../firebaseInit";
+import { doc, getDoc } from "firebase/firestore";
 
-export function DetalhesPetClient({ navigation }) {
+export function DetalhesPetClient({ navigation, route }: any) {
+  const idPet = route.params.idPet;
+
+  const [dataPet, setDataPet] = useState<Pet>({
+    idCliente: "",
+    nome: "",
+    tipo: "",
+    raca: "",
+    porte: "",
+  });
+
+  useEffect(() => {
+    navigation.addListener("focus", async () => {
+      const petsRef = await doc(db, "pets", idPet);
+
+      await getDoc(petsRef).then((res: any) => {
+        setDataPet(res.data());
+      });
+    });
+  }, []);
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.containerScroll}>
@@ -15,26 +39,30 @@ export function DetalhesPetClient({ navigation }) {
           <ButtonEditar
             title={"Editar"}
             onPress={() => {
-              navigation.navigate("EditarPetClient");
+              navigation.navigate({
+                name: "EditarPetClient",
+                params: { dataPet: dataPet },
+                merge: true,
+              });
             }}
           />
         </View>
         <View style={styles.itens}>
           <View>
             <Text style={styles.itemTitle}>Nome</Text>
-            <Text style={styles.itemInfo}>Jack</Text>
+            <Text style={styles.itemInfo}>{dataPet.nome}</Text>
           </View>
           <View>
             <Text style={styles.itemTitle}>Tipo</Text>
-            <Text style={styles.itemInfo}>Cachorro</Text>
+            <Text style={styles.itemInfo}>{dataPet.tipo}</Text>
           </View>
           <View>
             <Text style={styles.itemTitle}>Raça</Text>
-            <Text style={styles.itemInfo}>Pinscher</Text>
+            <Text style={styles.itemInfo}>{dataPet.raca}</Text>
           </View>
           <View>
             <Text style={styles.itemTitle}>Porte</Text>
-            <Text style={styles.itemInfo}>Pequeno</Text>
+            <Text style={styles.itemInfo}>{dataPet.porte}</Text>
           </View>
         </View>
       </ScrollView>

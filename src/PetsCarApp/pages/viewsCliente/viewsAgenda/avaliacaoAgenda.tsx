@@ -2,8 +2,26 @@
 
 import { View, StyleSheet, Text, ScrollView, TextInput } from "react-native";
 import { ButtonPrimary } from "../../../components/button";
+import { Agendamento } from "../../../interfaces/interface_agendamento";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../firebaseInit";
+import { useState } from "react";
 
-export function AvaliacaoAgendaCliente() {
+export function AvaliacaoAgendaCliente({ route, navigation }: any) {
+  const dataAgendamento: Agendamento = route.params.dataAgendamento;
+
+  const [avaliacao, setAvaliacao] = useState("");
+
+  const EnviarAvaliação = async () => {
+    await addDoc(collection(db, "avaliacoesMotorista"), {
+      idMotorista: dataAgendamento.idMotorista,
+      nomeCliente: dataAgendamento.nomeCliente,
+      avaliacao: avaliacao,
+    }).then(() => {
+      navigation.goBack();
+    });
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.containerScroll}>
@@ -19,8 +37,16 @@ export function AvaliacaoAgendaCliente() {
           numberOfLines={10}
           textAlignVertical='top'
           placeholder='Ex: O motorista foi muito atencioso.'
+          onChangeText={(e: any) => {
+            setAvaliacao(e);
+          }}
         />
-        <ButtonPrimary title={"Concluir"} />
+        <ButtonPrimary
+          title={"Concluir"}
+          onPress={() => {
+            EnviarAvaliação();
+          }}
+        />
       </ScrollView>
     </View>
   );

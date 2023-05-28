@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from "react-native";
 import { ButtonCliente, ButtonMotorista } from "../../components/button";
 import { LogoPetsCar } from "../../components/logo";
 
-export function WelcomePage({ navigation }) {
+export function WelcomePage({ navigation }: any) {
   return (
     <View style={styles.container}>
       <View style={styles.container1}>

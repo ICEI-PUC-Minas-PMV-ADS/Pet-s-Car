@@ -1,56 +1,40 @@
 //Thiago: desenvolvi a tela de agenda com apoio do material das aulas de Desenvolvimento Mobile da PUC.
 import { FlatList, StyleSheet, View } from "react-native";
 import { CardAgenda } from "../../components/card";
-import { ButtonAdd } from "../../components/button";
-import { useEffect, useState } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../firebaseInit";
+import { useState } from "react";
+import { addDoc } from "firebase/firestore";
 
-export function AgendaCliente({ navigation, route }) {
-  const idCliente = route.params.idCliente;
+export function AgendaMotorista({ navigation, route }: any) {
+  const idMotorista = route.params.idMotorista;
 
-  const [dataAgendamentos, setDataAgendamentos] = useState([]);
+  const [avaliacao, setAvaliacao] = useState("");
 
-  useEffect(() => {
-    const agendamentosRef = collection(db, "agendamentos");
-    const idAgendamentos = query(
-      agendamentosRef,
-      where("idCliente", "==", idCliente)
-    );
-
-    getDocs(idAgendamentos).then((res) => {
-      if (res.empty) {
-        console.log("Não tem agendamentos.");
-      } else {
-        const ArrayData = [];
-        res.forEach((doc) => {
-          const id = { idAgendamento: doc.id };
-          const data = doc.data();
-          ArrayData.push({ ...id, ...data });
-        });
-        setDataAgendamentos(ArrayData);
-      }
+  const EnviarAvaliação = async () => {
+    await addDoc(collection(db, "avaliacoesMotorista"), {
+      idMotorista: dataAgendamento.idMotorista,
+      nomeCliente: dataAgendamento.nomeCliente,
+      avaliacao: avaliacao,
+    }).then(() => {
+      navigation.goBack();
     });
-  }, []);
+  };
 
   return (
     <View style={styles.container}>
       <FlatList
         ListFooterComponent={() => <View style={styles.containerVazio}></View>}
         style={styles.containerScroll}
-        data={dataAgendamentos}
-        keyExtractor={(item) => item.idAgendamento}
+        data={exemploAgendamentos}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => {
           return (
             <CardAgenda
-              pet={item.nomePet}
+              pet={item.pet}
               data={item.data}
               hora={item.hora}
               status={item.status}
               onPressDetalhes={() => {
-                navigation.navigate("DetalhesAgendaClienteNav", {
-                  dataAgendamento: item,
-                });
+                navigation.navigate("DetalhesAgendaMotoristaNav");
               }}
               styleCard={
                 item.status == "Pendente"
@@ -62,13 +46,6 @@ export function AgendaCliente({ navigation, route }) {
             />
           );
         }}
-      />
-      <ButtonAdd
-        onPress={() =>
-          navigation.navigate("AdicionarAgendaCliente", {
-            idCliente: idCliente,
-          })
-        }
       />
     </View>
   );

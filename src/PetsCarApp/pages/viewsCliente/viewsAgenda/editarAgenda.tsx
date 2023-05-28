@@ -1,63 +1,109 @@
-//Thiago: desenvolvi a tela de adição de agenda com apoio do material das aulas de Desenvolvimento Mobile da PUC.
+//Thiago: desenvolvi a tela de edição de agenda com apoio do material das aulas de Desenvolvimento Mobile da PUC.
 import {
   View,
   Text,
   StyleSheet,
   ScrollView,
   KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { IconAgendamentos } from "../../../components/icons";
 import { InputForm, InputSelect } from "../../../components/input";
-import { ButtonPrimary } from "../../../components/button";
-import { useState } from "react";
+import { ButtonExcluir, ButtonPrimary } from "../../../components/button";
+import { useEffect, useState } from "react";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { db } from "../../firebaseInit";
-import { addDoc, collection } from "firebase/firestore";
+import { Agendamento } from "../../../interfaces/interface_agendamento";
 
-const selectPortePets = ["Pequeno", "Médio", "Grande"];
+export function EditarAgendaCliente({ route, navigation }: any) {
+  const idAgendamento = route.params.idAgendamento;
+  const dataAgendamento: Agendamento = route.params.dataAgendamento;
 
-export function AdicionarAgendaCliente({ navigation, route }) {
-  const idCliente = route.params.idCliente;
+  const [pet, setPet] = useState<number>(0);
+  const [data, setData] = useState(dataAgendamento.data);
+  const [hora, setHora] = useState(dataAgendamento.hora);
+  const [bairroPartida, setBairroPartida] = useState(
+    dataAgendamento.bairroPartida
+  );
+  const [logradouroPartida, setLogradouroPartida] = useState(
+    dataAgendamento.logradouroPartida
+  );
+  const [numeroPartida, setNumeroPartida] = useState(
+    dataAgendamento.numeroPartida
+  );
+  const [estabelecimentoDestino, setEstabelecimentoDestino] = useState(
+    dataAgendamento.estabelecimentoDestino
+  );
+  const [bairroDestino, setBairroDestino] = useState(
+    dataAgendamento.bairroDestino
+  );
+  const [logradouroDestino, setLogradouroDestino] = useState(
+    dataAgendamento.logradouroDestino
+  );
+  const [numeroDestino, setNumeroDestino] = useState(
+    dataAgendamento.numeroDestino
+  );
 
-  const [pet, setPet] = useState("");
-  const [data, setData] = useState("");
-  const [hora, setHora] = useState("");
-  const [bairroPartida, setBairroPartida] = useState("");
-  const [logradouroPartida, setLogradouroPartida] = useState("");
-  const [numeroPartida, setNumeroPartida] = useState("");
-  const [estabelecimentoDestino, setEstabelecimentoDestino] = useState("");
-  const [bairroDestino, setBairroDestino] = useState("");
-  const [logradouroDestino, setLogradouroDestino] = useState("");
-  const [numeroDestino, setNumeroDestino] = useState("");
+  const [dataPets, setDataPets] = useState<any>([]);
 
-  const EnviarAgendamento = async () => {
-    try {
-      await addDoc(collection(db, "agendamentos"), {
-        idCliente: idCliente,
-        idPet: "teste",
-        nomePet: "teste",
-        tipoPet: "teste",
-        racaPet: "teste",
-        portePet: "teste",
-        data: data,
-        hora: hora,
-        logradouroPartida: logradouroPartida,
-        bairroPartida: bairroPartida,
-        numeroPartida: numeroPartida,
-        estabelecimentoDestino: estabelecimentoDestino,
-        logradouroDestino: logradouroDestino,
-        bairroDestino: bairroDestino,
-        numeroDestino: numeroDestino,
-        status: "Pendente",
-        valor: "",
-        idMotorista: "",
-        nomeMotorista: "",
-      }).then(() => {
+  useEffect(() => {
+    const petsRef = collection(db, "pets");
+    const idPets = query(
+      petsRef,
+      where("idCliente", "==", dataAgendamento.idCliente)
+    );
+
+    getDocs(idPets).then((res) => {
+      if (res.empty) {
+        setDataPets("Nenhum pet cadastrado.");
+        console.log("Não tem pets.");
+      } else {
+        const ArrayData: any = [];
+        res.forEach((doc) => {
+          const idPet = { idPet: doc.id };
+          const data = doc.data();
+          ArrayData.push({ ...idPet, ...data });
+        });
+        setDataPets(ArrayData);
+      }
+    });
+  }, []);
+
+  const AtualizarAgendamento = async () => {
+    const agendamentoRef = doc(db, "agendamentos", idAgendamento);
+    await updateDoc(agendamentoRef, {
+      idPet: dataPets[pet].idPet,
+      nomePet: dataPets[pet].nome,
+      tipoPet: dataPets[pet].tipo,
+      racaPet: dataPets[pet].raca,
+      portePet: dataPets[pet].porte,
+      data: data,
+      hora: hora,
+      logradouroPartida: logradouroPartida,
+      bairroPartida: bairroPartida,
+      numeroPartida: numeroPartida,
+      estabelecimentoDestino: estabelecimentoDestino,
+      logradouroDestino: logradouroDestino,
+      bairroDestino: bairroDestino,
+      numeroDestino: numeroDestino,
+    })
+      .then(() => {
         navigation.goBack();
-      });
-    } catch (e) {
-      console.error(e);
-      console.log("não deu");
-    }
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const ExcluirAgendamento = async () => {
+    await deleteDoc(doc(db, "agendamentos", idAgendamento));
+    navigation.navigate("ClienteTabNavegation");
   };
 
   return (
@@ -73,15 +119,16 @@ export function AdicionarAgendaCliente({ navigation, route }) {
         <View>
           <InputSelect
             label='Pet'
-            data={selectPortePets}
-            onChange={(e) => {
-              setPet(e);
+            data={dataPets.map((e: { nome: any }) => e.nome)}
+            onChange={(selectedItem: any, index: number) => {
+              setPet(index);
             }}
+            defaultValue={dataAgendamento.nomePet}
           />
           <InputForm
             label={"Data"}
             placeholder={"Ex: 15/02/2023"}
-            keyboardType={"numeric"}
+            defaultValue={data}
             onChange={(e) => {
               setData(e);
             }}
@@ -89,7 +136,7 @@ export function AdicionarAgendaCliente({ navigation, route }) {
           <InputForm
             label={"Hora"}
             placeholder={"Ex: 15:00hrs"}
-            keyboardType={"numeric"}
+            defaultValue={hora}
             onChange={(e) => {
               setHora(e);
             }}
@@ -103,6 +150,7 @@ export function AdicionarAgendaCliente({ navigation, route }) {
           <InputForm
             label={"Bairro"}
             placeholder={"Ex: Centro"}
+            defaultValue={bairroPartida}
             onChange={(e) => {
               setBairroPartida(e);
             }}
@@ -110,6 +158,7 @@ export function AdicionarAgendaCliente({ navigation, route }) {
           <InputForm
             label={"Logradouro"}
             placeholder={"Ex: Rua Donatello Paccini"}
+            defaultValue={logradouroPartida}
             onChange={(e) => {
               setLogradouroPartida(e);
             }}
@@ -117,7 +166,7 @@ export function AdicionarAgendaCliente({ navigation, route }) {
           <InputForm
             label={"Número"}
             placeholder={"Ex: 365"}
-            keyboardType={"numeric"}
+            defaultValue={numeroPartida}
             onChange={(e) => {
               setNumeroPartida(e);
             }}
@@ -131,6 +180,7 @@ export function AdicionarAgendaCliente({ navigation, route }) {
           <InputForm
             label={"Estabelecimento"}
             placeholder={"Ex: PetShop Feliz"}
+            defaultValue={estabelecimentoDestino}
             onChange={(e) => {
               setEstabelecimentoDestino(e);
             }}
@@ -138,6 +188,7 @@ export function AdicionarAgendaCliente({ navigation, route }) {
           <InputForm
             label={"Bairro"}
             placeholder={"Ex: Centro"}
+            defaultValue={bairroDestino}
             onChange={(e) => {
               setBairroDestino(e);
             }}
@@ -145,6 +196,7 @@ export function AdicionarAgendaCliente({ navigation, route }) {
           <InputForm
             label={"Logradouro"}
             placeholder={"Ex: Rua Alcides Terra"}
+            defaultValue={logradouroDestino}
             onChange={(e) => {
               setLogradouroDestino(e);
             }}
@@ -152,7 +204,7 @@ export function AdicionarAgendaCliente({ navigation, route }) {
           <InputForm
             label={"Número"}
             placeholder={"Ex: 2688"}
-            keyboardType={"numeric"}
+            defaultValue={numeroDestino}
             onChange={(e) => {
               setNumeroDestino(e);
             }}
@@ -160,8 +212,12 @@ export function AdicionarAgendaCliente({ navigation, route }) {
         </View>
         <View style={styles.buttonSalvar}>
           <ButtonPrimary
-            title={"Concluir"}
-            onPress={() => EnviarAgendamento()}
+            title={"Salvar"}
+            onPress={() => AtualizarAgendamento()}
+          />
+          <ButtonExcluir
+            title={"Excluir"}
+            onPress={() => ExcluirAgendamento()}
           />
         </View>
       </ScrollView>

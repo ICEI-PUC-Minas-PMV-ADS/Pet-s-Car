@@ -7,8 +7,48 @@ import {
   ButtonExcluirConta,
   ButtonViewAvaliacao,
 } from "../../components/button";
+import { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { auth, db } from "../firebaseInit";
+import { Cliente } from "../../interfaces/interface_cliente";
+import { deleteUser } from "firebase/auth";
 
-export function PerfilCliente({ navigation }) {
+export function PerfilCliente({ navigation, route }: any) {
+  const idCliente = route.params.idCliente;
+
+  const [dataCliente, setDataCliente] = useState<Cliente>({
+    idUser: "",
+    nome: "",
+    email: "",
+    telefone: "",
+    logradouro: "",
+    bairro: "",
+    numeroResidencia: "",
+    userType: "",
+  });
+
+  useEffect(() => {
+    navigation.addListener("focus", async () => {
+      const clienteRef = await doc(db, "clientes", idCliente);
+
+      await getDoc(clienteRef).then((res: any) => {
+        setDataCliente(res.data());
+      });
+    });
+  }, []);
+
+  const Deslogar = () => {
+    auth.signOut().then(() => {
+      navigation.navigate("WelcomePage");
+    });
+  };
+
+  const ExcluirConta = () => {
+    deleteUser(auth.currentUser).then(() => {
+      navigation.navigate("WelcomePage");
+    });
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.containerScroll}>
@@ -20,20 +60,24 @@ export function PerfilCliente({ navigation }) {
           <ButtonEditar
             title={"Editar"}
             onPress={() => {
-              navigation.navigate("EditarPerfilCliente");
+              navigation.navigate({
+                name: "EditarPerfilCliente",
+                params: { dataCliente: dataCliente },
+                merge: true,
+              });
             }}
           />
         </View>
 
-        <Text style={styles.name}>Thiago Terra da Silva</Text>
+        <Text style={styles.name}>{dataCliente.nome}</Text>
         <View style={styles.itens}>
           <View>
             <Text style={styles.itemTitle}>E-mail</Text>
-            <Text style={styles.itemInfo}>thiago.terra@gmail.com</Text>
+            <Text style={styles.itemInfo}>{dataCliente.email}</Text>
           </View>
           <View>
             <Text style={styles.itemTitle}>Telefone</Text>
-            <Text style={styles.itemInfo}>(35) 95655-5553</Text>
+            <Text style={styles.itemInfo}>{dataCliente.telefone}</Text>
           </View>
         </View>
 
@@ -48,7 +92,9 @@ export function PerfilCliente({ navigation }) {
           </View>
           <View>
             <Text style={styles.itemTitle}>Logradouro</Text>
-            <Text style={styles.itemInfo}>Rua Donatello Paccini - 365</Text>
+            <Text style={styles.itemInfo}>
+              {dataCliente.logradouro} - {dataCliente.numeroResidencia}
+            </Text>
           </View>
           <View>
             <Text style={styles.itemTitle}>Bairro</Text>
@@ -60,11 +106,17 @@ export function PerfilCliente({ navigation }) {
           <ButtonViewAvaliacao
             title='Visualizar Avaliações'
             onPress={() => {
-              navigation.navigate("AvaliacaoCliente");
+              navigation.navigate("AvaliacaoCliente"),
+                {
+                  idCliente: idCliente,
+                };
             }}
           />
-          <ButtonDeslogar title='Deslogar' />
-          <ButtonExcluirConta title='Excluir Conta' />
+          <ButtonDeslogar title='Deslogar' onPress={() => Deslogar()} />
+          <ButtonExcluirConta
+            title='Excluir Conta'
+            onPress={() => ExcluirConta()}
+          />
         </View>
       </ScrollView>
     </View>

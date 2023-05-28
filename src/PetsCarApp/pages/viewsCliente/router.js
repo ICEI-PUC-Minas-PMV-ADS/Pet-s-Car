@@ -58,7 +58,9 @@ export function ClienteRouter() {
   );
 }
 
-export function ClienteNavigation() {
+export function ClienteNavigation({ route }) {
+  const idCliente = route.params?.idCliente;
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -147,13 +149,14 @@ export function ClienteNavigation() {
           headerTitleAlign: "center",
         }}
         component={AvaliacaoCliente}
+        initialParams={{ idCliente: idCliente }}
       />
     </Stack.Navigator>
   );
 }
 
 export function ClienteTabNavegation({ route }) {
-  const idCliente = route.params.idCliente;
+  const idCliente = route.params?.idCliente;
 
   return (
     <Tab.Navigator

@@ -1,19 +1,20 @@
-// João Jorges - Desenvolvi a tela de login de cliente utilizando o material disponível na disciplina e com a ajuda do Thiago
+// João Jorges - Desenvolvi o ínicio da tela utilizando o material disponível na disciplina e com a ajuda do Thiago
 import {
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
   KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { InputEmail, InputSenha } from "../../components/input";
 import { ButtonPrimary } from "../../components/button";
 import { HeaderTitle } from "../../components/header";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseInit";
 
-export function LoginCliente({ navigation }) {
+export function LoginMotorista({ navigation }: any) {
   const [emailInput, setEmailInput] = useState("");
   const [senhaInput, setSenhaInput] = useState("");
 
@@ -22,8 +23,8 @@ export function LoginCliente({ navigation }) {
       .then(async (userCredential) => {
         // Signed in
         const userID = userCredential.user.uid;
-        navigation.navigate("ClienteNavigation", {
-          idCliente: userID,
+        navigation.navigate("MotoristaNavigation", {
+          idMotorista: userID,
         });
       })
       .catch((error) => {
@@ -38,11 +39,12 @@ export function LoginCliente({ navigation }) {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
-        navigation.navigate("ClienteNavigation", {
-          screen: "ClienteTabNavegation",
-          params: { idCliente: uid },
+        navigation.navigate("MotoristaNavigation", {
+          screen: "MotoristaTabNavegation",
+          params: { idMotorista: uid },
         });
       } else {
+        navigation.navigate("MotoristaRouter");
       }
     });
   }, []);
@@ -53,15 +55,15 @@ export function LoginCliente({ navigation }) {
       style={styles.container}
     >
       <HeaderTitle
-        title='Login de Cliente'
-        subtitle='Insira seu e-mail e senha e faça seu agendamento!'
+        title='Login de Motorista'
+        subtitle='Insira seu e-mail e senha para logar e realizar diversas corridas!'
       />
       <View style={styles.formLogin}>
-        <InputEmail onChange={(e) => setEmailInput(e)} />
-        <InputSenha onChange={(e) => setSenhaInput(e)} />
+        <InputEmail onChange={(e: string) => setEmailInput(e)} />
+        <InputSenha onChange={(e: string) => setSenhaInput(e)} />
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("RecuperarSenhaCliente");
+            navigation.navigate("RecuperarSenhaMotorista");
           }}
           style={styles.esqueceuSenha}
         >
@@ -78,7 +80,7 @@ export function LoginCliente({ navigation }) {
         <Text style={styles.textNaoConta}>Não tem uma conta?</Text>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("CadastroCliente");
+            navigation.navigate("CadastroMotorista");
           }}
         >
           <Text style={styles.botaoCadastrar}>Cadastrar</Text>

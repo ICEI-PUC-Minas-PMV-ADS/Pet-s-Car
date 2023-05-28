@@ -54,7 +54,9 @@ export function MotoristaRouter() {
   );
 }
 
-export function MotoristaNavigation() {
+export function MotoristaNavigation({ route }) {
+  const idMotorista = route.params?.idMotorista;
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -103,12 +105,15 @@ export function MotoristaNavigation() {
           headerTitleAlign: "center",
         }}
         component={AvaliacaoMotorista}
+        initialParams={{ idMotorista: idMotorista }}
       />
     </Stack.Navigator>
   );
 }
 
-export function MotoristaTabNavegation() {
+export function MotoristaTabNavegation({ route }) {
+  const idMotorista = route.params.idMotorista;
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -158,6 +163,7 @@ export function MotoristaTabNavegation() {
         options={{
           tabBarIcon: ({ color }) => <IconAgendamentos color={color} />,
         }}
+        initialParams={{ idMotorista: idMotorista }}
       />
       <Tab.Screen
         name='Perfil'
@@ -165,6 +171,7 @@ export function MotoristaTabNavegation() {
         options={{
           tabBarIcon: ({ color }) => <IconPerfil color={color} />,
         }}
+        initialParams={{ idMotorista: idMotorista }}
       />
     </Tab.Navigator>
   );

@@ -4,7 +4,9 @@ import { EditarPetClient } from "./petsEditar";
 
 const Stack = createNativeStackNavigator();
 
-export function DetalhesPetsClienteNav() {
+export function DetalhesPetsClienteNav({ route }) {
+  const idPet = route.params.idPet;
+
   return (
     <Stack.Navigator
       initialRouteName='DetalhesPetClient'
@@ -27,6 +29,7 @@ export function DetalhesPetsClienteNav() {
           title: "Detalhes",
         }}
         component={DetalhesPetClient}
+        initialParams={{ idPet: idPet }}
       />
       <Stack.Screen
         name='EditarPetClient'
@@ -34,6 +37,7 @@ export function DetalhesPetsClienteNav() {
           title: "Editar",
         }}
         component={EditarPetClient}
+        initialParams={{ idPet: idPet }}
       />
     </Stack.Navigator>
   );

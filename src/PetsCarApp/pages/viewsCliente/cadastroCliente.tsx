@@ -17,7 +17,7 @@ import { auth, db } from "../firebaseInit";
 const selectPortePets = ["Pequeno", "Médio", "Grande"];
 const selectTipoPets = ["Cachorro", "Gato", "Pássaro", "Hamsters", "Outro"];
 
-export function CadastroCliente({ navigation }) {
+export function CadastroCliente({ navigation }: any) {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -51,10 +51,9 @@ export function CadastroCliente({ navigation }) {
           raca: racaPet,
           tipo: tipoPet,
         });
-        navigation.goBack();
-        //console.log("Document written with ID: ", docCliente.id);
-        //console.log("Document written with ID: ", docPet.id);
-        console.log(userID);
+        navigation.navigate("ClienteNavigation", {
+          idCliente: userID,
+        });
       })
       .catch((error) => {
         const errorCode = error.code;

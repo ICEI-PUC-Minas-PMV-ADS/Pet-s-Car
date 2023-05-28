@@ -1,24 +1,76 @@
 //Thiago: desenvolvi a tela de agenda com apoio do material das aulas de Desenvolvimento Mobile da PUC.
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, RefreshControl, StyleSheet, View } from "react-native";
 import { CardAgenda } from "../../components/card";
+import { ButtonAdd } from "../../components/button";
+import { useCallback, useEffect, useState } from "react";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../firebaseInit";
 
-export function AgendaMotorista({ navigation }) {
+export function AgendaCliente({ navigation, route }: any) {
+  const idCliente = route.params.idCliente;
+
+  const [refreshing, setRefreshing] = useState(false);
+
+  const [dataAgendamentos, setDataAgendamentos] = useState<any[]>([]);
+
+  async function BuscarAgendamentos() {
+    const agendamentosRef = await collection(db, "agendamentos");
+    const idAgendamentos = await query(
+      agendamentosRef,
+      where("idCliente", "==", idCliente)
+    );
+
+    await getDocs(idAgendamentos).then((res) => {
+      if (res.empty) {
+        console.log("Não tem agendamentos.");
+      } else {
+        const ArrayData: any = [];
+
+        res.forEach((doc) => {
+          const id = { idAgendamento: doc.id };
+          const data = doc.data();
+          ArrayData.push({ ...id, ...data });
+        });
+        setDataAgendamentos(ArrayData);
+      }
+    });
+  }
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    BuscarAgendamentos();
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
+
+  useEffect(() => {
+    navigation.addListener("focus", () => {
+      BuscarAgendamentos();
+    });
+  }, []);
+
   return (
     <View style={styles.container}>
       <FlatList
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         ListFooterComponent={() => <View style={styles.containerVazio}></View>}
         style={styles.containerScroll}
-        data={exemploAgendamentos}
-        keyExtractor={(item) => item.id}
+        data={dataAgendamentos}
+        keyExtractor={(item) => item.idAgendamento}
         renderItem={({ item }) => {
           return (
             <CardAgenda
-              pet={item.pet}
+              pet={item.nomePet}
               data={item.data}
               hora={item.hora}
               status={item.status}
               onPressDetalhes={() => {
-                navigation.navigate("DetalhesAgendaMotoristaNav");
+                navigation.navigate("DetalhesAgendaClienteNav", {
+                  idAgendamento: item.idAgendamento,
+                });
               }}
               styleCard={
                 item.status == "Pendente"
@@ -30,6 +82,13 @@ export function AgendaMotorista({ navigation }) {
             />
           );
         }}
+      />
+      <ButtonAdd
+        onPress={() =>
+          navigation.navigate("AdicionarAgendaCliente", {
+            idCliente: idCliente,
+          })
+        }
       />
     </View>
   );
