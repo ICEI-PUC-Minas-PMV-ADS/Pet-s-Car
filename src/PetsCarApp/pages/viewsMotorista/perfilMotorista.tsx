@@ -7,8 +7,47 @@ import {
   ButtonExcluirConta,
   ButtonViewAvaliacao,
 } from "../../components/button";
+import { useEffect, useState } from "react";
+import { Motorista } from "../../interfaces/interface_motorista";
+import { doc, getDoc } from "firebase/firestore";
+import { auth, db } from "../firebaseInit";
+import { deleteUser } from "firebase/auth";
 
-export function PerfilMotorista({ navigation }) {
+export function PerfilMotorista({ navigation, route }: any) {
+  const idMotorista = route.params.idMotorista;
+
+  const [dataMotorista, setDataMotorista] = useState<Motorista>({
+    idUser: "",
+    nome: "",
+    email: "",
+    telefone: "",
+    userType: "",
+  });
+
+  useEffect(() => {
+    navigation.addListener("focus", async () => {
+      const motoristaRef = await doc(db, "motoristas", idMotorista);
+
+      await getDoc(motoristaRef).then((res: any) => {
+        setDataMotorista(res.data());
+      });
+    });
+  }, []);
+
+  const Deslogar = () => {
+    auth.signOut().then(() => {
+      navigation.navigate("WelcomePage");
+    });
+  };
+
+  const ExcluirConta = () => {
+    if (auth.currentUser) {
+      deleteUser(auth.currentUser).then(() => {
+        navigation.navigate("WelcomePage");
+      });
+    }
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.containerScroll}>
@@ -20,20 +59,24 @@ export function PerfilMotorista({ navigation }) {
           <ButtonEditar
             title={"Editar"}
             onPress={() => {
-              navigation.navigate("EditarPerfilMotorista");
+              navigation.navigate({
+                name: "EditarPerfilMotorista",
+                params: { dataMotorista: dataMotorista },
+                merge: true,
+              });
             }}
           />
         </View>
 
-        <Text style={styles.name}>Marcos Ferreira</Text>
+        <Text style={styles.name}>{dataMotorista.nome}</Text>
         <View style={styles.itens}>
           <View>
             <Text style={styles.itemTitle}>E-mail</Text>
-            <Text style={styles.itemInfo}>marcos.ferreira@gmail.com</Text>
+            <Text style={styles.itemInfo}>{dataMotorista.email}</Text>
           </View>
           <View>
             <Text style={styles.itemTitle}>Telefone</Text>
-            <Text style={styles.itemInfo}>(35) 95655-5553</Text>
+            <Text style={styles.itemInfo}>{dataMotorista.telefone}</Text>
           </View>
         </View>
 
@@ -41,11 +84,16 @@ export function PerfilMotorista({ navigation }) {
           <ButtonViewAvaliacao
             title='Visualizar Avaliações'
             onPress={() => {
-              navigation.navigate("AvaliacaoMotorista");
+              navigation.navigate("AvaliacaoMotorista", {
+                idMotorista: idMotorista,
+              });
             }}
           />
-          <ButtonDeslogar title='Deslogar' />
-          <ButtonExcluirConta title='Excluir Conta' />
+          <ButtonDeslogar title='Deslogar' onPress={() => Deslogar()} />
+          <ButtonExcluirConta
+            title='Excluir Conta'
+            onPress={() => ExcluirConta()}
+          />
         </View>
       </ScrollView>
     </View>

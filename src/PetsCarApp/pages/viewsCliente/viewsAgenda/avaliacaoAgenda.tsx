@@ -26,7 +26,8 @@ export function AvaliacaoAgendaCliente({ route, navigation }: any) {
     <View style={styles.container}>
       <ScrollView style={styles.containerScroll}>
         <Text style={styles.motorista}>
-          <Text style={styles.motoristaBold}>Motorista:</Text> Marcos Ferreira
+          <Text style={styles.motoristaBold}>Motorista:</Text>{" "}
+          {dataAgendamento.nomeMotorista}
         </Text>
         <Text style={styles.motorista}>
           O que achou do motorista e a corrida?

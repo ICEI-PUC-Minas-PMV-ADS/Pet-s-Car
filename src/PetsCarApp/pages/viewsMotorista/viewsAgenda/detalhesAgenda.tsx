@@ -4,10 +4,99 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { IconAgendamentos } from "../../../components/icons";
 import { ButtonAvaliar, ButtonPrimary } from "../../../components/button";
 import { InputForm } from "../../../components/input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Agendamento } from "../../../interfaces/interface_agendamento";
+import { db } from "../../firebaseInit";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { Motorista } from "../../../interfaces/interface_motorista";
 
-export function DetalhesAgendaMotorista({ navigation }) {
+export function DetalhesAgendaMotorista({ navigation, route }: any) {
+  const idMotorista = route.params.idMotorista;
+  const idAgendamento = route.params.idAgendamento;
+
   const [inputValorOpen, setInputValorOpen] = useState(false);
+
+  const [valorCorrida, setValorCorrida] = useState("");
+
+  const [dataAgendamento, setDataAgendamento] = useState<Agendamento>({
+    idCliente: "",
+    idPet: "",
+    nomeCliente: "",
+    nomePet: "",
+    tipoPet: "",
+    racaPet: "",
+    portePet: "",
+    data: "",
+    hora: "",
+    dataCompleta: "",
+    logradouroPartida: "",
+    bairroPartida: "",
+    numeroPartida: "",
+    estabelecimentoDestino: "",
+    logradouroDestino: "",
+    bairroDestino: "",
+    numeroDestino: "",
+    status: "",
+    valor: "",
+    idMotorista: "",
+    nomeMotorista: "",
+  });
+
+  const [dataMotorista, setDataMotorista] = useState<Motorista>({
+    idUser: "",
+    nome: "",
+    email: "",
+    telefone: "",
+    userType: "",
+  });
+
+  async function BuscarAgendamento() {
+    const agendamentosRef = await doc(db, "agendamentos", idAgendamento);
+
+    await getDoc(agendamentosRef).then((res: any) => {
+      setDataAgendamento(res.data());
+    });
+  }
+
+  async function BuscarNomeMotorista() {
+    const motoristaRef = await doc(db, "motoristas", idMotorista);
+
+    await getDoc(motoristaRef).then((res: any) => {
+      setDataMotorista(res.data());
+    });
+  }
+
+  useEffect(() => {
+    navigation.addListener("focus", async () => {
+      BuscarAgendamento();
+      BuscarNomeMotorista();
+    });
+  }, []);
+
+  const AceitarCorrida = async () => {
+    const agendamentoRef = doc(db, "agendamentos", idAgendamento);
+    await updateDoc(agendamentoRef, {
+      status: "Aceito",
+      valor: valorCorrida,
+      idMotorista: idMotorista,
+      nomeMotorista: dataMotorista.nome,
+    })
+      .then(() => {
+        BuscarAgendamento();
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const FinalizarCorrida = async () => {
+    const agendamentoRef = doc(db, "agendamentos", idAgendamento);
+    await updateDoc(agendamentoRef, {
+      status: "Realizado",
+    })
+      .then(() => {
+        BuscarAgendamento();
+      })
+      .catch((e) => console.log(e));
+  };
 
   return (
     <View style={styles.container}>
@@ -17,30 +106,55 @@ export function DetalhesAgendaMotorista({ navigation }) {
             <IconAgendamentos color={"#4060FF"} />
             <Text style={styles.title}>Transporte</Text>
           </View>
-          <ButtonAvaliar
-            title={"Avaliar"}
-            onPress={() => {
-              navigation.navigate("AvaliacaoAgendaMotorista");
-            }}
-          />
+          {dataAgendamento.status == "Realizado" ? (
+            <ButtonAvaliar
+              title={"Avaliar"}
+              onPress={() => {
+                navigation.navigate({
+                  name: "AvaliacaoAgendaMotorista",
+                  params: { dataAgendamento: dataAgendamento },
+                  merge: true,
+                });
+              }}
+            />
+          ) : (
+            ""
+          )}
         </View>
-        <View style={styles.statusCard}>
-          <Text style={styles.statusTitle}>
-            Status: <Text style={styles.statusInfo}>Pendente</Text>
+        <View
+          style={
+            dataAgendamento.status == "Pendente"
+              ? styles.statusCardPendente
+              : dataAgendamento.status == "Aceito"
+              ? styles.statusCardAceito
+              : styles.statusCardRealizado
+          }
+        >
+          <Text
+            style={
+              dataAgendamento.status == "Pendente"
+                ? styles.statusTitlePendente
+                : dataAgendamento.status == "Aceito"
+                ? styles.statusTitleAceito
+                : styles.statusTitleRealizado
+            }
+          >
+            Status:{" "}
+            <Text style={styles.statusInfo}>{dataAgendamento.status}</Text>
           </Text>
         </View>
         <View style={styles.itens}>
           <View>
             <Text style={styles.itemTitle}>Pet</Text>
-            <Text style={styles.itemInfo}>Jack</Text>
+            <Text style={styles.itemInfo}>{dataAgendamento.nomePet}</Text>
           </View>
           <View>
             <Text style={styles.itemTitle}>Data</Text>
-            <Text style={styles.itemInfo}>15/07/2023</Text>
+            <Text style={styles.itemInfo}>{dataAgendamento.data}</Text>
           </View>
           <View>
             <Text style={styles.itemTitle}>Hora</Text>
-            <Text style={styles.itemInfo}>15:00</Text>
+            <Text style={styles.itemInfo}>{dataAgendamento.hora}</Text>
           </View>
         </View>
         <View>
@@ -52,11 +166,16 @@ export function DetalhesAgendaMotorista({ navigation }) {
             </View>
             <View>
               <Text style={styles.itemTitle}>Bairro</Text>
-              <Text style={styles.itemInfo}>Centro</Text>
+              <Text style={styles.itemInfo}>
+                {dataAgendamento.bairroPartida}
+              </Text>
             </View>
             <View>
               <Text style={styles.itemTitle}>Logradouro e Número</Text>
-              <Text style={styles.itemInfo}>Rua Donatello Paccini - 365</Text>
+              <Text style={styles.itemInfo}>
+                {dataAgendamento.logradouroPartida} -{" "}
+                {dataAgendamento.numeroPartida}
+              </Text>
             </View>
           </View>
         </View>
@@ -68,17 +187,56 @@ export function DetalhesAgendaMotorista({ navigation }) {
               <Text style={styles.itemInfo}>Alterosa - MG</Text>
             </View>
             <View>
+              <Text style={styles.itemTitle}>Estabelecimento</Text>
+              <Text style={styles.itemInfo}>
+                {dataAgendamento.estabelecimentoDestino}
+              </Text>
+            </View>
+            <View>
               <Text style={styles.itemTitle}>Bairro</Text>
-              <Text style={styles.itemInfo}>Jardim Silveira</Text>
+              <Text style={styles.itemInfo}>
+                {dataAgendamento.bairroDestino}
+              </Text>
             </View>
             <View>
               <Text style={styles.itemTitle}>Logradouro e Número</Text>
-              <Text style={styles.itemInfo}>Rua Tiradentes - 532</Text>
+              <Text style={styles.itemInfo}>
+                {dataAgendamento.logradouroDestino} -{" "}
+                {dataAgendamento.numeroDestino}
+              </Text>
             </View>
           </View>
         </View>
         <View style={styles.lastItens}>
-          {inputValorOpen == false ? (
+          {dataAgendamento.status !== "Pendente" ? (
+            <>
+              <Text style={styles.subtitle}>Informações da Corrida</Text>
+              <View style={styles.itens}>
+                <View>
+                  <Text style={styles.itemTitle}>Valor</Text>
+                  <Text style={styles.itemInfo}>{dataAgendamento.valor}</Text>
+                </View>
+                <View>
+                  <Text style={styles.itemTitle}>Motorista</Text>
+                  <Text style={styles.itemInfo}>
+                    {dataAgendamento.nomeMotorista}
+                  </Text>
+                </View>
+                {dataAgendamento.status == "Aceito" ? (
+                  <View style={styles.button}>
+                    <ButtonPrimary
+                      title={"Finalizar Corrida"}
+                      onPress={() => {
+                        FinalizarCorrida();
+                      }}
+                    />
+                  </View>
+                ) : (
+                  ""
+                )}
+              </View>
+            </>
+          ) : inputValorOpen == false ? (
             <View style={styles.button}>
               <ButtonPrimary
                 title={"Aceitar Corrida"}
@@ -92,9 +250,17 @@ export function DetalhesAgendaMotorista({ navigation }) {
                 label={"Valor"}
                 placeholder={"R$ 0,00"}
                 keyboardType={"numeric"}
+                onChange={(e: any) => {
+                  setValorCorrida(e);
+                }}
               />
               <View style={styles.button}>
-                <ButtonPrimary title={"Concluir"} />
+                <ButtonPrimary
+                  title={"Concluir"}
+                  onPress={() => {
+                    AceitarCorrida();
+                  }}
+                />
               </View>
             </>
           )}
@@ -141,7 +307,7 @@ const styles = StyleSheet.create({
     paddingTop: 25,
     paddingBottom: 5,
   },
-  statusCard: {
+  statusCardPendente: {
     backgroundColor: "#EBEEFF",
     borderRadius: 8,
     padding: 13,
@@ -150,10 +316,42 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 20,
   },
-  statusTitle: {
+  statusTitlePendente: {
     fontFamily: "Raleway-500",
     fontSize: 14,
     color: "#4060FF",
+    textAlign: "center",
+    lineHeight: 14,
+  },
+  statusCardAceito: {
+    backgroundColor: "#FFF7CF",
+    borderRadius: 8,
+    padding: 13,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  statusTitleAceito: {
+    fontFamily: "Raleway-500",
+    fontSize: 14,
+    color: "#A5950D",
+    textAlign: "center",
+    lineHeight: 14,
+  },
+  statusCardRealizado: {
+    backgroundColor: "#CDFFD2",
+    borderRadius: 8,
+    padding: 13,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  statusTitleRealizado: {
+    fontFamily: "Raleway-500",
+    fontSize: 14,
+    color: "#1AB82A",
     textAlign: "center",
     lineHeight: 14,
   },

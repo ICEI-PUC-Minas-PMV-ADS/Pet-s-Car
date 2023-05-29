@@ -1,4 +1,10 @@
-import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+  GestureResponderEvent,
+} from "react-native";
 import {
   IconAdd,
   IconAvaliacao,
@@ -10,11 +16,15 @@ import {
   IconMotorista,
 } from "./icons";
 
-TouchableOpacity.defaultProps = { activeOpacity: 0.8 };
+type BotaoModel = {
+  onPress?: (event: GestureResponderEvent) => void;
+  title?: string;
+};
 
-export const ButtonCliente = ({ onPress, title }) => {
+export const ButtonCliente = ({ onPress, title }: BotaoModel) => {
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       onPress={onPress}
       style={stylesButtonCliente.appButtonContainer}
     >
@@ -24,9 +34,10 @@ export const ButtonCliente = ({ onPress, title }) => {
   );
 };
 
-export const ButtonPrimary = ({ onPress, title }) => {
+export const ButtonPrimary = ({ onPress, title }: BotaoModel) => {
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       onPress={onPress}
       style={stylesButtonCliente.appButtonContainer}
     >
@@ -35,9 +46,10 @@ export const ButtonPrimary = ({ onPress, title }) => {
   );
 };
 
-export const ButtonExcluir = ({ onPress, title }) => {
+export const ButtonExcluir = ({ onPress, title }: BotaoModel) => {
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       onPress={onPress}
       style={stylesButtonCliente.appButtonExcluirContainer}
     >
@@ -46,9 +58,10 @@ export const ButtonExcluir = ({ onPress, title }) => {
   );
 };
 
-export const ButtonMotorista = ({ onPress, title }) => {
+export const ButtonMotorista = ({ onPress, title }: BotaoModel) => {
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       onPress={onPress}
       style={stylesButtonMotorista.appButtonContainer}
     >
@@ -58,9 +71,10 @@ export const ButtonMotorista = ({ onPress, title }) => {
   );
 };
 
-export const ButtonAddPet = ({ onPress, title }) => {
+export const ButtonAddPet = ({ onPress, title }: BotaoModel) => {
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       onPress={onPress}
       style={stylesButtonAddPet.appButtonContainer}
     >
@@ -70,7 +84,7 @@ export const ButtonAddPet = ({ onPress, title }) => {
   );
 };
 
-export const ButtonAdd = ({ onPress }) => {
+export const ButtonAdd = ({ onPress }: BotaoModel) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
@@ -82,10 +96,11 @@ export const ButtonAdd = ({ onPress }) => {
   );
 };
 
-export const ButtonEditar = ({ onPress, title }) => {
+export const ButtonEditar = ({ onPress, title }: BotaoModel) => {
   return (
     <View>
       <TouchableOpacity
+        activeOpacity={0.8}
         onPress={onPress}
         style={stylesButtonEdit.appButtonContainer}
       >
@@ -96,10 +111,11 @@ export const ButtonEditar = ({ onPress, title }) => {
   );
 };
 
-export const ButtonAvaliar = ({ onPress, title }) => {
+export const ButtonAvaliar = ({ onPress, title }: BotaoModel) => {
   return (
     <View>
       <TouchableOpacity
+        activeOpacity={0.8}
         onPress={onPress}
         style={stylesButtonEdit.appButtonContainer}
       >
@@ -110,9 +126,10 @@ export const ButtonAvaliar = ({ onPress, title }) => {
   );
 };
 
-export const ButtonViewAvaliacao = ({ onPress, title }) => {
+export const ButtonViewAvaliacao = ({ onPress, title }: BotaoModel) => {
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       onPress={onPress}
       style={stylesButtonPerfil.appButtonContainer}
     >
@@ -122,9 +139,10 @@ export const ButtonViewAvaliacao = ({ onPress, title }) => {
   );
 };
 
-export const ButtonDeslogar = ({ onPress, title }) => {
+export const ButtonDeslogar = ({ onPress, title }: BotaoModel) => {
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       onPress={onPress}
       style={stylesButtonPerfil.appButtonContainer}
     >
@@ -134,9 +152,10 @@ export const ButtonDeslogar = ({ onPress, title }) => {
   );
 };
 
-export const ButtonExcluirConta = ({ onPress, title }) => {
+export const ButtonExcluirConta = ({ onPress, title }: BotaoModel) => {
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       onPress={onPress}
       style={stylesButtonExcluirConta.appButtonContainer}
     >

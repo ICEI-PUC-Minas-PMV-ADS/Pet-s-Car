@@ -3,24 +3,45 @@ import { StyleSheet, Text, View } from "react-native";
 import { HeaderTitle } from "../../components/header";
 import { InputForm } from "../../components/input";
 import { ButtonPrimary } from "../../components/button";
+import { useState } from "react";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../firebaseInit";
 
-export function RecuperarSenhaCliente({ navigation }) {
+export function RecuperarSenhaCliente({ navigation }: any) {
+  const [email, setEmail] = useState("");
+
+  const RedefinirSenha = async () => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        // Password reset email sent!
+        // ..
+      })
+      .catch((error) => {
+        console.log(error.code);
+        console.log(error.message);
+        // ..
+      });
+  };
+
   return (
     <View style={styles.container}>
       <HeaderTitle
         title='Esqueceu sua Senha?'
-        subtitle='Recupere sua senha caso tenha esquecido! '
+        subtitle='Recupere sua senha caso tenha esquecido!'
       />
       <View style={styles.input}>
         <InputForm
           label='E-mail'
           placeholder='Ex: abc@example.com'
           inputMode={"email"}
+          onChange={(e: any) => {
+            setEmail(e);
+          }}
         />
       </View>
       <ButtonPrimary
         onPress={() => {
-          navigation.navigate("RedefinirSenhaCliente");
+          RedefinirSenha();
         }}
         title={"Enviar"}
       />

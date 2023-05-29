@@ -8,7 +8,12 @@ import {
   Platform,
 } from "react-native";
 import { IconAgendamentos } from "../../../components/icons";
-import { InputForm, InputSelect } from "../../../components/input";
+import {
+  InputData,
+  InputForm,
+  InputHora,
+  InputSelect,
+} from "../../../components/input";
 import { ButtonExcluir, ButtonPrimary } from "../../../components/button";
 import { useEffect, useState } from "react";
 import {
@@ -27,9 +32,11 @@ export function EditarAgendaCliente({ route, navigation }: any) {
   const idAgendamento = route.params.idAgendamento;
   const dataAgendamento: Agendamento = route.params.dataAgendamento;
 
-  const [pet, setPet] = useState<number>(0);
-  const [data, setData] = useState(dataAgendamento.data);
-  const [hora, setHora] = useState(dataAgendamento.hora);
+  const [errors, setErrors] = useState<{ field: string; message: string }[]>(
+    []
+  );
+  const [pet, setPet] = useState<number | null>(null);
+  const [nomePet, setNomePet] = useState(dataAgendamento.nomePet);
   const [bairroPartida, setBairroPartida] = useState(
     dataAgendamento.bairroPartida
   );
@@ -51,6 +58,35 @@ export function EditarAgendaCliente({ route, navigation }: any) {
   const [numeroDestino, setNumeroDestino] = useState(
     dataAgendamento.numeroDestino
   );
+  const [dataPartida, setDataPartida] = useState(
+    new Date(dataAgendamento.dataCompleta.toString())
+  );
+  const [modeData, setModeData] = useState<any>("date");
+  const [showData, setShowData] = useState(false);
+
+  const onChangeData = (event: any, selectedDate: any) => {
+    const currentDate = selectedDate;
+    setShowData(false);
+    setDataPartida(currentDate);
+  };
+
+  const showModeData = (currentMode: any) => {
+    if (Platform.OS === "android") {
+      setShowData(true);
+    }
+    if (Platform.OS === "ios") {
+      setShowData(true);
+    }
+    setModeData(currentMode);
+  };
+
+  const showDatapicker = () => {
+    showModeData("date");
+  };
+
+  const showHoraPicker = () => {
+    showModeData("time");
+  };
 
   const [dataPets, setDataPets] = useState<any>([]);
 
@@ -78,27 +114,77 @@ export function EditarAgendaCliente({ route, navigation }: any) {
   }, []);
 
   const AtualizarAgendamento = async () => {
-    const agendamentoRef = doc(db, "agendamentos", idAgendamento);
-    await updateDoc(agendamentoRef, {
-      idPet: dataPets[pet].idPet,
-      nomePet: dataPets[pet].nome,
-      tipoPet: dataPets[pet].tipo,
-      racaPet: dataPets[pet].raca,
-      portePet: dataPets[pet].porte,
-      data: data,
-      hora: hora,
-      logradouroPartida: logradouroPartida,
-      bairroPartida: bairroPartida,
-      numeroPartida: numeroPartida,
-      estabelecimentoDestino: estabelecimentoDestino,
-      logradouroDestino: logradouroDestino,
-      bairroDestino: bairroDestino,
-      numeroDestino: numeroDestino,
-    })
-      .then(() => {
-        navigation.goBack();
+    const erros: { field: string; message: string }[] = [];
+
+    setErrors([]);
+
+    if (pet == null) erros.push({ field: "pet", message: "Selecione o Pet" });
+    if (!dataPartida.toLocaleDateString())
+      erros.push({ field: "data", message: "Preencha o campo Data" });
+    if (!dataPartida.toLocaleTimeString().substring(0, 5))
+      erros.push({ field: "hora", message: "Preencha o campo Hora" });
+    if (!bairroPartida)
+      erros.push({
+        field: "bairroPartida",
+        message: "Preencha o campo Bairro",
+      });
+    if (!logradouroPartida)
+      erros.push({
+        field: "logradouroPartida",
+        message: "Preencha o campo Logradouro",
+      });
+    if (!numeroPartida)
+      erros.push({
+        field: "numeroPartida",
+        message: "Preencha o campo Número",
+      });
+    if (!estabelecimentoDestino)
+      erros.push({
+        field: "estabelecimentoDestino",
+        message: "Preencha o campo Estabelecimento",
+      });
+    if (!bairroDestino)
+      erros.push({
+        field: "bairroDestino",
+        message: "Preencha o campo Bairro",
+      });
+    if (!logradouroDestino)
+      erros.push({
+        field: "logradouroDestino",
+        message: "Preencha o campo Logradouro",
+      });
+    if (!numeroDestino)
+      erros.push({
+        field: "numeroDestino",
+        message: "Preencha o campo Número",
+      });
+
+    if (erros.length > 0) {
+      return setErrors(erros);
+    } else {
+      const agendamentoRef = doc(db, "agendamentos", idAgendamento);
+      await updateDoc(agendamentoRef, {
+        idPet: dataPets[pet ? pet : 0].idPet,
+        nomePet: dataPets[pet ? pet : 0].nome,
+        tipoPet: dataPets[pet ? pet : 0].tipo,
+        racaPet: dataPets[pet ? pet : 0].raca,
+        portePet: dataPets[pet ? pet : 0].porte,
+        data: dataPartida.toLocaleDateString(),
+        hora: dataPartida.toLocaleTimeString().substring(0, 5),
+        dataCompleta: dataPartida.toISOString(),
+        logradouroPartida: logradouroPartida,
+        bairroPartida: bairroPartida,
+        numeroPartida: numeroPartida,
+        estabelecimentoDestino: estabelecimentoDestino,
+        logradouroDestino: logradouroDestino,
+        bairroDestino: bairroDestino,
+        numeroDestino: numeroDestino,
       })
-      .catch((e) => console.log(e));
+        .then(() => {
+          navigation.goBack();
+        })
+        .catch((e) => console.log(e));
+    }
   };
 
   const ExcluirAgendamento = async () => {
@@ -121,25 +207,27 @@ export function EditarAgendaCliente({ route, navigation }: any) {
             label='Pet'
             data={dataPets.map((e: { nome: any }) => e.nome)}
             onChange={(selectedItem: any, index: number) => {
+              setNomePet(selectedItem);
               setPet(index);
             }}
-            defaultValue={dataAgendamento.nomePet}
+            defaultValue={nomePet}
+            mensagemError={errors.find((e) => e.field === "pet")?.message}
           />
-          <InputForm
-            label={"Data"}
-            placeholder={"Ex: 15/02/2023"}
-            defaultValue={data}
-            onChange={(e) => {
-              setData(e);
-            }}
+          <InputData
+            onChange={onChangeData}
+            value={dataPartida}
+            onPress={showDatapicker}
+            showModal={showData}
+            mode={modeData}
+            mensagemError={errors.find((e) => e.field === "data")?.message}
           />
-          <InputForm
-            label={"Hora"}
-            placeholder={"Ex: 15:00hrs"}
-            defaultValue={hora}
-            onChange={(e) => {
-              setHora(e);
-            }}
+          <InputHora
+            onChange={onChangeData}
+            value={dataPartida}
+            onPress={showHoraPicker}
+            showModal={showData}
+            mode={modeData}
+            mensagemError={errors.find((e) => e.field === "hora")?.message}
           />
         </View>
         <View>
@@ -154,6 +242,9 @@ export function EditarAgendaCliente({ route, navigation }: any) {
             onChange={(e) => {
               setBairroPartida(e);
             }}
+            mensagemError={
+              errors.find((e) => e.field === "bairroPartida")?.message
+            }
           />
           <InputForm
             label={"Logradouro"}
@@ -162,6 +253,9 @@ export function EditarAgendaCliente({ route, navigation }: any) {
             onChange={(e) => {
               setLogradouroPartida(e);
             }}
+            mensagemError={
+              errors.find((e) => e.field === "logradouroPartida")?.message
+            }
           />
           <InputForm
             label={"Número"}
@@ -170,6 +264,9 @@ export function EditarAgendaCliente({ route, navigation }: any) {
             onChange={(e) => {
               setNumeroPartida(e);
             }}
+            mensagemError={
+              errors.find((e) => e.field === "numeroPartida")?.message
+            }
           />
         </View>
         <View>
@@ -184,6 +281,9 @@ export function EditarAgendaCliente({ route, navigation }: any) {
             onChange={(e) => {
               setEstabelecimentoDestino(e);
             }}
+            mensagemError={
+              errors.find((e) => e.field === "estabelecimentoDestino")?.message
+            }
           />
           <InputForm
             label={"Bairro"}
@@ -192,6 +292,9 @@ export function EditarAgendaCliente({ route, navigation }: any) {
             onChange={(e) => {
               setBairroDestino(e);
             }}
+            mensagemError={
+              errors.find((e) => e.field === "bairroDestino")?.message
+            }
           />
           <InputForm
             label={"Logradouro"}
@@ -200,6 +303,9 @@ export function EditarAgendaCliente({ route, navigation }: any) {
             onChange={(e) => {
               setLogradouroDestino(e);
             }}
+            mensagemError={
+              errors.find((e) => e.field === "logradouroDestino")?.message
+            }
           />
           <InputForm
             label={"Número"}
@@ -208,9 +314,21 @@ export function EditarAgendaCliente({ route, navigation }: any) {
             onChange={(e) => {
               setNumeroDestino(e);
             }}
+            mensagemError={
+              errors.find((e) => e.field === "numeroDestino")?.message
+            }
           />
         </View>
         <View style={styles.buttonSalvar}>
+          {errors.length > 0 ? (
+            <View style={styles.errorForm}>
+              <Text style={styles.errorTextForm}>
+                Algum campo está incorreto ou vazio.
+              </Text>
+            </View>
+          ) : (
+            ""
+          )}
           <ButtonPrimary
             title={"Salvar"}
             onPress={() => AtualizarAgendamento()}
@@ -268,5 +386,20 @@ const styles = StyleSheet.create({
   buttonSalvar: {
     paddingTop: 20,
     paddingBottom: 70,
+  },
+  errorForm: {
+    backgroundColor: "#ffd4d4",
+    borderRadius: 8,
+    padding: 13,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  errorTextForm: {
+    fontFamily: "Raleway-500",
+    fontSize: 14,
+    color: "#ff4040",
+    textAlign: "center",
+    lineHeight: 14,
   },
 });

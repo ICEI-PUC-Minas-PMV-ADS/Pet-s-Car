@@ -1,18 +1,72 @@
 //Jéssica: desenvolvi a tela de avaliações motorista com apoio do material das aulas de Desenvolvimento Mobile da PUC e do Thiago.
 
+import { useCallback, useEffect, useState } from "react";
 import { CardAvaliacao } from "../../../components/card";
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList, RefreshControl } from "react-native";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../../firebaseInit";
+import { AvaliacaoMotoristaModel } from "../../../interfaces/interface_avaliacaoMotorista";
 
-export function AvaliacaoMotorista() {
+export function AvaliacaoMotorista({ route, navigation }: any) {
+  const idMotorista = route.params.idMotorista;
+
+  const [refreshing, setRefreshing] = useState(false);
+
+  const [dataAvaliacoes, setDataAvaliacoes] = useState<
+    AvaliacaoMotoristaModel[]
+  >([]);
+
+  async function BuscarAvaliacoes() {
+    const avaliacoesRef = await collection(db, "avaliacoesMotorista");
+    const idAvaliacoes = await query(
+      avaliacoesRef,
+      where("idMotorista", "==", idMotorista)
+    );
+
+    await getDocs(idAvaliacoes).then((res) => {
+      if (res.empty) {
+        console.log("Não tem agendamentos.");
+      } else {
+        const ArrayData: any = [];
+
+        res.forEach((doc) => {
+          const id = { idAvaliacao: doc.id };
+          const data = doc.data();
+          ArrayData.push({ ...id, ...data });
+        });
+        setDataAvaliacoes(ArrayData);
+      }
+    });
+  }
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    BuscarAvaliacoes();
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
+
+  useEffect(() => {
+    navigation.addListener("focus", () => {
+      BuscarAvaliacoes();
+    });
+  }, []);
+
   return (
     <View style={styles.container}>
       <FlatList
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         ListFooterComponent={() => <View style={styles.containerVazio}></View>}
         style={styles.containerScroll}
-        data={avaliacoesExemplo}
-        keyExtractor={(item) => item.id}
+        data={dataAvaliacoes}
+        keyExtractor={(item) => item.idAvaliacao}
         renderItem={({ item }) => {
-          return <CardAvaliacao nome={item.nome} avaliacao={item.avaliacao} />;
+          return (
+            <CardAvaliacao nome={item.nomeCliente} avaliacao={item.avaliacao} />
+          );
         }}
       />
     </View>
@@ -33,51 +87,3 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
 });
-
-const avaliacoesExemplo = [
-  {
-    id: 1,
-    nome: "Thiago Terra",
-    avaliacao: "Foi muito atencioso e realizou uma corrida tranquila.",
-  },
-  {
-    id: 2,
-    nome: "Thiago Terra",
-    avaliacao: "Foi muito atencioso e realizou uma corrida tranquila.",
-  },
-  {
-    id: 3,
-    nome: "Thiago Terra",
-    avaliacao: "Foi muito atencioso e realizou uma corrida tranquila.",
-  },
-  {
-    id: 4,
-    nome: "Thiago Terra",
-    avaliacao: "Foi muito atencioso e realizou uma corrida tranquila.",
-  },
-  {
-    id: 5,
-    nome: "Thiago Terra",
-    avaliacao: "Foi muito atencioso e realizou uma corrida tranquila.",
-  },
-  {
-    id: 6,
-    nome: "Thiago Terra",
-    avaliacao: "Foi muito atencioso e realizou uma corrida tranquila.",
-  },
-  {
-    id: 7,
-    nome: "Thiago Terra",
-    avaliacao: "Foi muito atencioso e realizou uma corrida tranquila.",
-  },
-  {
-    id: 8,
-    nome: "Thiago Terra",
-    avaliacao: "Foi muito atencioso e realizou uma corrida tranquila.",
-  },
-  {
-    id: 9,
-    nome: "Thiago Terra",
-    avaliacao: "Foi muito atencioso e realizou uma corrida tranquila.",
-  },
-];

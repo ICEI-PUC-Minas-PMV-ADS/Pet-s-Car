@@ -11,6 +11,7 @@ import { DetalhesAgendaMotoristaNav } from "./viewsAgenda/router";
 import { LogoPetsCarMenor } from "../../components/logo";
 import { EditarPerfilMotorista } from "./viewsPerfil/editarPerfil";
 import { AvaliacaoMotorista } from "./viewsPerfil/avaliacoesMotorista";
+import { RecuperarSenhaMotorista } from "./recuperarSenhaMotorista";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -35,7 +36,7 @@ export function MotoristaRouter() {
       <Stack.Screen
         name='RecuperarSenhaMotorista'
         options={{ title: "" }}
-        component={RecuperarSenhaCliente}
+        component={RecuperarSenhaMotorista}
       />
       <Stack.Screen
         name='RedefinirSenhaMotorista'
@@ -71,6 +72,7 @@ export function MotoristaNavigation({ route }) {
         name='DetalhesAgendaMotoristaNav'
         options={{ title: "", headerShown: false }}
         component={DetalhesAgendaMotoristaNav}
+        initialParams={{ idMotorista: idMotorista }}
       />
       <Stack.Screen
         name='EditarPerfilMotorista'

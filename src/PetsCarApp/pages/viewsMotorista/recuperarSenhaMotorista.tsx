@@ -3,8 +3,26 @@ import { StyleSheet, Text, View } from "react-native";
 import { HeaderTitle } from "../../components/header";
 import { InputForm } from "../../components/input";
 import { ButtonPrimary } from "../../components/button";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../firebaseInit";
+import { useState } from "react";
 
-export function RecuperarSenhaMotorista({ navigation }) {
+export function RecuperarSenhaMotorista({ navigation }: any) {
+  const [email, setEmail] = useState("");
+
+  const RedefinirSenha = async () => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        // Password reset email sent!
+        // ..
+      })
+      .catch((error) => {
+        console.log(error.code);
+        console.log(error.message);
+        // ..
+      });
+  };
+
   return (
     <View style={styles.container}>
       <HeaderTitle
@@ -16,11 +34,12 @@ export function RecuperarSenhaMotorista({ navigation }) {
           label='E-mail'
           placeholder='Ex: abc@example.com'
           inputMode={"email"}
+          onChange={(e: any) => setEmail(e)}
         />
       </View>
       <ButtonPrimary
         onPress={() => {
-          navigation.navigate("RedefinirSenhaMotorista");
+          RedefinirSenha();
         }}
         title={"Enviar"}
       />

@@ -8,6 +8,7 @@ export interface Agendamento {
   portePet: string;
   data: string;
   hora: string;
+  dataCompleta: string;
   logradouroPartida: string;
   bairroPartida: string;
   numeroPartida: string;

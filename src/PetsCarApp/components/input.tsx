@@ -1,8 +1,112 @@
-import { TextInput, StyleSheet, View, Text } from "react-native";
-import { IconDropdown, IconEmail, IconSenha } from "./icons";
+import {
+  TextInput,
+  StyleSheet,
+  View,
+  Text,
+  KeyboardTypeOptions,
+  InputModeOptions,
+  TouchableOpacity,
+  GestureResponderEvent,
+} from "react-native";
+import {
+  IconCalendario,
+  IconDropdown,
+  IconEmail,
+  IconHora,
+  IconSenha,
+} from "./icons";
 import SelectDropdown from "react-native-select-dropdown";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
-export const InputEmail = ({ onChange }) => {
+type InputDataModel = {
+  mensagemError?: string;
+  onPress: (event: GestureResponderEvent) => void;
+  value: any;
+  mode: any;
+  onChange: any;
+  showModal: any;
+};
+
+export const InputData = ({
+  mensagemError,
+  onPress,
+  value,
+  mode,
+  onChange,
+  showModal,
+}: InputDataModel) => {
+  return (
+    <View style={styles.containerInputForm}>
+      <View style={styles.label}>
+        <Text style={styles.textLabelForm}>Data</Text>
+      </View>
+      <TouchableOpacity onPress={onPress} style={styles.inputDataHora}>
+        <Text style={styles.textDataHora}>{value.toLocaleDateString()}</Text>
+        <IconCalendario color='#4060FF' />
+        {showModal && (
+          <DateTimePicker
+            testID='dateTimePicker'
+            value={value}
+            mode={mode}
+            onChange={onChange}
+          />
+        )}
+      </TouchableOpacity>
+      {mensagemError ? (
+        <View style={styles.label}>
+          <Text style={styles.errorLabelForm}>{mensagemError}</Text>
+        </View>
+      ) : (
+        ""
+      )}
+    </View>
+  );
+};
+
+export const InputHora = ({
+  mensagemError,
+  onPress,
+  value,
+  mode,
+  onChange,
+  showModal,
+}: InputDataModel) => {
+  return (
+    <View style={styles.containerInputForm}>
+      <View style={styles.label}>
+        <Text style={styles.textLabelForm}>Hora</Text>
+      </View>
+      <TouchableOpacity onPress={onPress} style={styles.inputDataHora}>
+        <Text style={styles.textDataHora}>
+          {value.toLocaleTimeString().substring(0, 5)}
+        </Text>
+        <IconHora color='#4060FF' />
+        {showModal && (
+          <DateTimePicker
+            testID='dateTimePicker'
+            value={value}
+            mode={mode}
+            onChange={onChange}
+          />
+        )}
+      </TouchableOpacity>
+      {mensagemError ? (
+        <View style={styles.label}>
+          <Text style={styles.errorLabelForm}>{mensagemError}</Text>
+        </View>
+      ) : (
+        ""
+      )}
+    </View>
+  );
+};
+
+type InputLoginModel = {
+  onChange: (text: string) => void;
+  mensagemError?: string;
+};
+
+export const InputEmail = ({ onChange, mensagemError }: InputLoginModel) => {
   return (
     <View style={styles.containerInput}>
       <View style={styles.label}>
@@ -16,11 +120,18 @@ export const InputEmail = ({ onChange }) => {
         onChangeText={onChange}
         inputMode='email'
       />
+      {mensagemError ? (
+        <View style={styles.label}>
+          <Text style={styles.errorLabelForm}>{mensagemError}</Text>
+        </View>
+      ) : (
+        ""
+      )}
     </View>
   );
 };
 
-export const InputSenha = ({ onChange }) => {
+export const InputSenha = ({ onChange, mensagemError }: InputLoginModel) => {
   return (
     <View style={styles.containerInput}>
       <View style={styles.label}>
@@ -34,8 +145,28 @@ export const InputSenha = ({ onChange }) => {
         onChangeText={onChange}
         secureTextEntry={true}
       />
+      {mensagemError ? (
+        <View style={styles.label}>
+          <Text style={styles.errorLabelForm}>{mensagemError}</Text>
+        </View>
+      ) : (
+        ""
+      )}
     </View>
   );
+};
+
+type InputFormModel = {
+  label: string;
+  placeholder: string;
+  onChange: (text: string) => void;
+  keyboardType?: KeyboardTypeOptions;
+  inputMode?: InputModeOptions;
+  maxLength?: number;
+  defaultValue?: string;
+  mensagemError?: string;
+  secureTextEntry?: boolean;
+  value?: string;
 };
 
 export const InputForm = ({
@@ -46,7 +177,10 @@ export const InputForm = ({
   inputMode,
   maxLength,
   defaultValue,
-}) => {
+  mensagemError,
+  secureTextEntry,
+  value,
+}: InputFormModel) => {
   return (
     <View style={styles.containerInputForm}>
       <View style={styles.label}>
@@ -61,9 +195,27 @@ export const InputForm = ({
         inputMode={inputMode}
         maxLength={maxLength}
         defaultValue={defaultValue}
+        value={value}
+        secureTextEntry={secureTextEntry}
       />
+      {mensagemError ? (
+        <View style={styles.label}>
+          <Text style={styles.errorLabelForm}>{mensagemError}</Text>
+        </View>
+      ) : (
+        ""
+      )}
     </View>
   );
+};
+
+type InputSelectModel = {
+  data: any;
+  label?: string;
+  onChange: any;
+  defaultValue?: string;
+  defaultValueByIndex?: number;
+  mensagemError?: string;
 };
 
 export const InputSelect = ({
@@ -72,7 +224,8 @@ export const InputSelect = ({
   onChange,
   defaultValue,
   defaultValueByIndex,
-}) => {
+  mensagemError,
+}: InputSelectModel) => {
   return (
     <View style={styles.containerInputForm}>
       <View style={styles.label}>
@@ -91,6 +244,13 @@ export const InputSelect = ({
         defaultValue={defaultValue}
         defaultValueByIndex={defaultValueByIndex}
       />
+      {mensagemError ? (
+        <View style={styles.label}>
+          <Text style={styles.errorLabelForm}>{mensagemError}</Text>
+        </View>
+      ) : (
+        ""
+      )}
     </View>
   );
 };
@@ -103,6 +263,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 16,
     borderColor: "#4060FF",
+    fontFamily: "Raleway-400",
+    fontSize: 16,
+  },
+  inputDataHora: {
+    height: 56,
+    borderWidth: 1.5,
+    marginTop: 8,
+    paddingHorizontal: 20,
+    borderRadius: 16,
+    borderColor: "#4060FF",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  textDataHora: {
     fontFamily: "Raleway-400",
     fontSize: 16,
   },
@@ -124,6 +300,11 @@ const styles = StyleSheet.create({
     fontFamily: "Raleway-400",
     fontSize: 16,
     color: "#131313",
+  },
+  errorLabelForm: {
+    fontFamily: "Raleway-400",
+    fontSize: 14,
+    color: "#ff4040",
   },
   containerInputForm: {
     marginVertical: 8,

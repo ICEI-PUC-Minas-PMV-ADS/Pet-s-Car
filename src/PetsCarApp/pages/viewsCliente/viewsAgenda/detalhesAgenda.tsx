@@ -21,6 +21,7 @@ export function DetalhesAgendaCliente({ navigation, route }: any) {
     portePet: "",
     data: "",
     hora: "",
+    dataCompleta: "",
     logradouroPartida: "",
     bairroPartida: "",
     numeroPartida: "",

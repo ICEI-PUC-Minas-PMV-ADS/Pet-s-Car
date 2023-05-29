@@ -2,13 +2,35 @@
 
 import { View, StyleSheet, Text, ScrollView, TextInput } from "react-native";
 import { ButtonPrimary } from "../../../components/button";
+import { Agendamento } from "../../../interfaces/interface_agendamento";
+import { useState } from "react";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../firebaseInit";
 
-export function AvaliacaoAgendaMotorista() {
+export function AvaliacaoAgendaMotorista({ route, navigation }: any) {
+  const dataAgendamento: Agendamento = route.params.dataAgendamento;
+
+  const [avaliacao, setAvaliacao] = useState("");
+
+  const EnviarAvaliação = async () => {
+    await addDoc(collection(db, "avaliacoesCliente"), {
+      idCliente: dataAgendamento.idCliente,
+      nomeMotorista: dataAgendamento.nomeMotorista,
+      avaliacao: avaliacao,
+    }).then(() => {
+      navigation.goBack();
+    });
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.containerScroll}>
         <Text style={styles.cliente}>
-          <Text style={styles.clienteBold}>Cliente:</Text> Thiago Terra
+          <Text style={styles.clienteBold}>Cliente:</Text>{" "}
+          {dataAgendamento.nomeCliente}
+        </Text>
+        <Text style={styles.cliente}>
+          <Text style={styles.clienteBold}>Pet:</Text> {dataAgendamento.nomePet}
         </Text>
         <Text style={styles.cliente}>O que achou do cliente e seu pet?</Text>
         <TextInput
@@ -17,8 +39,16 @@ export function AvaliacaoAgendaMotorista() {
           numberOfLines={10}
           textAlignVertical='top'
           placeholder='Ex: O cliente foi muito atencioso e seu pet muito calmo.'
+          onChangeText={(e) => {
+            setAvaliacao(e);
+          }}
         />
-        <ButtonPrimary title={"Concluir"} />
+        <ButtonPrimary
+          title={"Concluir"}
+          onPress={() => {
+            EnviarAvaliação();
+          }}
+        />
       </ScrollView>
     </View>
   );

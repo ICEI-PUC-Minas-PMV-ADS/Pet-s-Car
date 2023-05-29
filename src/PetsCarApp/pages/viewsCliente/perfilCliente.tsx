@@ -44,9 +44,11 @@ export function PerfilCliente({ navigation, route }: any) {
   };
 
   const ExcluirConta = () => {
-    deleteUser(auth.currentUser).then(() => {
-      navigation.navigate("WelcomePage");
-    });
+    if (auth.currentUser) {
+      deleteUser(auth.currentUser).then(() => {
+        navigation.navigate("WelcomePage");
+      });
+    }
   };
 
   return (

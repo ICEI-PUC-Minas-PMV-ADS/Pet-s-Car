@@ -1,5 +1,20 @@
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  GestureResponderEvent,
+} from "react-native";
 import { IconLupa } from "./icons";
+
+type CardAgendaModel = {
+  styleCard: any;
+  pet: string;
+  data: string;
+  hora: string;
+  status: string;
+  onPressDetalhes: (event: GestureResponderEvent) => void;
+};
 
 export const CardAgenda = ({
   styleCard,
@@ -8,7 +23,7 @@ export const CardAgenda = ({
   hora,
   status,
   onPressDetalhes,
-}) => {
+}: CardAgendaModel) => {
   return (
     <TouchableOpacity onPress={onPressDetalhes}>
       <View style={styleCard}>
@@ -41,7 +56,19 @@ export const CardAgenda = ({
   );
 };
 
-export const CardPets = ({ tipo, raca, nome, onPressDetalhes }) => {
+type CardPetsModel = {
+  nome: string;
+  raca: string;
+  tipo: string;
+  onPressDetalhes: (event: GestureResponderEvent) => void;
+};
+
+export const CardPets = ({
+  tipo,
+  raca,
+  nome,
+  onPressDetalhes,
+}: CardPetsModel) => {
   return (
     <TouchableOpacity onPress={onPressDetalhes}>
       <View style={styles.cardPets}>
@@ -67,7 +94,12 @@ export const CardPets = ({ tipo, raca, nome, onPressDetalhes }) => {
   );
 };
 
-export const CardAvaliacao = ({ nome, avaliacao }) => {
+type CardAvaliacaoModel = {
+  nome: string;
+  avaliacao: string;
+};
+
+export const CardAvaliacao = ({ nome, avaliacao }: CardAvaliacaoModel) => {
   return (
     <View style={styles.cardAvaliacao}>
       <Text style={styles.nomeAvaliacao}>{nome}</Text>

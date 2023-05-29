@@ -4,13 +4,16 @@ import { CardAvaliacao } from "../../../components/card";
 import { StyleSheet, View, FlatList, RefreshControl } from "react-native";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebaseInit";
+import { AvaliacaoClienteModel } from "../../../interfaces/interface_avaliacaoCliente";
 
 export function AvaliacaoCliente({ route, navigation }: any) {
   const idCliente = route.params.idCliente;
 
   const [refreshing, setRefreshing] = useState(false);
 
-  const [dataAvaliacoes, setDataAvaliacoes] = useState<any[]>([]);
+  const [dataAvaliacoes, setDataAvaliacoes] = useState<AvaliacaoClienteModel[]>(
+    []
+  );
 
   async function BuscarAvaliacoes() {
     const avaliacoesRef = await collection(db, "avaliacoesCliente");
@@ -86,60 +89,3 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
 });
-
-const avaliacoesExemplo = [
-  {
-    id: 1,
-    nome: "Marcos Ferreira",
-    avaliacao:
-      "Foi muito gentil e até mesmo pagou um valor a mais pela corrida.",
-  },
-  {
-    id: 2,
-    nome: "Marcos Ferreira",
-    avaliacao:
-      "Foi muito gentil e até mesmo pagou um valor a mais pela corrida.",
-  },
-  {
-    id: 3,
-    nome: "Marcos Ferreira",
-    avaliacao:
-      "Foi muito gentil e até mesmo pagou um valor a mais pela corrida.",
-  },
-  {
-    id: 4,
-    nome: "Marcos Ferreira",
-    avaliacao:
-      "Foi muito gentil e até mesmo pagou um valor a mais pela corrida.",
-  },
-  {
-    id: 5,
-    nome: "Marcos Ferreira",
-    avaliacao:
-      "Foi muito gentil e até mesmo pagou um valor a mais pela corrida.",
-  },
-  {
-    id: 6,
-    nome: "Marcos Ferreira",
-    avaliacao:
-      "Foi muito gentil e até mesmo pagou um valor a mais pela corrida.",
-  },
-  {
-    id: 7,
-    nome: "Marcos Ferreira",
-    avaliacao:
-      "Foi muito gentil e até mesmo pagou um valor a mais pela corrida.",
-  },
-  {
-    id: 8,
-    nome: "Marcos Ferreira",
-    avaliacao:
-      "Foi muito gentil e até mesmo pagou um valor a mais pela corrida.",
-  },
-  {
-    id: 9,
-    nome: "Marcos Ferreira",
-    avaliacao:
-      "Foi muito gentil e até mesmo pagou um valor a mais pela corrida.",
-  },
-];
