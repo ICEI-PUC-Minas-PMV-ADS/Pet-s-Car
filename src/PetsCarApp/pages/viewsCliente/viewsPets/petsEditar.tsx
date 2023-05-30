@@ -22,23 +22,41 @@ export function EditarPetClient({ route, navigation }: any) {
   const idPet = route.params.idPet;
   const dataPet: Pet = route.params.dataPet;
 
+  const [errors, setErrors] = useState<{ field: string; message: string }[]>(
+    []
+  );
   const [nomePet, setNomePet] = useState(dataPet.nome);
   const [tipoPet, setTipoPet] = useState(dataPet.tipo);
   const [racaPet, setRacaPet] = useState(dataPet.raca);
   const [portePet, setPortePet] = useState(dataPet.porte);
 
   const AtualizarPet = async () => {
-    const agendamentoRef = doc(db, "pets", idPet);
-    await updateDoc(agendamentoRef, {
-      nome: nomePet,
-      tipo: tipoPet,
-      raca: racaPet,
-      porte: portePet,
-    })
-      .then(() => {
+    const erros: { field: string; message: string }[] = [];
+
+    setErrors([]);
+
+    if (!nomePet)
+      erros.push({ field: "nomePet", message: "Preencha o campo Nome" });
+    if (!tipoPet)
+      erros.push({ field: "tipoPet", message: "Preencha o campo Tipo" });
+    if (!racaPet)
+      erros.push({ field: "racaPet", message: "Preencha o campo Raça" });
+    if (!portePet)
+      erros.push({ field: "portePet", message: "Preencha o campo Porte" });
+
+    if (erros.length > 0) {
+      return setErrors(erros);
+    } else {
+      const agendamentoRef = doc(db, "pets", idPet);
+      await updateDoc(agendamentoRef, {
+        nome: nomePet,
+        tipo: tipoPet,
+        raca: racaPet,
+        porte: portePet,
+      }).then(() => {
         navigation.goBack();
-      })
-      .catch((e) => console.log(e));
+      });
+    }
   };
 
   const ExcluirPet = async () => {
@@ -64,6 +82,7 @@ export function EditarPetClient({ route, navigation }: any) {
               setNomePet(e);
             }}
             defaultValue={nomePet}
+            mensagemError={errors.find((e) => e.field === "nomePet")?.message}
           />
           <InputSelect
             label='Tipo'
@@ -82,6 +101,7 @@ export function EditarPetClient({ route, navigation }: any) {
                 ? 3
                 : 4
             }
+            mensagemError={errors.find((e) => e.field === "tipoPet")?.message}
           />
           <InputForm
             label='Raça'
@@ -90,6 +110,7 @@ export function EditarPetClient({ route, navigation }: any) {
               setRacaPet(e);
             }}
             defaultValue={racaPet}
+            mensagemError={errors.find((e) => e.field === "racaPet")?.message}
           />
           <InputSelect
             label='Porte'
@@ -100,6 +121,7 @@ export function EditarPetClient({ route, navigation }: any) {
             defaultValueByIndex={
               portePet == "Pequeno" ? 0 : portePet == "Médio" ? 1 : 2
             }
+            mensagemError={errors.find((e) => e.field === "portePet")?.message}
           />
         </View>
         <View style={styles.buttonConcluir}>

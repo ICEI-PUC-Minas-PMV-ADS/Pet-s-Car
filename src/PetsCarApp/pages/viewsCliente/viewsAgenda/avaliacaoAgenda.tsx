@@ -10,16 +10,29 @@ import { useState } from "react";
 export function AvaliacaoAgendaCliente({ route, navigation }: any) {
   const dataAgendamento: Agendamento = route.params.dataAgendamento;
 
+  const [errors, setErrors] = useState<{ field: string; message: string }[]>(
+    []
+  );
   const [avaliacao, setAvaliacao] = useState("");
 
   const EnviarAvaliação = async () => {
-    await addDoc(collection(db, "avaliacoesMotorista"), {
-      idMotorista: dataAgendamento.idMotorista,
-      nomeCliente: dataAgendamento.nomeCliente,
-      avaliacao: avaliacao,
-    }).then(() => {
-      navigation.goBack();
-    });
+    const erros: { field: string; message: string }[] = [];
+
+    setErrors([]);
+
+    if (!avaliacao)
+      erros.push({ field: "avaliacao", message: "Preencha o campo Avaliação" });
+    if (erros.length > 0) {
+      return setErrors(erros);
+    } else {
+      await addDoc(collection(db, "avaliacoesMotorista"), {
+        idMotorista: dataAgendamento.idMotorista,
+        nomeCliente: dataAgendamento.nomeCliente,
+        avaliacao: avaliacao,
+      }).then(() => {
+        navigation.goBack();
+      });
+    }
   };
 
   return (
@@ -32,6 +45,15 @@ export function AvaliacaoAgendaCliente({ route, navigation }: any) {
         <Text style={styles.motorista}>
           O que achou do motorista e a corrida?
         </Text>
+        {errors.length > 0 ? (
+          <View style={styles.label}>
+            <Text style={styles.errorLabelForm}>
+              {errors.find((e) => e.field === "avaliacao")?.message}
+            </Text>
+          </View>
+        ) : (
+          ""
+        )}
         <TextInput
           style={styles.input}
           multiline
@@ -42,6 +64,7 @@ export function AvaliacaoAgendaCliente({ route, navigation }: any) {
             setAvaliacao(e);
           }}
         />
+
         <ButtonPrimary
           title={"Concluir"}
           onPress={() => {
@@ -83,5 +106,15 @@ const styles = StyleSheet.create({
     borderColor: "#4060FF",
     fontFamily: "Raleway-400",
     fontSize: 16,
+  },
+  label: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  errorLabelForm: {
+    fontFamily: "Raleway-400",
+    fontSize: 14,
+    color: "#ff4040",
   },
 });

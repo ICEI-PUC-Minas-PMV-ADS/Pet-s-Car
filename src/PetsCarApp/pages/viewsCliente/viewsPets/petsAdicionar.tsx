@@ -19,13 +19,31 @@ const selectPortePets = ["Pequeno", "Médio", "Grande"];
 export function AdicionarPetClient({ route, navigation }: any) {
   const idCliente = route.params.idCliente;
 
+  const [errors, setErrors] = useState<{ field: string; message: string }[]>(
+    []
+  );
   const [nomePet, setNomePet] = useState("");
   const [tipoPet, setTipoPet] = useState("");
   const [racaPet, setRacaPet] = useState("");
   const [portePet, setPortePet] = useState("");
 
   const EnviarPet = async () => {
-    try {
+    const erros: { field: string; message: string }[] = [];
+
+    setErrors([]);
+
+    if (!nomePet)
+      erros.push({ field: "nomePet", message: "Preencha o campo Nome" });
+    if (!tipoPet)
+      erros.push({ field: "tipoPet", message: "Preencha o campo Tipo" });
+    if (!racaPet)
+      erros.push({ field: "racaPet", message: "Preencha o campo Raça" });
+    if (!portePet)
+      erros.push({ field: "portePet", message: "Preencha o campo Porte" });
+
+    if (erros.length > 0) {
+      return setErrors(erros);
+    } else {
       await addDoc(collection(db, "pets"), {
         idCliente: idCliente,
         nome: nomePet,
@@ -35,9 +53,6 @@ export function AdicionarPetClient({ route, navigation }: any) {
       }).then(() => {
         navigation.goBack();
       });
-    } catch (e) {
-      console.error(e);
-      console.log("não deu");
     }
   };
 
@@ -55,6 +70,7 @@ export function AdicionarPetClient({ route, navigation }: any) {
             onChange={(e: any) => {
               setNomePet(e);
             }}
+            mensagemError={errors.find((e) => e.field === "nomePet")?.message}
           />
           <InputSelect
             label='Tipo'
@@ -62,6 +78,7 @@ export function AdicionarPetClient({ route, navigation }: any) {
             onChange={(e: any) => {
               setTipoPet(e);
             }}
+            mensagemError={errors.find((e) => e.field === "tipoPet")?.message}
           />
           <InputForm
             label='Raça'
@@ -69,6 +86,7 @@ export function AdicionarPetClient({ route, navigation }: any) {
             onChange={(e: any) => {
               setRacaPet(e);
             }}
+            mensagemError={errors.find((e) => e.field === "racaPet")?.message}
           />
           <InputSelect
             label='Porte'
@@ -76,6 +94,7 @@ export function AdicionarPetClient({ route, navigation }: any) {
             onChange={(e: any) => {
               setPortePet(e);
             }}
+            mensagemError={errors.find((e) => e.field === "portePet")?.message}
           />
         </View>
         <View style={styles.buttonConcluir}>

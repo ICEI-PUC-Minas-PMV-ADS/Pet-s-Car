@@ -7,10 +7,15 @@ import { useState } from "react";
 import { db } from "../../firebaseInit";
 import { doc, updateDoc } from "firebase/firestore";
 import { Cliente } from "../../../interfaces/interface_cliente";
+import { isValidEmail, isValidNome } from "../../../utils/Validacao";
+import { regexTelefone } from "../../../utils/Regex";
 
 export function EditarPerfilCliente({ route, navigation }: any) {
   const dataCliente: Cliente = route.params.dataCliente;
 
+  const [errors, setErrors] = useState<{ field: string; message: string }[]>(
+    []
+  );
   const [nome, setNome] = useState(dataCliente.nome);
   const [email, setEmail] = useState(dataCliente.email);
   const [telefone, setTelefone] = useState(dataCliente.telefone);
@@ -21,19 +26,49 @@ export function EditarPerfilCliente({ route, navigation }: any) {
   );
 
   const AtualizarCliente = async () => {
-    const clienteRef = doc(db, "clientes", dataCliente.idUser);
-    await updateDoc(clienteRef, {
-      nome: nome,
-      email: email,
-      telefone: telefone,
-      logradouro: logradouro,
-      bairro: bairro,
-      numeroResidencia: numeroResidencia,
-    })
-      .then(() => {
-        navigation.goBack();
+    const erros: { field: string; message: string }[] = [];
+
+    setErrors([]);
+
+    if (!nome)
+      erros.push({ field: "nome", message: "Preencha o campo Seu Nome" });
+    if (!email)
+      erros.push({ field: "email", message: "Preencha o campo E-mail" });
+    if (!telefone)
+      erros.push({ field: "telefone", message: "Preencha o campo Telefone" });
+    if (!bairro)
+      erros.push({ field: "bairro", message: "Preencha o campo Bairro" });
+    if (!logradouro)
+      erros.push({
+        field: "logradouro",
+        message: "Preencha o campo Logradouro",
+      });
+    if (!numeroResidencia)
+      erros.push({
+        field: "numeroResidencia",
+        message: "Preencha o campo Número",
+      });
+    if (nome && isValidNome(nome) == false)
+      erros.push({ field: "nome", message: "Preencha com nome e sobrenome" });
+    if (email && isValidEmail(email) == false)
+      erros.push({ field: "email", message: "E-mail incorreto" });
+    if (erros.length > 0) {
+      return setErrors(erros);
+    } else {
+      const clienteRef = doc(db, "clientes", dataCliente.idUser);
+      await updateDoc(clienteRef, {
+        nome: nome,
+        email: email,
+        telefone: telefone,
+        logradouro: logradouro,
+        bairro: bairro,
+        numeroResidencia: numeroResidencia,
       })
-      .catch((e) => console.log(e));
+        .then(() => {
+          navigation.goBack();
+        })
+        .catch((e) => console.log(e));
+    }
   };
 
   return (
@@ -51,6 +86,7 @@ export function EditarPerfilCliente({ route, navigation }: any) {
               setNome(e);
             }}
             defaultValue={nome}
+            mensagemError={errors.find((e) => e.field === "nome")?.message}
           />
           <InputForm
             label='E-mail'
@@ -59,14 +95,18 @@ export function EditarPerfilCliente({ route, navigation }: any) {
               setEmail(e);
             }}
             defaultValue={email}
+            mensagemError={errors.find((e) => e.field === "email")?.message}
           />
           <InputForm
             label='Telefone'
             placeholder='(35) 95655-5553'
+            value={telefone}
+            maxLength={15}
             onChange={(e: string) => {
-              setTelefone(e);
+              setTelefone(regexTelefone(e));
             }}
             defaultValue={telefone}
+            mensagemError={errors.find((e) => e.field === "telefone")?.message}
           />
         </View>
         <View>
@@ -81,6 +121,7 @@ export function EditarPerfilCliente({ route, navigation }: any) {
               setBairro(e);
             }}
             defaultValue={bairro}
+            mensagemError={errors.find((e) => e.field === "bairro")?.message}
           />
           <InputForm
             label='Logradouro'
@@ -89,6 +130,9 @@ export function EditarPerfilCliente({ route, navigation }: any) {
               setLogradouro(e);
             }}
             defaultValue={logradouro}
+            mensagemError={
+              errors.find((e) => e.field === "logradouro")?.message
+            }
           />
           <InputForm
             label='Número'
@@ -97,6 +141,7 @@ export function EditarPerfilCliente({ route, navigation }: any) {
               setNumeroResidencia(e);
             }}
             defaultValue={numeroResidencia}
+            mensagemError={errors.find((e) => e.field === "numero")?.message}
           />
         </View>
         <View style={styles.buttonSalvar}>
