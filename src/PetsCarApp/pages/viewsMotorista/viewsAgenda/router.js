@@ -4,7 +4,10 @@ import { DetalhesAgendaMotorista } from "./detalhesAgenda";
 
 const Stack = createNativeStackNavigator();
 
-export function DetalhesAgendaMotoristaNav() {
+export function DetalhesAgendaMotoristaNav({ route }) {
+  const idAgendamento = route.params.idAgendamento;
+  const idMotorista = route.params.idMotorista;
+
   return (
     <Stack.Navigator
       initialRouteName='DetalhesAgendaMotorista'
@@ -27,6 +30,10 @@ export function DetalhesAgendaMotoristaNav() {
           title: "Detalhes",
         }}
         component={DetalhesAgendaMotorista}
+        initialParams={{
+          idAgendamento: idAgendamento,
+          idMotorista: idMotorista,
+        }}
       />
       <Stack.Screen
         name='AvaliacaoAgendaMotorista'

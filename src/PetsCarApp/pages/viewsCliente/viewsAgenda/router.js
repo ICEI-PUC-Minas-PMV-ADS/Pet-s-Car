@@ -5,7 +5,9 @@ import { EditarAgendaCliente } from "./editarAgenda";
 
 const Stack = createNativeStackNavigator();
 
-export function DetalhesAgendaClienteNav() {
+export function DetalhesAgendaClienteNav({ route }) {
+  const idAgendamento = route.params.idAgendamento;
+
   return (
     <Stack.Navigator
       initialRouteName='DetalhesAgendaCliente'
@@ -28,6 +30,7 @@ export function DetalhesAgendaClienteNav() {
           title: "Detalhes",
         }}
         component={DetalhesAgendaCliente}
+        initialParams={{ idAgendamento: idAgendamento }}
       />
       <Stack.Screen
         name='EditarAgendaCliente'
@@ -35,6 +38,7 @@ export function DetalhesAgendaClienteNav() {
           title: "Editar",
         }}
         component={EditarAgendaCliente}
+        initialParams={{ idAgendamento: idAgendamento }}
       />
       <Stack.Screen
         name='AvaliacaoAgendaCliente'

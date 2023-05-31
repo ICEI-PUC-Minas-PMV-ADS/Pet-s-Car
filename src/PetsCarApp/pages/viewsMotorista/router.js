@@ -11,6 +11,7 @@ import { DetalhesAgendaMotoristaNav } from "./viewsAgenda/router";
 import { LogoPetsCarMenor } from "../../components/logo";
 import { EditarPerfilMotorista } from "./viewsPerfil/editarPerfil";
 import { AvaliacaoMotorista } from "./viewsPerfil/avaliacoesMotorista";
+import { RecuperarSenhaMotorista } from "./recuperarSenhaMotorista";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -35,7 +36,7 @@ export function MotoristaRouter() {
       <Stack.Screen
         name='RecuperarSenhaMotorista'
         options={{ title: "" }}
-        component={RecuperarSenhaCliente}
+        component={RecuperarSenhaMotorista}
       />
       <Stack.Screen
         name='RedefinirSenhaMotorista'
@@ -54,7 +55,9 @@ export function MotoristaRouter() {
   );
 }
 
-export function MotoristaNavigation() {
+export function MotoristaNavigation({ route }) {
+  const idMotorista = route.params?.idMotorista;
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -69,6 +72,7 @@ export function MotoristaNavigation() {
         name='DetalhesAgendaMotoristaNav'
         options={{ title: "", headerShown: false }}
         component={DetalhesAgendaMotoristaNav}
+        initialParams={{ idMotorista: idMotorista }}
       />
       <Stack.Screen
         name='EditarPerfilMotorista'
@@ -103,12 +107,15 @@ export function MotoristaNavigation() {
           headerTitleAlign: "center",
         }}
         component={AvaliacaoMotorista}
+        initialParams={{ idMotorista: idMotorista }}
       />
     </Stack.Navigator>
   );
 }
 
-export function MotoristaTabNavegation() {
+export function MotoristaTabNavegation({ route }) {
+  const idMotorista = route.params.idMotorista;
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -158,6 +165,7 @@ export function MotoristaTabNavegation() {
         options={{
           tabBarIcon: ({ color }) => <IconAgendamentos color={color} />,
         }}
+        initialParams={{ idMotorista: idMotorista }}
       />
       <Tab.Screen
         name='Perfil'
@@ -165,6 +173,7 @@ export function MotoristaTabNavegation() {
         options={{
           tabBarIcon: ({ color }) => <IconPerfil color={color} />,
         }}
+        initialParams={{ idMotorista: idMotorista }}
       />
     </Tab.Navigator>
   );
