@@ -9,10 +9,10 @@ import {
 } from "react-native";
 import { HeaderTitle } from "../../components/header";
 import { InputForm, InputSelect } from "../../components/input";
-import { ButtonAddPet, ButtonPrimary } from "../../components/button";
+import { ButtonPrimary } from "../../components/button";
 import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { auth, db } from "../firebaseInit";
 import { isValidEmail, isValidNome } from "../../utils/Validacao";
 import { regexTelefone } from "../../utils/Regex";
@@ -114,10 +114,21 @@ export function CadastroCliente({ navigation }: any) {
           });
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode);
-          console.log(errorMessage);
+          if (error.code == "auth/email-already-in-use") {
+            erros.push({
+              field: "email",
+              message: "Existe um usuário com o mesmo e-mail",
+            });
+          }
+          if (error.code == "auth/weak-password") {
+            erros.push({
+              field: "senha",
+              message: "A senha deve ter no mínimo 6 caracteres",
+            });
+          }
+          if (erros.length > 0) {
+            return setErrors(erros);
+          }
         });
     }
   };

@@ -1,15 +1,17 @@
 //Thiago: desenvolvi a tela de agenda com apoio do material das aulas de Desenvolvimento Mobile da PUC.
-import { FlatList, RefreshControl, StyleSheet, View } from "react-native";
+import { FlatList, RefreshControl, StyleSheet, Text, View } from "react-native";
 import { CardAgenda } from "../../components/card";
 import { ButtonAdd } from "../../components/button";
 import { useCallback, useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebaseInit";
+import { IconAgendaVazia } from "../../components/icons";
 
 export function AgendaCliente({ navigation, route }: any) {
   const idCliente = route.params.idCliente;
 
   const [refreshing, setRefreshing] = useState(false);
+  const [agendaVazia, setAgendaVazia] = useState(false);
 
   const [dataAgendamentos, setDataAgendamentos] = useState<any[]>([]);
 
@@ -22,7 +24,7 @@ export function AgendaCliente({ navigation, route }: any) {
 
     await getDocs(idAgendamentos).then((res) => {
       if (res.empty) {
-        console.log("Não tem agendamentos.");
+        setAgendaVazia(true);
       } else {
         const ArrayData: any = [];
 
@@ -52,6 +54,16 @@ export function AgendaCliente({ navigation, route }: any) {
 
   return (
     <View style={styles.container}>
+      {agendaVazia == true ? (
+        <View style={styles.agendaVazia}>
+          <IconAgendaVazia color='#DDDDDD' />
+          <Text style={styles.textAgendaVazia}>
+            Lista vazia, faça um novo agendamento de corrida
+          </Text>
+        </View>
+      ) : (
+        ""
+      )}
       <FlatList
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -140,49 +152,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  agendaVazia: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 90,
+    gap: 10,
+  },
+  textAgendaVazia: {
+    fontFamily: "Raleway-600",
+    color: "#DDDDDD",
+    textAlign: "center",
+    fontSize: 16,
+  },
 });
-
-const exemploAgendamentos = [
-  {
-    id: 1,
-    pet: "Jack",
-    data: "15/07/2023",
-    hora: "15:00",
-    status: "Pendente",
-  },
-  {
-    id: 2,
-    pet: "Bob",
-    data: "20/08/2023",
-    hora: "12:00",
-    status: "Aceito",
-  },
-  {
-    id: 3,
-    pet: "Luke",
-    data: "10/02/2023",
-    hora: "18:00",
-    status: "Realizada",
-  },
-  {
-    id: 4,
-    pet: "Jake",
-    data: "15/07/2023",
-    hora: "15:00",
-    status: "Realizada",
-  },
-  {
-    id: 5,
-    pet: "Melissa",
-    data: "20/08/2023",
-    hora: "12:00",
-    status: "Pendente",
-  },
-  {
-    id: 6,
-    pet: "Salsicha",
-    data: "10/02/2023",
-    hora: "18:00",
-    status: "Realizada",
-  },
-];

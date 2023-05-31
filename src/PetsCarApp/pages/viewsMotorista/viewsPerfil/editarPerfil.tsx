@@ -8,25 +8,48 @@ import { Motorista } from "../../../interfaces/interface_motorista";
 import { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebaseInit";
+import { regexTelefone } from "../../../utils/Regex";
+import { isValidEmail, isValidNome } from "../../../utils/Validacao";
 
 export function EditarPerfilMotorista({ route, navigation }: any) {
   const dataMotorista: Motorista = route.params.dataMotorista;
 
+  const [errors, setErrors] = useState<{ field: string; message: string }[]>(
+    []
+  );
   const [nome, setNome] = useState(dataMotorista.nome);
   const [email, setEmail] = useState(dataMotorista.email);
   const [telefone, setTelefone] = useState(dataMotorista.telefone);
 
   const AtualizarCliente = async () => {
-    const motoristaRef = doc(db, "motoristas", dataMotorista.idUser);
-    await updateDoc(motoristaRef, {
-      nome: nome,
-      email: email,
-      telefone: telefone,
-    })
-      .then(() => {
-        navigation.goBack();
+    const erros: { field: string; message: string }[] = [];
+
+    setErrors([]);
+
+    if (!nome)
+      erros.push({ field: "nome", message: "Preencha o campo Seu Nome" });
+    if (!email)
+      erros.push({ field: "email", message: "Preencha o campo E-mail" });
+    if (!telefone)
+      erros.push({ field: "telefone", message: "Preencha o campo Telefone" });
+    if (nome && isValidNome(nome) == false)
+      erros.push({ field: "nome", message: "Preencha com nome e sobrenome" });
+    if (email && isValidEmail(email) == false)
+      erros.push({ field: "email", message: "E-mail incorreto" });
+    if (erros.length > 0) {
+      return setErrors(erros);
+    } else {
+      const motoristaRef = doc(db, "motoristas", dataMotorista.idUser);
+      await updateDoc(motoristaRef, {
+        nome: nome,
+        email: email,
+        telefone: telefone,
       })
-      .catch((e) => console.log(e));
+        .then(() => {
+          navigation.goBack();
+        })
+        .catch((e) => console.log(e));
+    }
   };
 
   return (
@@ -44,6 +67,7 @@ export function EditarPerfilMotorista({ route, navigation }: any) {
               setNome(e);
             }}
             defaultValue={nome}
+            mensagemError={errors.find((e) => e.field === "nome")?.message}
           />
           <InputForm
             label='E-mail'
@@ -52,14 +76,19 @@ export function EditarPerfilMotorista({ route, navigation }: any) {
               setEmail(e);
             }}
             defaultValue={email}
+            mensagemError={errors.find((e) => e.field === "email")?.message}
           />
           <InputForm
             label='Telefone'
             placeholder='(35) 95655-5553'
-            onChange={(e: any) => {
-              setTelefone(e);
+            value={telefone}
+            maxLength={15}
+            inputMode='tel'
+            onChange={(e: string) => {
+              setTelefone(regexTelefone(e));
             }}
             defaultValue={telefone}
+            mensagemError={errors.find((e) => e.field === "telefone")?.message}
           />
         </View>
         <View style={styles.buttonSalvar}>

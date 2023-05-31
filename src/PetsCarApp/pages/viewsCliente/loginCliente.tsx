@@ -61,10 +61,6 @@ export function LoginCliente({ navigation }: any) {
               message: "Senha incorreta",
             });
           }
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode);
-          console.log(errorMessage);
           if (erros.length > 0) {
             return setErrors(erros);
           }

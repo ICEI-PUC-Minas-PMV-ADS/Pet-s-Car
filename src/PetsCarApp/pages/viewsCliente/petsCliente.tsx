@@ -1,15 +1,17 @@
 //Mariano: desenvolvi a tela de pets com apoio do material das aulas de Desenvolvimento Mobile da PUC.
-import { StyleSheet, View, FlatList, RefreshControl } from "react-native";
+import { StyleSheet, View, FlatList, RefreshControl, Text } from "react-native";
 import { CardPets } from "../../components/card";
 import { ButtonAdd } from "../../components/button";
 import { useCallback, useEffect, useState } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebaseInit";
+import { IconPetsVazio } from "../../components/icons";
 
 export function PetsCliente({ navigation, route }: any) {
   const idCliente = route.params.idCliente;
 
   const [refreshing, setRefreshing] = useState(false);
+  const [petsVazia, setPetsVazia] = useState(false);
 
   const [dataPets, setDataPets] = useState<any[]>([]);
 
@@ -19,7 +21,7 @@ export function PetsCliente({ navigation, route }: any) {
 
     await getDocs(idPets).then((res) => {
       if (res.empty) {
-        console.log("Não tem pets.");
+        setPetsVazia(true);
       } else {
         const ArrayData: any = [];
 
@@ -49,6 +51,16 @@ export function PetsCliente({ navigation, route }: any) {
 
   return (
     <View style={styles.container}>
+      {petsVazia == true ? (
+        <View style={styles.petsVazia}>
+          <IconPetsVazio color='#DDDDDD' />
+          <Text style={styles.textPetsVazia}>
+            Lista vazia, cadastre seu melhor amigo
+          </Text>
+        </View>
+      ) : (
+        ""
+      )}
       <FlatList
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -95,5 +107,18 @@ const styles = StyleSheet.create({
   containerScroll: {
     paddingHorizontal: 18,
     paddingVertical: 15,
+  },
+  petsVazia: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 90,
+    gap: 10,
+  },
+  textPetsVazia: {
+    fontFamily: "Raleway-600",
+    color: "#DDDDDD",
+    textAlign: "center",
+    fontSize: 16,
   },
 });

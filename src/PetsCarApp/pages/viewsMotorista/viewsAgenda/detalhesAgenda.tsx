@@ -9,13 +9,16 @@ import { Agendamento } from "../../../interfaces/interface_agendamento";
 import { db } from "../../firebaseInit";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { Motorista } from "../../../interfaces/interface_motorista";
+import { regexBRL } from "../../../utils/Regex";
 
 export function DetalhesAgendaMotorista({ navigation, route }: any) {
   const idMotorista = route.params.idMotorista;
   const idAgendamento = route.params.idAgendamento;
 
+  const [errors, setErrors] = useState<{ field: string; message: string }[]>(
+    []
+  );
   const [inputValorOpen, setInputValorOpen] = useState(false);
-
   const [valorCorrida, setValorCorrida] = useState("");
 
   const [dataAgendamento, setDataAgendamento] = useState<Agendamento>({
@@ -74,17 +77,31 @@ export function DetalhesAgendaMotorista({ navigation, route }: any) {
   }, []);
 
   const AceitarCorrida = async () => {
-    const agendamentoRef = doc(db, "agendamentos", idAgendamento);
-    await updateDoc(agendamentoRef, {
-      status: "Aceito",
-      valor: valorCorrida,
-      idMotorista: idMotorista,
-      nomeMotorista: dataMotorista.nome,
-    })
-      .then(() => {
-        BuscarAgendamento();
+    const erros: { field: string; message: string }[] = [];
+
+    setErrors([]);
+
+    if (!valorCorrida)
+      erros.push({
+        field: "valorCorrida",
+        message: "Informe o valor da corrida",
+      });
+
+    if (erros.length > 0) {
+      return setErrors(erros);
+    } else {
+      const agendamentoRef = doc(db, "agendamentos", idAgendamento);
+      await updateDoc(agendamentoRef, {
+        status: "Aceito",
+        valor: valorCorrida,
+        idMotorista: idMotorista,
+        nomeMotorista: dataMotorista.nome,
       })
-      .catch((e) => console.log(e));
+        .then(() => {
+          BuscarAgendamento();
+        })
+        .catch((e) => console.log(e));
+    }
   };
 
   const FinalizarCorrida = async () => {
@@ -250,9 +267,14 @@ export function DetalhesAgendaMotorista({ navigation, route }: any) {
                 label={"Valor"}
                 placeholder={"R$ 0,00"}
                 keyboardType={"numeric"}
+                maxLength={12}
                 onChange={(e: any) => {
-                  setValorCorrida(e);
+                  setValorCorrida(regexBRL(e));
                 }}
+                value={valorCorrida}
+                mensagemError={
+                  errors.find((e) => e.field === "valorCorrida")?.message
+                }
               />
               <View style={styles.button}>
                 <ButtonPrimary

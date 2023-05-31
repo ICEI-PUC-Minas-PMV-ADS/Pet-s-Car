@@ -102,6 +102,7 @@ export function EditarPerfilCliente({ route, navigation }: any) {
             placeholder='(35) 95655-5553'
             value={telefone}
             maxLength={15}
+            inputMode='tel'
             onChange={(e: string) => {
               setTelefone(regexTelefone(e));
             }}
@@ -144,6 +145,15 @@ export function EditarPerfilCliente({ route, navigation }: any) {
             mensagemError={errors.find((e) => e.field === "numero")?.message}
           />
         </View>
+        {errors.length > 0 ? (
+          <View style={styles.errorForm}>
+            <Text style={styles.errorTextForm}>
+              Algum campo está incorreto ou vazio.
+            </Text>
+          </View>
+        ) : (
+          ""
+        )}
         <View style={styles.buttonSalvar}>
           <ButtonPrimary
             title={"Salvar"}
@@ -200,5 +210,20 @@ const styles = StyleSheet.create({
   buttonSalvar: {
     paddingTop: 20,
     paddingBottom: 70,
+  },
+  errorForm: {
+    backgroundColor: "#ffd4d4",
+    borderRadius: 8,
+    padding: 13,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  errorTextForm: {
+    fontFamily: "Raleway-500",
+    fontSize: 14,
+    color: "#ff4040",
+    textAlign: "center",
+    lineHeight: 14,
   },
 });
