@@ -10,10 +10,12 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebaseInit";
 import { regexTelefone } from "../../../utils/Regex";
 import { isValidEmail, isValidNome } from "../../../utils/Validacao";
+import { ModalSucesso } from "../../../components/modal";
 
 export function EditarPerfilMotorista({ route, navigation }: any) {
   const dataMotorista: Motorista = route.params.dataMotorista;
 
+  const [modalSucesso, setModalSucesso] = useState(false);
   const [errors, setErrors] = useState<{ field: string; message: string }[]>(
     []
   );
@@ -44,11 +46,12 @@ export function EditarPerfilMotorista({ route, navigation }: any) {
         nome: nome,
         email: email,
         telefone: telefone,
-      })
-        .then(() => {
+      }).then(() => {
+        setModalSucesso(true);
+        setTimeout(() => {
           navigation.goBack();
-        })
-        .catch((e) => console.log(e));
+        }, 2500);
+      });
     }
   };
 
@@ -94,6 +97,13 @@ export function EditarPerfilMotorista({ route, navigation }: any) {
         <View style={styles.buttonSalvar}>
           <ButtonPrimary title={"Salvar"} onPress={() => AtualizarCliente()} />
         </View>
+        <ModalSucesso
+          title='Sucesso! Perfil atualizado.'
+          visible={modalSucesso}
+          onRequestClose={() => {
+            setModalSucesso(!modalSucesso);
+          }}
+        />
       </ScrollView>
     </View>
   );

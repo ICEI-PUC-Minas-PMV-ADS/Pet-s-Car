@@ -1,5 +1,11 @@
 //Mariano: desenvolvi a tela de detalhes do pet com apoio do material das aulas de Desenvolvimento Mobile da PUC.
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { IconPets } from "../../../components/icons";
 import { ButtonEditar } from "../../../components/button";
 import { Pet } from "../../../interfaces/interface_pets";
@@ -10,6 +16,7 @@ import { doc, getDoc } from "firebase/firestore";
 export function DetalhesPetClient({ navigation, route }: any) {
   const idPet = route.params.idPet;
 
+  const [loading, setLoading] = useState(false);
   const [dataPet, setDataPet] = useState<Pet>({
     idCliente: "",
     nome: "",
@@ -20,9 +27,11 @@ export function DetalhesPetClient({ navigation, route }: any) {
 
   useEffect(() => {
     navigation.addListener("focus", async () => {
+      setLoading(true);
       const petsRef = await doc(db, "pets", idPet);
 
       await getDoc(petsRef).then((res: any) => {
+        setLoading(false);
         setDataPet(res.data());
       });
     });
@@ -30,47 +39,57 @@ export function DetalhesPetClient({ navigation, route }: any) {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.containerScroll}>
-        <View style={styles.containerTitle}>
-          <View style={styles.iconTitle}>
-            <IconPets color={"#4060FF"} />
-            <Text style={styles.title}>Pet</Text>
-          </View>
-          <ButtonEditar
-            title={"Editar"}
-            onPress={() => {
-              navigation.navigate({
-                name: "EditarPetClient",
-                params: { dataPet: dataPet },
-                merge: true,
-              });
-            }}
-          />
+      {loading == true ? (
+        <View style={styles.loading}>
+          <ActivityIndicator animating={loading} size={50} color='#4060FF' />
         </View>
-        <View style={styles.itens}>
-          <View>
-            <Text style={styles.itemTitle}>Nome</Text>
-            <Text style={styles.itemInfo}>{dataPet.nome}</Text>
+      ) : (
+        <ScrollView style={styles.containerScroll}>
+          <View style={styles.containerTitle}>
+            <View style={styles.iconTitle}>
+              <IconPets color={"#4060FF"} />
+              <Text style={styles.title}>Pet</Text>
+            </View>
+            <ButtonEditar
+              title={"Editar"}
+              onPress={() => {
+                navigation.navigate({
+                  name: "EditarPetClient",
+                  params: { dataPet: dataPet },
+                  merge: true,
+                });
+              }}
+            />
           </View>
-          <View>
-            <Text style={styles.itemTitle}>Tipo</Text>
-            <Text style={styles.itemInfo}>{dataPet.tipo}</Text>
+          <View style={styles.itens}>
+            <View>
+              <Text style={styles.itemTitle}>Nome</Text>
+              <Text style={styles.itemInfo}>{dataPet.nome}</Text>
+            </View>
+            <View>
+              <Text style={styles.itemTitle}>Tipo</Text>
+              <Text style={styles.itemInfo}>{dataPet.tipo}</Text>
+            </View>
+            <View>
+              <Text style={styles.itemTitle}>Raça</Text>
+              <Text style={styles.itemInfo}>{dataPet.raca}</Text>
+            </View>
+            <View>
+              <Text style={styles.itemTitle}>Porte</Text>
+              <Text style={styles.itemInfo}>{dataPet.porte}</Text>
+            </View>
           </View>
-          <View>
-            <Text style={styles.itemTitle}>Raça</Text>
-            <Text style={styles.itemInfo}>{dataPet.raca}</Text>
-          </View>
-          <View>
-            <Text style={styles.itemTitle}>Porte</Text>
-            <Text style={styles.itemInfo}>{dataPet.porte}</Text>
-          </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  loading: {
+    flex: 1,
+    justifyContent: "center",
+  },
   container: {
     flex: 1,
     flexDirection: "column",

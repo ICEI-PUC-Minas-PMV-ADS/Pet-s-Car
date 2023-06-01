@@ -1,6 +1,12 @@
 //Thiago: desenvolvi a tela de detalhes da agenda do cliente com apoio do material das aulas de Desenvolvimento Mobile da PUC.
 
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  ActivityIndicator,
+} from "react-native";
 import { IconAgendamentos } from "../../../components/icons";
 import { ButtonAvaliar, ButtonEditar } from "../../../components/button";
 import { db } from "../../firebaseInit";
@@ -11,6 +17,7 @@ import { Agendamento } from "../../../interfaces/interface_agendamento";
 export function DetalhesAgendaCliente({ navigation, route }: any) {
   const idAgendamento = route.params.idAgendamento;
 
+  const [loading, setLoading] = useState(false);
   const [dataAgendamento, setDataAgendamento] = useState<Agendamento>({
     idCliente: "",
     idPet: "",
@@ -37,9 +44,11 @@ export function DetalhesAgendaCliente({ navigation, route }: any) {
 
   useEffect(() => {
     navigation.addListener("focus", async () => {
+      setLoading(true);
       const agendamentosRef = await doc(db, "agendamentos", idAgendamento);
 
       await getDoc(agendamentosRef).then((res: any) => {
+        setLoading(false);
         setDataAgendamento(res.data());
       });
     });
@@ -47,167 +56,177 @@ export function DetalhesAgendaCliente({ navigation, route }: any) {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.containerScroll}>
-        <View style={styles.containerTitle}>
-          <View style={styles.iconTitle}>
-            <IconAgendamentos color={"#4060FF"} />
-            <Text style={styles.title}>Transporte</Text>
-          </View>
-          {dataAgendamento.status == "Pendente" ? (
-            <ButtonEditar
-              title={"Editar"}
-              onPress={() => {
-                navigation.navigate({
-                  name: "EditarAgendaCliente",
-                  params: { dataAgendamento: dataAgendamento },
-                  merge: true,
-                });
-              }}
-            />
-          ) : dataAgendamento.status == "Realizado" ? (
-            <ButtonAvaliar
-              title={"Avaliar"}
-              onPress={() => {
-                navigation.navigate({
-                  name: "AvaliacaoAgendaCliente",
-                  params: { dataAgendamento: dataAgendamento },
-                  merge: true,
-                });
-              }}
-            />
-          ) : (
-            ""
-          )}
+      {loading == true ? (
+        <View style={styles.loading}>
+          <ActivityIndicator animating={loading} size={50} color='#4060FF' />
         </View>
-        <View
-          style={
-            dataAgendamento.status == "Pendente"
-              ? styles.statusCardPendente
-              : dataAgendamento.status == "Aceito"
-              ? styles.statusCardAceito
-              : styles.statusCardRealizado
-          }
-        >
-          <Text
+      ) : (
+        <ScrollView style={styles.containerScroll}>
+          <View style={styles.containerTitle}>
+            <View style={styles.iconTitle}>
+              <IconAgendamentos color={"#4060FF"} />
+              <Text style={styles.title}>Transporte</Text>
+            </View>
+            {dataAgendamento.status == "Pendente" ? (
+              <ButtonEditar
+                title={"Editar"}
+                onPress={() => {
+                  navigation.navigate({
+                    name: "EditarAgendaCliente",
+                    params: { dataAgendamento: dataAgendamento },
+                    merge: true,
+                  });
+                }}
+              />
+            ) : dataAgendamento.status == "Realizado" ? (
+              <ButtonAvaliar
+                title={"Avaliar"}
+                onPress={() => {
+                  navigation.navigate({
+                    name: "AvaliacaoAgendaCliente",
+                    params: { dataAgendamento: dataAgendamento },
+                    merge: true,
+                  });
+                }}
+              />
+            ) : (
+              ""
+            )}
+          </View>
+          <View
             style={
               dataAgendamento.status == "Pendente"
-                ? styles.statusTitlePendente
+                ? styles.statusCardPendente
                 : dataAgendamento.status == "Aceito"
-                ? styles.statusTitleAceito
-                : styles.statusTitleRealizado
+                ? styles.statusCardAceito
+                : styles.statusCardRealizado
             }
           >
-            Status:{" "}
-            <Text style={styles.statusInfo}>{dataAgendamento.status}</Text>
-          </Text>
-        </View>
-        <View style={styles.itens}>
-          <View>
-            <Text style={styles.itemTitle}>Pet</Text>
-            <Text style={styles.itemInfo}>{dataAgendamento.nomePet}</Text>
+            <Text
+              style={
+                dataAgendamento.status == "Pendente"
+                  ? styles.statusTitlePendente
+                  : dataAgendamento.status == "Aceito"
+                  ? styles.statusTitleAceito
+                  : styles.statusTitleRealizado
+              }
+            >
+              Status:{" "}
+              <Text style={styles.statusInfo}>{dataAgendamento.status}</Text>
+            </Text>
           </View>
-          <View>
-            <Text style={styles.itemTitle}>Tipo</Text>
-            <Text style={styles.itemInfo}>{dataAgendamento.tipoPet}</Text>
-          </View>
-          <View>
-            <Text style={styles.itemTitle}>Raça</Text>
-            <Text style={styles.itemInfo}>{dataAgendamento.racaPet}</Text>
-          </View>
-          <View>
-            <Text style={styles.itemTitle}>Porte</Text>
-            <Text style={styles.itemInfo}>{dataAgendamento.portePet}</Text>
-          </View>
-          <View>
-            <Text style={styles.itemTitle}>Data</Text>
-            <Text style={styles.itemInfo}>{dataAgendamento.data}</Text>
-          </View>
-          <View>
-            <Text style={styles.itemTitle}>Hora</Text>
-            <Text style={styles.itemInfo}>{dataAgendamento.hora}</Text>
-          </View>
-        </View>
-        <View style={styles.itens}>
-          <Text style={styles.subtitle}>Endereço de Partida</Text>
           <View style={styles.itens}>
             <View>
-              <Text style={styles.itemTitle}>Cidade</Text>
-              <Text style={styles.itemInfo}>Alterosa - MG</Text>
+              <Text style={styles.itemTitle}>Pet</Text>
+              <Text style={styles.itemInfo}>{dataAgendamento.nomePet}</Text>
             </View>
             <View>
-              <Text style={styles.itemTitle}>Bairro</Text>
-              <Text style={styles.itemInfo}>
-                {dataAgendamento.bairroPartida}
-              </Text>
+              <Text style={styles.itemTitle}>Tipo</Text>
+              <Text style={styles.itemInfo}>{dataAgendamento.tipoPet}</Text>
             </View>
             <View>
-              <Text style={styles.itemTitle}>Logradouro e Número</Text>
-              <Text style={styles.itemInfo}>
-                {dataAgendamento.logradouroPartida} -{" "}
-                {dataAgendamento.numeroPartida}
-              </Text>
+              <Text style={styles.itemTitle}>Raça</Text>
+              <Text style={styles.itemInfo}>{dataAgendamento.racaPet}</Text>
+            </View>
+            <View>
+              <Text style={styles.itemTitle}>Porte</Text>
+              <Text style={styles.itemInfo}>{dataAgendamento.portePet}</Text>
+            </View>
+            <View>
+              <Text style={styles.itemTitle}>Data</Text>
+              <Text style={styles.itemInfo}>{dataAgendamento.data}</Text>
+            </View>
+            <View>
+              <Text style={styles.itemTitle}>Hora</Text>
+              <Text style={styles.itemInfo}>{dataAgendamento.hora}</Text>
             </View>
           </View>
-        </View>
-        <View
-          style={
-            dataAgendamento.status == "Pendente"
-              ? styles.lastItens
-              : styles.itens
-          }
-        >
-          <Text style={styles.subtitle}>Endereço de Destino</Text>
           <View style={styles.itens}>
-            <View>
-              <Text style={styles.itemTitle}>Cidade</Text>
-              <Text style={styles.itemInfo}>Alterosa - MG</Text>
-            </View>
-            <View>
-              <Text style={styles.itemTitle}>Estabelecimento</Text>
-              <Text style={styles.itemInfo}>
-                {dataAgendamento.estabelecimentoDestino}
-              </Text>
-            </View>
-            <View>
-              <Text style={styles.itemTitle}>Bairro</Text>
-              <Text style={styles.itemInfo}>
-                {dataAgendamento.bairroDestino}
-              </Text>
-            </View>
-            <View>
-              <Text style={styles.itemTitle}>Logradouro e Número</Text>
-              <Text style={styles.itemInfo}>
-                {dataAgendamento.logradouroDestino} -{" "}
-                {dataAgendamento.numeroDestino}
-              </Text>
-            </View>
-          </View>
-        </View>
-        {dataAgendamento.status !== "Pendente" ? (
-          <View style={styles.lastItens}>
-            <Text style={styles.subtitle}>Informações da Corrida</Text>
+            <Text style={styles.subtitle}>Endereço de Partida</Text>
             <View style={styles.itens}>
               <View>
-                <Text style={styles.itemTitle}>Valor</Text>
-                <Text style={styles.itemInfo}>{dataAgendamento.valor}</Text>
+                <Text style={styles.itemTitle}>Cidade</Text>
+                <Text style={styles.itemInfo}>Alterosa - MG</Text>
               </View>
               <View>
-                <Text style={styles.itemTitle}>Motorista</Text>
+                <Text style={styles.itemTitle}>Bairro</Text>
                 <Text style={styles.itemInfo}>
-                  {dataAgendamento.nomeMotorista}
+                  {dataAgendamento.bairroPartida}
+                </Text>
+              </View>
+              <View>
+                <Text style={styles.itemTitle}>Logradouro e Número</Text>
+                <Text style={styles.itemInfo}>
+                  {dataAgendamento.logradouroPartida} -{" "}
+                  {dataAgendamento.numeroPartida}
                 </Text>
               </View>
             </View>
           </View>
-        ) : (
-          ""
-        )}
-      </ScrollView>
+          <View
+            style={
+              dataAgendamento.status == "Pendente"
+                ? styles.lastItens
+                : styles.itens
+            }
+          >
+            <Text style={styles.subtitle}>Endereço de Destino</Text>
+            <View style={styles.itens}>
+              <View>
+                <Text style={styles.itemTitle}>Cidade</Text>
+                <Text style={styles.itemInfo}>Alterosa - MG</Text>
+              </View>
+              <View>
+                <Text style={styles.itemTitle}>Estabelecimento</Text>
+                <Text style={styles.itemInfo}>
+                  {dataAgendamento.estabelecimentoDestino}
+                </Text>
+              </View>
+              <View>
+                <Text style={styles.itemTitle}>Bairro</Text>
+                <Text style={styles.itemInfo}>
+                  {dataAgendamento.bairroDestino}
+                </Text>
+              </View>
+              <View>
+                <Text style={styles.itemTitle}>Logradouro e Número</Text>
+                <Text style={styles.itemInfo}>
+                  {dataAgendamento.logradouroDestino} -{" "}
+                  {dataAgendamento.numeroDestino}
+                </Text>
+              </View>
+            </View>
+          </View>
+          {dataAgendamento.status !== "Pendente" ? (
+            <View style={styles.lastItens}>
+              <Text style={styles.subtitle}>Informações da Corrida</Text>
+              <View style={styles.itens}>
+                <View>
+                  <Text style={styles.itemTitle}>Valor</Text>
+                  <Text style={styles.itemInfo}>{dataAgendamento.valor}</Text>
+                </View>
+                <View>
+                  <Text style={styles.itemTitle}>Motorista</Text>
+                  <Text style={styles.itemInfo}>
+                    {dataAgendamento.nomeMotorista}
+                  </Text>
+                </View>
+              </View>
+            </View>
+          ) : (
+            ""
+          )}
+        </ScrollView>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  loading: {
+    flex: 1,
+    justifyContent: "center",
+  },
   container: {
     flex: 1,
     flexDirection: "column",

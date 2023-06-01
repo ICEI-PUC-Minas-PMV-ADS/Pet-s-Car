@@ -1,5 +1,12 @@
 //Thiago: desenvolvi a tela de agenda com apoio do material das aulas de Desenvolvimento Mobile da PUC.
-import { FlatList, RefreshControl, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  RefreshControl,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { CardAgenda } from "../../components/card";
 import { useCallback, useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
@@ -7,13 +14,16 @@ import { db } from "../firebaseInit";
 import { IconAgendaVazia } from "../../components/icons";
 
 export function AgendaMotorista({ navigation }: any) {
+  const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [agendaVazia, setAgendaVazia] = useState(false);
 
   const [dataAgendamentos, setDataAgendamentos] = useState<any[]>([]);
 
   async function BuscarAgendamentos() {
+    setLoading(true);
     await getDocs(collection(db, "agendamentos")).then((res) => {
+      setLoading(false);
       if (res.empty) {
         setAgendaVazia(true);
       } else {
@@ -55,46 +65,58 @@ export function AgendaMotorista({ navigation }: any) {
       ) : (
         ""
       )}
-      <FlatList
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-        ListFooterComponent={() => <View style={styles.containerVazio}></View>}
-        style={styles.containerScroll}
-        data={dataAgendamentos}
-        keyExtractor={(item) => item.idAgendamento}
-        renderItem={({ item }) => {
-          return (
-            <CardAgenda
-              pet={item.nomePet}
-              data={item.data}
-              hora={item.hora}
-              status={item.status}
-              onPressDetalhes={() => {
-                navigation.navigate({
-                  name: "DetalhesAgendaMotoristaNav",
-                  params: {
-                    idAgendamento: item.idAgendamento,
-                  },
-                  merge: true,
-                });
-              }}
-              styleCard={
-                item.status == "Pendente"
-                  ? styles.cardPendente
-                  : item.status == "Aceito"
-                  ? styles.cardAceito
-                  : styles.cardRealizado
-              }
-            />
-          );
-        }}
-      />
+      {loading == true ? (
+        <View style={styles.loading}>
+          <ActivityIndicator animating={loading} size={50} color='#4060FF' />
+        </View>
+      ) : (
+        <FlatList
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+          ListFooterComponent={() => (
+            <View style={styles.containerVazio}></View>
+          )}
+          style={styles.containerScroll}
+          data={dataAgendamentos}
+          keyExtractor={(item) => item.idAgendamento}
+          renderItem={({ item }) => {
+            return (
+              <CardAgenda
+                pet={item.nomePet}
+                data={item.data}
+                hora={item.hora}
+                status={item.status}
+                onPressDetalhes={() => {
+                  navigation.navigate({
+                    name: "DetalhesAgendaMotoristaNav",
+                    params: {
+                      idAgendamento: item.idAgendamento,
+                    },
+                    merge: true,
+                  });
+                }}
+                styleCard={
+                  item.status == "Pendente"
+                    ? styles.cardPendente
+                    : item.status == "Aceito"
+                    ? styles.cardAceito
+                    : styles.cardRealizado
+                }
+              />
+            );
+          }}
+        />
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  loading: {
+    flex: 1,
+    justifyContent: "center",
+  },
   container: {
     flex: 1,
     flexDirection: "column",

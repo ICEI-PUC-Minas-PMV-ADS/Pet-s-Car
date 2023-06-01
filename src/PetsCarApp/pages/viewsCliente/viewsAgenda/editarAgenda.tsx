@@ -27,13 +27,15 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebaseInit";
 import { Agendamento } from "../../../interfaces/interface_agendamento";
-import { ModalPergunta } from "../../../components/modal";
+import { ModalPergunta, ModalSucesso } from "../../../components/modal";
 
 export function EditarAgendaCliente({ route, navigation }: any) {
   const idAgendamento = route.params.idAgendamento;
   const dataAgendamento: Agendamento = route.params.dataAgendamento;
 
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalSucesso, setModalSucesso] = useState(false);
+  const [modalSucessoExcluir, setModalSucessoExcluir] = useState(false);
+  const [modalExcluir, setModalExcluir] = useState(false);
   const [errors, setErrors] = useState<{ field: string; message: string }[]>(
     []
   );
@@ -181,17 +183,23 @@ export function EditarAgendaCliente({ route, navigation }: any) {
         logradouroDestino: logradouroDestino,
         bairroDestino: bairroDestino,
         numeroDestino: numeroDestino,
-      })
-        .then(() => {
+      }).then(() => {
+        setModalSucesso(true);
+        setTimeout(() => {
           navigation.goBack();
-        })
-        .catch((e) => console.log(e));
+        }, 2500);
+      });
     }
   };
 
   const ExcluirAgendamento = async () => {
-    await deleteDoc(doc(db, "agendamentos", idAgendamento));
-    navigation.navigate("ClienteTabNavegation");
+    await deleteDoc(doc(db, "agendamentos", idAgendamento)).then(() => {
+      setModalExcluir(false);
+      setModalSucessoExcluir(true);
+      setTimeout(() => {
+        navigation.navigate("ClienteTabNavegation");
+      }, 2500);
+    });
   };
 
   return (
@@ -335,17 +343,31 @@ export function EditarAgendaCliente({ route, navigation }: any) {
             title={"Salvar"}
             onPress={() => AtualizarAgendamento()}
           />
+          <ModalSucesso
+            title='Sucesso! Agendamento atualizado.'
+            visible={modalSucesso}
+            onRequestClose={() => {
+              setModalSucesso(!modalSucesso);
+            }}
+          />
           <ButtonExcluir
             title={"Excluir"}
-            onPress={() => setModalVisible(true)}
+            onPress={() => setModalExcluir(true)}
           />
           <ModalPergunta
             title='Deseja mesmo excluir o Agendamento?'
             onPressSim={() => ExcluirAgendamento()}
-            onPressNao={() => setModalVisible(!modalVisible)}
-            visible={modalVisible}
+            onPressNao={() => setModalExcluir(!modalExcluir)}
+            visible={modalExcluir}
             onRequestClose={() => {
-              setModalVisible(!modalVisible);
+              setModalExcluir(!modalExcluir);
+            }}
+          />
+          <ModalSucesso
+            title='Sucesso! Agendamento excluído.'
+            visible={modalSucessoExcluir}
+            onRequestClose={() => {
+              setModalSucessoExcluir(!modalSucessoExcluir);
             }}
           />
         </View>

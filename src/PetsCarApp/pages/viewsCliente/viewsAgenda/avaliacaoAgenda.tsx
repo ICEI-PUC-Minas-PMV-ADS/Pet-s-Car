@@ -6,10 +6,12 @@ import { Agendamento } from "../../../interfaces/interface_agendamento";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebaseInit";
 import { useState } from "react";
+import { ModalSucesso } from "../../../components/modal";
 
 export function AvaliacaoAgendaCliente({ route, navigation }: any) {
   const dataAgendamento: Agendamento = route.params.dataAgendamento;
 
+  const [modalSucesso, setModalSucesso] = useState(false);
   const [errors, setErrors] = useState<{ field: string; message: string }[]>(
     []
   );
@@ -30,7 +32,10 @@ export function AvaliacaoAgendaCliente({ route, navigation }: any) {
         nomeCliente: dataAgendamento.nomeCliente,
         avaliacao: avaliacao,
       }).then(() => {
-        navigation.goBack();
+        setModalSucesso(true);
+        setTimeout(() => {
+          navigation.goBack();
+        }, 2500);
       });
     }
   };
@@ -69,6 +74,13 @@ export function AvaliacaoAgendaCliente({ route, navigation }: any) {
           title={"Concluir"}
           onPress={() => {
             EnviarAvaliação();
+          }}
+        />
+        <ModalSucesso
+          title='Sucesso! Avaliação enviada.'
+          visible={modalSucesso}
+          onRequestClose={() => {
+            setModalSucesso(!modalSucesso);
           }}
         />
       </ScrollView>

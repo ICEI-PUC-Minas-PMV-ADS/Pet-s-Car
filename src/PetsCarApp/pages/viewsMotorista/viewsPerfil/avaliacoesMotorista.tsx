@@ -2,7 +2,14 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { CardAvaliacao } from "../../../components/card";
-import { StyleSheet, View, FlatList, RefreshControl, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  RefreshControl,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebaseInit";
 import { AvaliacaoMotoristaModel } from "../../../interfaces/interface_avaliacaoMotorista";
@@ -11,6 +18,7 @@ import { IconAvaliacaoVazio } from "../../../components/icons";
 export function AvaliacaoMotorista({ route, navigation }: any) {
   const idMotorista = route.params.idMotorista;
 
+  const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
 
   const [avaliacaoVazia, setAvaliacaoVazia] = useState(false);
@@ -19,6 +27,7 @@ export function AvaliacaoMotorista({ route, navigation }: any) {
   >([]);
 
   async function BuscarAvaliacoes() {
+    setLoading(true);
     const avaliacoesRef = await collection(db, "avaliacoesMotorista");
     const idAvaliacoes = await query(
       avaliacoesRef,
@@ -26,6 +35,7 @@ export function AvaliacaoMotorista({ route, navigation }: any) {
     );
 
     await getDocs(idAvaliacoes).then((res) => {
+      setLoading(false);
       if (res.empty) {
         setAvaliacaoVazia(true);
       } else {
@@ -67,25 +77,40 @@ export function AvaliacaoMotorista({ route, navigation }: any) {
       ) : (
         ""
       )}
-      <FlatList
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-        ListFooterComponent={() => <View style={styles.containerVazio}></View>}
-        style={styles.containerScroll}
-        data={dataAvaliacoes}
-        keyExtractor={(item) => item.idAvaliacao}
-        renderItem={({ item }) => {
-          return (
-            <CardAvaliacao nome={item.nomeCliente} avaliacao={item.avaliacao} />
-          );
-        }}
-      />
+      {loading == true ? (
+        <View style={styles.loading}>
+          <ActivityIndicator animating={loading} size={50} color='#4060FF' />
+        </View>
+      ) : (
+        <FlatList
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+          ListFooterComponent={() => (
+            <View style={styles.containerVazio}></View>
+          )}
+          style={styles.containerScroll}
+          data={dataAvaliacoes}
+          keyExtractor={(item) => item.idAvaliacao}
+          renderItem={({ item }) => {
+            return (
+              <CardAvaliacao
+                nome={item.nomeCliente}
+                avaliacao={item.avaliacao}
+              />
+            );
+          }}
+        />
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  loading: {
+    flex: 1,
+    justifyContent: "center",
+  },
   container: {
     flex: 1,
     flexDirection: "column",

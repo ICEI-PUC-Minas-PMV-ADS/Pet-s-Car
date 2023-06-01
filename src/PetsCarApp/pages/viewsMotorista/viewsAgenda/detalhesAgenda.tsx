@@ -1,6 +1,12 @@
 //Thiago: desenvolvi a tela de detalhes da agenda do motorista com apoio do material das aulas de Desenvolvimento Mobile da PUC.
 
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  ActivityIndicator,
+} from "react-native";
 import { IconAgendamentos } from "../../../components/icons";
 import { ButtonAvaliar, ButtonPrimary } from "../../../components/button";
 import { InputForm } from "../../../components/input";
@@ -10,11 +16,15 @@ import { db } from "../../firebaseInit";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { Motorista } from "../../../interfaces/interface_motorista";
 import { regexBRL } from "../../../utils/Regex";
+import { ModalSucesso } from "../../../components/modal";
 
 export function DetalhesAgendaMotorista({ navigation, route }: any) {
   const idMotorista = route.params.idMotorista;
   const idAgendamento = route.params.idAgendamento;
 
+  const [loading, setLoading] = useState(false);
+  const [modalCorridaAceita, setModalCorridaAceita] = useState(false);
+  const [modalCorridaFinalizada, setModalCorridaFinalizada] = useState(false);
   const [errors, setErrors] = useState<{ field: string; message: string }[]>(
     []
   );
@@ -54,9 +64,11 @@ export function DetalhesAgendaMotorista({ navigation, route }: any) {
   });
 
   async function BuscarAgendamento() {
+    setLoading(true);
     const agendamentosRef = await doc(db, "agendamentos", idAgendamento);
 
     await getDoc(agendamentosRef).then((res: any) => {
+      setLoading(false);
       setDataAgendamento(res.data());
     });
   }
@@ -96,11 +108,13 @@ export function DetalhesAgendaMotorista({ navigation, route }: any) {
         valor: valorCorrida,
         idMotorista: idMotorista,
         nomeMotorista: dataMotorista.nome,
-      })
-        .then(() => {
+      }).then(() => {
+        setModalCorridaAceita(true);
+        setTimeout(() => {
+          setModalCorridaAceita(false);
           BuscarAgendamento();
-        })
-        .catch((e) => console.log(e));
+        }, 2500);
+      });
     }
   };
 
@@ -108,191 +122,217 @@ export function DetalhesAgendaMotorista({ navigation, route }: any) {
     const agendamentoRef = doc(db, "agendamentos", idAgendamento);
     await updateDoc(agendamentoRef, {
       status: "Realizado",
-    })
-      .then(() => {
+    }).then(() => {
+      setModalCorridaFinalizada(true);
+      setTimeout(() => {
+        setModalCorridaFinalizada(false);
         BuscarAgendamento();
-      })
-      .catch((e) => console.log(e));
+      }, 2500);
+    });
   };
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.containerScroll}>
-        <View style={styles.containerTitle}>
-          <View style={styles.iconTitle}>
-            <IconAgendamentos color={"#4060FF"} />
-            <Text style={styles.title}>Transporte</Text>
-          </View>
-          {dataAgendamento.status == "Realizado" ? (
-            <ButtonAvaliar
-              title={"Avaliar"}
-              onPress={() => {
-                navigation.navigate({
-                  name: "AvaliacaoAgendaMotorista",
-                  params: { dataAgendamento: dataAgendamento },
-                  merge: true,
-                });
-              }}
-            />
-          ) : (
-            ""
-          )}
+      {loading == true ? (
+        <View style={styles.loading}>
+          <ActivityIndicator animating={loading} size={50} color='#4060FF' />
         </View>
-        <View
-          style={
-            dataAgendamento.status == "Pendente"
-              ? styles.statusCardPendente
-              : dataAgendamento.status == "Aceito"
-              ? styles.statusCardAceito
-              : styles.statusCardRealizado
-          }
-        >
-          <Text
+      ) : (
+        <ScrollView style={styles.containerScroll}>
+          <View style={styles.containerTitle}>
+            <View style={styles.iconTitle}>
+              <IconAgendamentos color={"#4060FF"} />
+              <Text style={styles.title}>Transporte</Text>
+            </View>
+            {dataAgendamento.status == "Realizado" ? (
+              <ButtonAvaliar
+                title={"Avaliar"}
+                onPress={() => {
+                  navigation.navigate({
+                    name: "AvaliacaoAgendaMotorista",
+                    params: { dataAgendamento: dataAgendamento },
+                    merge: true,
+                  });
+                }}
+              />
+            ) : (
+              ""
+            )}
+          </View>
+          <View
             style={
               dataAgendamento.status == "Pendente"
-                ? styles.statusTitlePendente
+                ? styles.statusCardPendente
                 : dataAgendamento.status == "Aceito"
-                ? styles.statusTitleAceito
-                : styles.statusTitleRealizado
+                ? styles.statusCardAceito
+                : styles.statusCardRealizado
             }
           >
-            Status:{" "}
-            <Text style={styles.statusInfo}>{dataAgendamento.status}</Text>
-          </Text>
-        </View>
-        <View style={styles.itens}>
-          <View>
-            <Text style={styles.itemTitle}>Pet</Text>
-            <Text style={styles.itemInfo}>{dataAgendamento.nomePet}</Text>
+            <Text
+              style={
+                dataAgendamento.status == "Pendente"
+                  ? styles.statusTitlePendente
+                  : dataAgendamento.status == "Aceito"
+                  ? styles.statusTitleAceito
+                  : styles.statusTitleRealizado
+              }
+            >
+              Status:{" "}
+              <Text style={styles.statusInfo}>{dataAgendamento.status}</Text>
+            </Text>
           </View>
-          <View>
-            <Text style={styles.itemTitle}>Data</Text>
-            <Text style={styles.itemInfo}>{dataAgendamento.data}</Text>
-          </View>
-          <View>
-            <Text style={styles.itemTitle}>Hora</Text>
-            <Text style={styles.itemInfo}>{dataAgendamento.hora}</Text>
-          </View>
-        </View>
-        <View>
-          <Text style={styles.subtitle}>Endereço de Partida</Text>
           <View style={styles.itens}>
             <View>
-              <Text style={styles.itemTitle}>Cidade</Text>
-              <Text style={styles.itemInfo}>Alterosa - MG</Text>
+              <Text style={styles.itemTitle}>Pet</Text>
+              <Text style={styles.itemInfo}>{dataAgendamento.nomePet}</Text>
             </View>
             <View>
-              <Text style={styles.itemTitle}>Bairro</Text>
-              <Text style={styles.itemInfo}>
-                {dataAgendamento.bairroPartida}
-              </Text>
+              <Text style={styles.itemTitle}>Data</Text>
+              <Text style={styles.itemInfo}>{dataAgendamento.data}</Text>
             </View>
             <View>
-              <Text style={styles.itemTitle}>Logradouro e Número</Text>
-              <Text style={styles.itemInfo}>
-                {dataAgendamento.logradouroPartida} -{" "}
-                {dataAgendamento.numeroPartida}
-              </Text>
+              <Text style={styles.itemTitle}>Hora</Text>
+              <Text style={styles.itemInfo}>{dataAgendamento.hora}</Text>
             </View>
           </View>
-        </View>
-        <View>
-          <Text style={styles.subtitle}>Endereço de Destino</Text>
-          <View style={styles.itens}>
-            <View>
-              <Text style={styles.itemTitle}>Cidade</Text>
-              <Text style={styles.itemInfo}>Alterosa - MG</Text>
-            </View>
-            <View>
-              <Text style={styles.itemTitle}>Estabelecimento</Text>
-              <Text style={styles.itemInfo}>
-                {dataAgendamento.estabelecimentoDestino}
-              </Text>
-            </View>
-            <View>
-              <Text style={styles.itemTitle}>Bairro</Text>
-              <Text style={styles.itemInfo}>
-                {dataAgendamento.bairroDestino}
-              </Text>
-            </View>
-            <View>
-              <Text style={styles.itemTitle}>Logradouro e Número</Text>
-              <Text style={styles.itemInfo}>
-                {dataAgendamento.logradouroDestino} -{" "}
-                {dataAgendamento.numeroDestino}
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View style={styles.lastItens}>
-          {dataAgendamento.status !== "Pendente" ? (
-            <>
-              <Text style={styles.subtitle}>Informações da Corrida</Text>
-              <View style={styles.itens}>
-                <View>
-                  <Text style={styles.itemTitle}>Valor</Text>
-                  <Text style={styles.itemInfo}>{dataAgendamento.valor}</Text>
-                </View>
-                <View>
-                  <Text style={styles.itemTitle}>Motorista</Text>
-                  <Text style={styles.itemInfo}>
-                    {dataAgendamento.nomeMotorista}
-                  </Text>
-                </View>
-                {dataAgendamento.status == "Aceito" ? (
-                  <View style={styles.button}>
-                    <ButtonPrimary
-                      title={"Finalizar Corrida"}
-                      onPress={() => {
-                        FinalizarCorrida();
-                      }}
-                    />
-                  </View>
-                ) : (
-                  ""
-                )}
+          <View>
+            <Text style={styles.subtitle}>Endereço de Partida</Text>
+            <View style={styles.itens}>
+              <View>
+                <Text style={styles.itemTitle}>Cidade</Text>
+                <Text style={styles.itemInfo}>Alterosa - MG</Text>
               </View>
-            </>
-          ) : inputValorOpen == false ? (
-            <View style={styles.button}>
-              <ButtonPrimary
-                title={"Aceitar Corrida"}
-                onPress={() => setInputValorOpen(true)}
-              />
+              <View>
+                <Text style={styles.itemTitle}>Bairro</Text>
+                <Text style={styles.itemInfo}>
+                  {dataAgendamento.bairroPartida}
+                </Text>
+              </View>
+              <View>
+                <Text style={styles.itemTitle}>Logradouro e Número</Text>
+                <Text style={styles.itemInfo}>
+                  {dataAgendamento.logradouroPartida} -{" "}
+                  {dataAgendamento.numeroPartida}
+                </Text>
+              </View>
             </View>
-          ) : (
-            <>
-              <Text style={styles.subtitle}>Informações da Corrida</Text>
-              <InputForm
-                label={"Valor"}
-                placeholder={"R$ 0,00"}
-                keyboardType={"numeric"}
-                maxLength={12}
-                onChange={(e: any) => {
-                  setValorCorrida(regexBRL(e));
-                }}
-                value={valorCorrida}
-                mensagemError={
-                  errors.find((e) => e.field === "valorCorrida")?.message
-                }
-              />
+          </View>
+          <View>
+            <Text style={styles.subtitle}>Endereço de Destino</Text>
+            <View style={styles.itens}>
+              <View>
+                <Text style={styles.itemTitle}>Cidade</Text>
+                <Text style={styles.itemInfo}>Alterosa - MG</Text>
+              </View>
+              <View>
+                <Text style={styles.itemTitle}>Estabelecimento</Text>
+                <Text style={styles.itemInfo}>
+                  {dataAgendamento.estabelecimentoDestino}
+                </Text>
+              </View>
+              <View>
+                <Text style={styles.itemTitle}>Bairro</Text>
+                <Text style={styles.itemInfo}>
+                  {dataAgendamento.bairroDestino}
+                </Text>
+              </View>
+              <View>
+                <Text style={styles.itemTitle}>Logradouro e Número</Text>
+                <Text style={styles.itemInfo}>
+                  {dataAgendamento.logradouroDestino} -{" "}
+                  {dataAgendamento.numeroDestino}
+                </Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.lastItens}>
+            {dataAgendamento.status !== "Pendente" ? (
+              <>
+                <Text style={styles.subtitle}>Informações da Corrida</Text>
+                <View style={styles.itens}>
+                  <View>
+                    <Text style={styles.itemTitle}>Valor</Text>
+                    <Text style={styles.itemInfo}>{dataAgendamento.valor}</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.itemTitle}>Motorista</Text>
+                    <Text style={styles.itemInfo}>
+                      {dataAgendamento.nomeMotorista}
+                    </Text>
+                  </View>
+                  {dataAgendamento.status == "Aceito" ? (
+                    <View style={styles.button}>
+                      <ButtonPrimary
+                        title={"Finalizar Corrida"}
+                        onPress={() => {
+                          FinalizarCorrida();
+                        }}
+                      />
+                      <ModalSucesso
+                        title='Sucesso! Corrida finalizada.'
+                        visible={modalCorridaFinalizada}
+                        onRequestClose={() => {
+                          setModalCorridaFinalizada(!modalCorridaFinalizada);
+                        }}
+                      />
+                    </View>
+                  ) : (
+                    ""
+                  )}
+                </View>
+              </>
+            ) : inputValorOpen == false ? (
               <View style={styles.button}>
                 <ButtonPrimary
-                  title={"Concluir"}
-                  onPress={() => {
-                    AceitarCorrida();
-                  }}
+                  title={"Aceitar Corrida"}
+                  onPress={() => setInputValorOpen(true)}
                 />
               </View>
-            </>
-          )}
-        </View>
-      </ScrollView>
+            ) : (
+              <>
+                <Text style={styles.subtitle}>Informações da Corrida</Text>
+                <InputForm
+                  label={"Valor"}
+                  placeholder={"R$ 0,00"}
+                  keyboardType={"numeric"}
+                  maxLength={12}
+                  onChange={(e: any) => {
+                    setValorCorrida(regexBRL(e));
+                  }}
+                  value={valorCorrida}
+                  mensagemError={
+                    errors.find((e) => e.field === "valorCorrida")?.message
+                  }
+                />
+                <View style={styles.button}>
+                  <ButtonPrimary
+                    title={"Concluir"}
+                    onPress={() => {
+                      AceitarCorrida();
+                    }}
+                  />
+                  <ModalSucesso
+                    title='Sucesso! Corrida aceita.'
+                    visible={modalCorridaAceita}
+                    onRequestClose={() => {
+                      setModalCorridaAceita(!modalCorridaAceita);
+                    }}
+                  />
+                </View>
+              </>
+            )}
+          </View>
+        </ScrollView>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  loading: {
+    flex: 1,
+    justifyContent: "center",
+  },
   container: {
     flex: 1,
     flexDirection: "column",

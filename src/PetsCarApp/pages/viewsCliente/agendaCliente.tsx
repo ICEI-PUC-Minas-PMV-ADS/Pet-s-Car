@@ -1,5 +1,12 @@
 //Thiago: desenvolvi a tela de agenda com apoio do material das aulas de Desenvolvimento Mobile da PUC.
-import { FlatList, RefreshControl, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  RefreshControl,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { CardAgenda } from "../../components/card";
 import { ButtonAdd } from "../../components/button";
 import { useCallback, useEffect, useState } from "react";
@@ -10,12 +17,14 @@ import { IconAgendaVazia } from "../../components/icons";
 export function AgendaCliente({ navigation, route }: any) {
   const idCliente = route.params.idCliente;
 
+  const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [agendaVazia, setAgendaVazia] = useState(false);
 
   const [dataAgendamentos, setDataAgendamentos] = useState<any[]>([]);
 
   async function BuscarAgendamentos() {
+    setLoading(true);
     const agendamentosRef = await collection(db, "agendamentos");
     const idAgendamentos = await query(
       agendamentosRef,
@@ -23,9 +32,11 @@ export function AgendaCliente({ navigation, route }: any) {
     );
 
     await getDocs(idAgendamentos).then((res) => {
+      setLoading(false);
       if (res.empty) {
         setAgendaVazia(true);
       } else {
+        setAgendaVazia(false);
         const ArrayData: any = [];
 
         res.forEach((doc) => {
@@ -64,37 +75,46 @@ export function AgendaCliente({ navigation, route }: any) {
       ) : (
         ""
       )}
-      <FlatList
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-        ListFooterComponent={() => <View style={styles.containerVazio}></View>}
-        style={styles.containerScroll}
-        data={dataAgendamentos}
-        keyExtractor={(item) => item.idAgendamento}
-        renderItem={({ item }) => {
-          return (
-            <CardAgenda
-              pet={item.nomePet}
-              data={item.data}
-              hora={item.hora}
-              status={item.status}
-              onPressDetalhes={() => {
-                navigation.navigate("DetalhesAgendaClienteNav", {
-                  idAgendamento: item.idAgendamento,
-                });
-              }}
-              styleCard={
-                item.status == "Pendente"
-                  ? styles.cardPendente
-                  : item.status == "Aceito"
-                  ? styles.cardAceito
-                  : styles.cardRealizado
-              }
-            />
-          );
-        }}
-      />
+      {loading == true ? (
+        <View style={styles.loading}>
+          <ActivityIndicator animating={loading} size={50} color='#4060FF' />
+        </View>
+      ) : (
+        <FlatList
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+          ListFooterComponent={() => (
+            <View style={styles.containerVazio}></View>
+          )}
+          style={styles.containerScroll}
+          data={dataAgendamentos}
+          keyExtractor={(item) => item.idAgendamento}
+          renderItem={({ item }) => {
+            return (
+              <CardAgenda
+                pet={item.nomePet}
+                data={item.data}
+                hora={item.hora}
+                status={item.status}
+                onPressDetalhes={() => {
+                  navigation.navigate("DetalhesAgendaClienteNav", {
+                    idAgendamento: item.idAgendamento,
+                  });
+                }}
+                styleCard={
+                  item.status == "Pendente"
+                    ? styles.cardPendente
+                    : item.status == "Aceito"
+                    ? styles.cardAceito
+                    : styles.cardRealizado
+                }
+              />
+            );
+          }}
+        />
+      )}
+
       <ButtonAdd
         onPress={() =>
           navigation.navigate("AdicionarAgendaCliente", {
@@ -107,6 +127,10 @@ export function AgendaCliente({ navigation, route }: any) {
 }
 
 const styles = StyleSheet.create({
+  loading: {
+    flex: 1,
+    justifyContent: "center",
+  },
   container: {
     flex: 1,
     flexDirection: "column",

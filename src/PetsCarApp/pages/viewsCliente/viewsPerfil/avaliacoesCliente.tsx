@@ -1,7 +1,14 @@
 //João Jorges: desenvolvi a tela de avaliações cliente com apoio do material das aulas de Desenvolvimento Mobile da PUC e do Thiago.
 import { useCallback, useEffect, useState } from "react";
 import { CardAvaliacao } from "../../../components/card";
-import { StyleSheet, View, FlatList, RefreshControl, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  RefreshControl,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebaseInit";
 import { AvaliacaoClienteModel } from "../../../interfaces/interface_avaliacaoCliente";
@@ -12,12 +19,14 @@ export function AvaliacaoCliente({ route, navigation }: any) {
 
   const [refreshing, setRefreshing] = useState(false);
 
+  const [loading, setLoading] = useState(false);
   const [avaliacaoVazia, setAvaliacaoVazia] = useState(false);
   const [dataAvaliacoes, setDataAvaliacoes] = useState<AvaliacaoClienteModel[]>(
     []
   );
 
   async function BuscarAvaliacoes() {
+    setLoading(true);
     const avaliacoesRef = await collection(db, "avaliacoesCliente");
     const idAvaliacoes = await query(
       avaliacoesRef,
@@ -25,9 +34,11 @@ export function AvaliacaoCliente({ route, navigation }: any) {
     );
 
     await getDocs(idAvaliacoes).then((res) => {
+      setLoading(false);
       if (res.empty) {
         setAvaliacaoVazia(true);
       } else {
+        setAvaliacaoVazia(false);
         const ArrayData: any = [];
 
         res.forEach((doc) => {
@@ -66,28 +77,40 @@ export function AvaliacaoCliente({ route, navigation }: any) {
       ) : (
         ""
       )}
-      <FlatList
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-        ListFooterComponent={() => <View style={styles.containerVazio}></View>}
-        style={styles.containerScroll}
-        data={dataAvaliacoes}
-        keyExtractor={(item) => item.idAvaliacao}
-        renderItem={({ item }) => {
-          return (
-            <CardAvaliacao
-              nome={item.nomeMotorista}
-              avaliacao={item.avaliacao}
-            />
-          );
-        }}
-      />
+      {loading == true ? (
+        <View style={styles.loading}>
+          <ActivityIndicator animating={loading} size={50} color='#4060FF' />
+        </View>
+      ) : (
+        <FlatList
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+          ListFooterComponent={() => (
+            <View style={styles.containerVazio}></View>
+          )}
+          style={styles.containerScroll}
+          data={dataAvaliacoes}
+          keyExtractor={(item) => item.idAvaliacao}
+          renderItem={({ item }) => {
+            return (
+              <CardAvaliacao
+                nome={item.nomeMotorista}
+                avaliacao={item.avaliacao}
+              />
+            );
+          }}
+        />
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  loading: {
+    flex: 1,
+    justifyContent: "center",
+  },
   container: {
     flex: 1,
     flexDirection: "column",

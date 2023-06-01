@@ -16,8 +16,10 @@ import { auth, db } from "../firebaseInit";
 import { doc, setDoc } from "firebase/firestore";
 import { regexTelefone } from "../../utils/Regex";
 import { isValidEmail, isValidNome } from "../../utils/Validacao";
+import { ModalSucesso } from "../../components/modal";
 
 export function CadastroMotorista({ navigation }: any) {
+  const [modalSucesso, setModalSucesso] = useState(false);
   const [errors, setErrors] = useState<{ field: string; message: string }[]>(
     []
   );
@@ -57,9 +59,13 @@ export function CadastroMotorista({ navigation }: any) {
             telefone: telefone,
             userType: "Motorista",
           });
-          navigation.navigate("MotoristaNavigation", {
-            idMotorista: userID,
-          });
+          setModalSucesso(true);
+          setTimeout(() => {
+            setModalSucesso(false);
+            navigation.navigate("MotoristaNavigation", {
+              idMotorista: userID,
+            });
+          }, 1800);
         })
         .catch((error) => {
           if (error.code == "auth/email-already-in-use") {
@@ -139,6 +145,13 @@ export function CadastroMotorista({ navigation }: any) {
             }}
           />
         </View>
+        <ModalSucesso
+          title='Sucesso! Novo usuário cadastrado.'
+          visible={modalSucesso}
+          onRequestClose={() => {
+            setModalSucesso(!modalSucesso);
+          }}
+        />
       </ScrollView>
     </KeyboardAvoidingView>
   );

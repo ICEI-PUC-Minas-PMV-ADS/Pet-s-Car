@@ -9,10 +9,12 @@ import { doc, updateDoc } from "firebase/firestore";
 import { Cliente } from "../../../interfaces/interface_cliente";
 import { isValidEmail, isValidNome } from "../../../utils/Validacao";
 import { regexTelefone } from "../../../utils/Regex";
+import { ModalSucesso } from "../../../components/modal";
 
 export function EditarPerfilCliente({ route, navigation }: any) {
   const dataCliente: Cliente = route.params.dataCliente;
 
+  const [modalSucesso, setModalSucesso] = useState(false);
   const [errors, setErrors] = useState<{ field: string; message: string }[]>(
     []
   );
@@ -63,11 +65,12 @@ export function EditarPerfilCliente({ route, navigation }: any) {
         logradouro: logradouro,
         bairro: bairro,
         numeroResidencia: numeroResidencia,
-      })
-        .then(() => {
+      }).then(() => {
+        setModalSucesso(true);
+        setTimeout(() => {
           navigation.goBack();
-        })
-        .catch((e) => console.log(e));
+        }, 2500);
+      });
     }
   };
 
@@ -162,6 +165,13 @@ export function EditarPerfilCliente({ route, navigation }: any) {
             }}
           />
         </View>
+        <ModalSucesso
+          title='Sucesso! Perfil atualizado.'
+          visible={modalSucesso}
+          onRequestClose={() => {
+            setModalSucesso(!modalSucesso);
+          }}
+        />
       </ScrollView>
     </View>
   );

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { IconSucesso } from "./icons";
 
 type ModalPerguntaModel = {
   visible: boolean;
@@ -55,6 +56,35 @@ export const ModalPergunta = ({
   );
 };
 
+type ModalSucessoModel = {
+  visible: boolean;
+  onRequestClose: (event: NativeSyntheticEvent<any>) => void;
+  title: string;
+};
+
+export const ModalSucesso = ({
+  visible,
+  onRequestClose,
+
+  title,
+}: ModalSucessoModel) => {
+  return (
+    <Modal
+      animationType='slide'
+      transparent={true}
+      visible={visible}
+      onRequestClose={onRequestClose}
+    >
+      <View style={styles.modelContainer}>
+        <View style={styles.viewSucesso}>
+          <IconSucesso color='#FFFFFF' />
+          <Text style={styles.textSucesso}>{title}</Text>
+        </View>
+      </View>
+    </Modal>
+  );
+};
+
 const styles = StyleSheet.create({
   modelContainer: {
     flex: 1,
@@ -63,7 +93,6 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
-    margin: 20,
     backgroundColor: "#4060FF",
     borderRadius: 16,
     padding: 25,
@@ -76,7 +105,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    width: "75%",
+    marginHorizontal: 50,
   },
   modalText: {
     fontFamily: "Raleway-700",
@@ -113,5 +142,28 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Raleway-700",
     fontSize: 16,
+  },
+  viewSucesso: {
+    display: "flex",
+    gap: 13,
+    backgroundColor: "#4060FF",
+    borderRadius: 16,
+    padding: 30,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    marginHorizontal: 50,
+  },
+  textSucesso: {
+    fontFamily: "Raleway-700",
+    color: "#FFF",
+    fontSize: 18,
+    textAlign: "center",
   },
 });

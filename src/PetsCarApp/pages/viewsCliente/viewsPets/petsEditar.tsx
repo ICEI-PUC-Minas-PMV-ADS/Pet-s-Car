@@ -14,7 +14,7 @@ import { SetStateAction, useState } from "react";
 import { Pet } from "../../../interfaces/interface_pets";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebaseInit";
-import { ModalPergunta } from "../../../components/modal";
+import { ModalPergunta, ModalSucesso } from "../../../components/modal";
 
 const selectTipoPets = ["Cachorro", "Gato", "Pássaro", "Hamsters", "Outro"];
 const selectPortePets = ["Pequeno", "Médio", "Grande"];
@@ -23,7 +23,9 @@ export function EditarPetClient({ route, navigation }: any) {
   const idPet = route.params.idPet;
   const dataPet: Pet = route.params.dataPet;
 
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalSucessoExcluir, setModalSucessoExcluir] = useState(false);
+  const [modalSucesso, setModalSucesso] = useState(false);
+  const [modalExcluir, setModalExcluir] = useState(false);
   const [errors, setErrors] = useState<{ field: string; message: string }[]>(
     []
   );
@@ -56,14 +58,22 @@ export function EditarPetClient({ route, navigation }: any) {
         raca: racaPet,
         porte: portePet,
       }).then(() => {
-        navigation.goBack();
+        setModalSucesso(true);
+        setTimeout(() => {
+          navigation.goBack();
+        }, 2500);
       });
     }
   };
 
   const ExcluirPet = async () => {
-    await deleteDoc(doc(db, "pets", idPet));
-    navigation.navigate("ClienteTabNavegation");
+    await deleteDoc(doc(db, "pets", idPet)).then(() => {
+      setModalExcluir(false);
+      setModalSucessoExcluir(true);
+      setTimeout(() => {
+        navigation.navigate("ClienteTabNavegation");
+      }, 2500);
+    });
   };
 
   return (
@@ -133,19 +143,33 @@ export function EditarPetClient({ route, navigation }: any) {
               AtualizarPet();
             }}
           />
+          <ModalSucesso
+            title='Sucesso! Pet atualizado.'
+            visible={modalSucesso}
+            onRequestClose={() => {
+              setModalSucesso(!modalSucesso);
+            }}
+          />
           <ButtonExcluir
             title={"Excluir"}
             onPress={() => {
-              setModalVisible(true);
+              setModalExcluir(true);
             }}
           />
           <ModalPergunta
             title='Deseja mesmo excluir o Pet?'
             onPressSim={() => ExcluirPet()}
-            onPressNao={() => setModalVisible(!modalVisible)}
-            visible={modalVisible}
+            onPressNao={() => setModalExcluir(!modalExcluir)}
+            visible={modalExcluir}
             onRequestClose={() => {
-              setModalVisible(!modalVisible);
+              setModalExcluir(!modalExcluir);
+            }}
+          />
+          <ModalSucesso
+            title='Sucesso! Pet excluído.'
+            visible={modalSucessoExcluir}
+            onRequestClose={() => {
+              setModalSucessoExcluir(!modalSucessoExcluir);
             }}
           />
         </View>

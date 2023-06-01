@@ -278,3 +278,19 @@ export const IconAvaliacaoVazio = ({ color }: SVGIcons) => (
     />
   </Svg>
 );
+
+export const IconSucesso = ({ color }: SVGIcons) => (
+  <Svg width={49} height={49} fill='none'>
+    <G clipPath='url(#a)'>
+      <Path
+        fill={color}
+        d='M24.5 0C10.99 0 0 10.99 0 24.5S10.99 49 24.5 49 49 38.01 49 24.5 38.01 0 24.5 0Zm-.186 31.48a4.045 4.045 0 0 1-2.872 1.185 4.086 4.086 0 0 1-2.891-1.195l-5.68-5.504 2.844-2.934 5.702 5.527 11.86-11.64 2.867 2.91-11.83 11.651Z'
+      />
+    </G>
+    <Defs>
+      <ClipPath id='a'>
+        <Path fill='#fff' d='M0 0h49v49H0z' />
+      </ClipPath>
+    </Defs>
+  </Svg>
+);

@@ -12,6 +12,7 @@ import { ButtonPrimary } from "../../../components/button";
 import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebaseInit";
+import { ModalSucesso } from "../../../components/modal";
 
 const selectTipoPets = ["Cachorro", "Gato", "Pássaro", "Hamsters", "Outro"];
 const selectPortePets = ["Pequeno", "Médio", "Grande"];
@@ -19,6 +20,7 @@ const selectPortePets = ["Pequeno", "Médio", "Grande"];
 export function AdicionarPetClient({ route, navigation }: any) {
   const idCliente = route.params.idCliente;
 
+  const [modalSucesso, setModalSucesso] = useState(false);
   const [errors, setErrors] = useState<{ field: string; message: string }[]>(
     []
   );
@@ -51,7 +53,10 @@ export function AdicionarPetClient({ route, navigation }: any) {
         raca: racaPet,
         porte: portePet,
       }).then(() => {
-        navigation.goBack();
+        setModalSucesso(true);
+        setTimeout(() => {
+          navigation.goBack();
+        }, 2500);
       });
     }
   };
@@ -105,6 +110,13 @@ export function AdicionarPetClient({ route, navigation }: any) {
             }}
           />
         </View>
+        <ModalSucesso
+          title='Sucesso! Novo pet cadastrado.'
+          visible={modalSucesso}
+          onRequestClose={() => {
+            setModalSucesso(!modalSucesso);
+          }}
+        />
       </ScrollView>
     </KeyboardAvoidingView>
   );

@@ -16,11 +16,13 @@ import { useState } from "react";
 import { auth, db } from "../firebaseInit";
 import { isValidEmail, isValidNome } from "../../utils/Validacao";
 import { regexTelefone } from "../../utils/Regex";
+import { ModalSucesso } from "../../components/modal";
 
 const selectPortePets = ["Pequeno", "Médio", "Grande"];
 const selectTipoPets = ["Cachorro", "Gato", "Pássaro", "Hamsters", "Outro"];
 
 export function CadastroCliente({ navigation }: any) {
+  const [modalSucesso, setModalSucesso] = useState(false);
   const [errors, setErrors] = useState<{ field: string; message: string }[]>(
     []
   );
@@ -109,9 +111,13 @@ export function CadastroCliente({ navigation }: any) {
             raca: racaPet,
             tipo: tipoPet,
           });
-          navigation.navigate("ClienteNavigation", {
-            idCliente: userID,
-          });
+          setModalSucesso(true);
+          setTimeout(() => {
+            setModalSucesso(false);
+            navigation.navigate("ClienteNavigation", {
+              idCliente: userID,
+            });
+          }, 1800);
         })
         .catch((error) => {
           if (error.code == "auth/email-already-in-use") {
@@ -245,6 +251,13 @@ export function CadastroCliente({ navigation }: any) {
           )}
           <ButtonPrimary title='Cadastrar' onPress={() => EnvioForm()} />
         </View>
+        <ModalSucesso
+          title='Sucesso! Novo usuário cadastrado.'
+          visible={modalSucesso}
+          onRequestClose={() => {
+            setModalSucesso(!modalSucesso);
+          }}
+        />
       </ScrollView>
     </KeyboardAvoidingView>
   );

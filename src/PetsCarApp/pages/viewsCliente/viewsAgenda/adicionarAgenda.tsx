@@ -6,6 +6,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  Alert,
 } from "react-native";
 import { IconAgendamentos } from "../../../components/icons";
 import {
@@ -26,10 +27,12 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { ModalSucesso } from "../../../components/modal";
 
 export function AdicionarAgendaCliente({ navigation, route }: any) {
   const idCliente = route.params.idCliente;
 
+  const [modalSucesso, setModalSucesso] = useState(false);
   const [errors, setErrors] = useState<{ field: string; message: string }[]>(
     []
   );
@@ -169,7 +172,10 @@ export function AdicionarAgendaCliente({ navigation, route }: any) {
         idMotorista: "",
         nomeMotorista: "Sem motorista.",
       }).then(() => {
-        navigation.goBack();
+        setModalSucesso(true);
+        setTimeout(() => {
+          navigation.goBack();
+        }, 2500);
       });
     }
   };
@@ -310,6 +316,13 @@ export function AdicionarAgendaCliente({ navigation, route }: any) {
             onPress={() => EnviarAgendamento()}
           />
         </View>
+        <ModalSucesso
+          title='Sucesso! Novo agendamento realizado.'
+          visible={modalSucesso}
+          onRequestClose={() => {
+            setModalSucesso(!modalSucesso);
+          }}
+        />
       </ScrollView>
     </KeyboardAvoidingView>
   );
