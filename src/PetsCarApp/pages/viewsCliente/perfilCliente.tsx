@@ -12,10 +12,13 @@ import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebaseInit";
 import { Cliente } from "../../interfaces/interface_cliente";
 import { deleteUser } from "firebase/auth";
+import { ModalPergunta } from "../../components/modal";
 
 export function PerfilCliente({ navigation, route }: any) {
   const idCliente = route.params.idCliente;
 
+  const [modalDeslogar, setModalDeslogar] = useState(false);
+  const [modalExcluir, setModalExcluir] = useState(false);
   const [dataCliente, setDataCliente] = useState<Cliente>({
     idUser: "",
     nome: "",
@@ -114,10 +117,31 @@ export function PerfilCliente({ navigation, route }: any) {
                 };
             }}
           />
-          <ButtonDeslogar title='Deslogar' onPress={() => Deslogar()} />
+          <ButtonDeslogar
+            title='Deslogar'
+            onPress={() => setModalDeslogar(true)}
+          />
+          <ModalPergunta
+            title='Deseja mesmo deslogar?'
+            onPressSim={() => Deslogar()}
+            onPressNao={() => setModalDeslogar(!modalDeslogar)}
+            visible={modalDeslogar}
+            onRequestClose={() => {
+              setModalDeslogar(!modalDeslogar);
+            }}
+          />
           <ButtonExcluirConta
             title='Excluir Conta'
-            onPress={() => ExcluirConta()}
+            onPress={() => setModalExcluir(true)}
+          />
+          <ModalPergunta
+            title='Deseja mesmo excluir sua conta?'
+            onPressSim={() => ExcluirConta()}
+            onPressNao={() => setModalExcluir(!modalExcluir)}
+            visible={modalExcluir}
+            onRequestClose={() => {
+              setModalExcluir(!modalExcluir);
+            }}
           />
         </View>
       </ScrollView>

@@ -28,8 +28,7 @@ export function RecuperarSenhaMotorista({ navigation }: any) {
     } else {
       sendPasswordResetEmail(auth, email)
         .then(() => {
-          // Password reset email sent!
-          // ..
+          navigation.navigate("RedefinirSenhaMotorista");
         })
         .catch((error) => {
           if (error.code == "auth/user-not-found") {
@@ -49,7 +48,7 @@ export function RecuperarSenhaMotorista({ navigation }: any) {
     <View style={styles.container}>
       <HeaderTitle
         title='Esqueceu sua Senha?'
-        subtitle='Recupere sua senha caso tenha esquecido! '
+        subtitle='Informe abaixo o e-mail usado no cadastro de sua conta, iremos enviar um e-mail para você poder redefinir sua senha.'
       />
       <View style={styles.input}>
         <InputForm

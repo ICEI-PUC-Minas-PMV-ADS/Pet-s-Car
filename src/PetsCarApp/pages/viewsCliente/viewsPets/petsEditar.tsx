@@ -14,6 +14,7 @@ import { SetStateAction, useState } from "react";
 import { Pet } from "../../../interfaces/interface_pets";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebaseInit";
+import { ModalPergunta } from "../../../components/modal";
 
 const selectTipoPets = ["Cachorro", "Gato", "Pássaro", "Hamsters", "Outro"];
 const selectPortePets = ["Pequeno", "Médio", "Grande"];
@@ -22,6 +23,7 @@ export function EditarPetClient({ route, navigation }: any) {
   const idPet = route.params.idPet;
   const dataPet: Pet = route.params.dataPet;
 
+  const [modalVisible, setModalVisible] = useState(false);
   const [errors, setErrors] = useState<{ field: string; message: string }[]>(
     []
   );
@@ -134,7 +136,16 @@ export function EditarPetClient({ route, navigation }: any) {
           <ButtonExcluir
             title={"Excluir"}
             onPress={() => {
-              ExcluirPet();
+              setModalVisible(true);
+            }}
+          />
+          <ModalPergunta
+            title='Deseja mesmo excluir o Pet?'
+            onPressSim={() => ExcluirPet()}
+            onPressNao={() => setModalVisible(!modalVisible)}
+            visible={modalVisible}
+            onRequestClose={() => {
+              setModalVisible(!modalVisible);
             }}
           />
         </View>

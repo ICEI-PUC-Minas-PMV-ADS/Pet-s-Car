@@ -1,16 +1,18 @@
 //João Jorges: desenvolvi a tela de avaliações cliente com apoio do material das aulas de Desenvolvimento Mobile da PUC e do Thiago.
 import { useCallback, useEffect, useState } from "react";
 import { CardAvaliacao } from "../../../components/card";
-import { StyleSheet, View, FlatList, RefreshControl } from "react-native";
+import { StyleSheet, View, FlatList, RefreshControl, Text } from "react-native";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebaseInit";
 import { AvaliacaoClienteModel } from "../../../interfaces/interface_avaliacaoCliente";
+import { IconAvaliacaoVazio } from "../../../components/icons";
 
 export function AvaliacaoCliente({ route, navigation }: any) {
   const idCliente = route.params.idCliente;
 
   const [refreshing, setRefreshing] = useState(false);
 
+  const [avaliacaoVazia, setAvaliacaoVazia] = useState(false);
   const [dataAvaliacoes, setDataAvaliacoes] = useState<AvaliacaoClienteModel[]>(
     []
   );
@@ -24,7 +26,7 @@ export function AvaliacaoCliente({ route, navigation }: any) {
 
     await getDocs(idAvaliacoes).then((res) => {
       if (res.empty) {
-        console.log("Não tem agendamentos.");
+        setAvaliacaoVazia(true);
       } else {
         const ArrayData: any = [];
 
@@ -54,6 +56,16 @@ export function AvaliacaoCliente({ route, navigation }: any) {
 
   return (
     <View style={styles.container}>
+      {avaliacaoVazia == true ? (
+        <View style={styles.avaliacaoVazia}>
+          <IconAvaliacaoVazio color='#DDDDDD' />
+          <Text style={styles.textAvaliacaoVazia}>
+            Lista vazia, nenhuma avaliação disponível
+          </Text>
+        </View>
+      ) : (
+        ""
+      )}
       <FlatList
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -87,5 +99,18 @@ const styles = StyleSheet.create({
   containerScroll: {
     paddingHorizontal: 18,
     paddingVertical: 15,
+  },
+  avaliacaoVazia: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 90,
+    gap: 10,
+  },
+  textAvaliacaoVazia: {
+    fontFamily: "Raleway-600",
+    color: "#DDDDDD",
+    textAlign: "center",
+    fontSize: 16,
   },
 });

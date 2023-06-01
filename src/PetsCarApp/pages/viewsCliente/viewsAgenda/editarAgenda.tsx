@@ -27,11 +27,13 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebaseInit";
 import { Agendamento } from "../../../interfaces/interface_agendamento";
+import { ModalPergunta } from "../../../components/modal";
 
 export function EditarAgendaCliente({ route, navigation }: any) {
   const idAgendamento = route.params.idAgendamento;
   const dataAgendamento: Agendamento = route.params.dataAgendamento;
 
+  const [modalVisible, setModalVisible] = useState(false);
   const [errors, setErrors] = useState<{ field: string; message: string }[]>(
     []
   );
@@ -335,7 +337,16 @@ export function EditarAgendaCliente({ route, navigation }: any) {
           />
           <ButtonExcluir
             title={"Excluir"}
-            onPress={() => ExcluirAgendamento()}
+            onPress={() => setModalVisible(true)}
+          />
+          <ModalPergunta
+            title='Deseja mesmo excluir o Agendamento?'
+            onPressSim={() => ExcluirAgendamento()}
+            onPressNao={() => setModalVisible(!modalVisible)}
+            visible={modalVisible}
+            onRequestClose={() => {
+              setModalVisible(!modalVisible);
+            }}
           />
         </View>
       </ScrollView>

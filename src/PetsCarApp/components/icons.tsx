@@ -269,3 +269,12 @@ export const IconPetsVazio = ({ color }: SVGIcons) => (
     </Defs>
   </Svg>
 );
+
+export const IconAvaliacaoVazio = ({ color }: SVGIcons) => (
+  <Svg width={54} height={54} fill='none'>
+    <Path
+      fill={color}
+      d='m2.986 27.9 8.01 5.85-3.042 9.42a7.15 7.15 0 0 0 2.664 8.13 7.149 7.149 0 0 0 8.55-.043L27 45.493l7.835 5.757a7.26 7.26 0 0 0 11.211-8.08l-3.042-9.42 8.01-5.85a7.26 7.26 0 0 0-4.275-13.122H36.9l-2.986-9.306a7.26 7.26 0 0 0-13.828 0L17.1 14.778H7.27A7.261 7.261 0 0 0 2.995 27.9h-.01Z'
+    />
+  </Svg>
+);
