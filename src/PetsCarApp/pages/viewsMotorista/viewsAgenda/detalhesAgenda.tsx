@@ -187,6 +187,18 @@ export function DetalhesAgendaMotorista({ navigation, route }: any) {
               <Text style={styles.itemInfo}>{dataAgendamento.nomePet}</Text>
             </View>
             <View>
+              <Text style={styles.itemTitle}>Tipo</Text>
+              <Text style={styles.itemInfo}>{dataAgendamento.tipoPet}</Text>
+            </View>
+            <View>
+              <Text style={styles.itemTitle}>Raça</Text>
+              <Text style={styles.itemInfo}>{dataAgendamento.racaPet}</Text>
+            </View>
+            <View>
+              <Text style={styles.itemTitle}>Porte</Text>
+              <Text style={styles.itemInfo}>{dataAgendamento.portePet}</Text>
+            </View>
+            <View>
               <Text style={styles.itemTitle}>Data</Text>
               <Text style={styles.itemInfo}>{dataAgendamento.data}</Text>
             </View>
