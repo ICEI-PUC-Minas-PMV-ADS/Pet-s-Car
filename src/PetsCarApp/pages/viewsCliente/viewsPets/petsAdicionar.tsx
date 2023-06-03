@@ -70,7 +70,7 @@ export function AdicionarPetClient({ route, navigation }: any) {
         </View>
         <View>
           <InputForm
-            label='Nome'
+            label='Nome*'
             placeholder='Ex: Bob'
             onChange={(e: any) => {
               setNomePet(e);
@@ -78,7 +78,7 @@ export function AdicionarPetClient({ route, navigation }: any) {
             mensagemError={errors.find((e) => e.field === "nomePet")?.message}
           />
           <InputSelect
-            label='Tipo'
+            label='Tipo*'
             data={selectTipoPets}
             onChange={(e: any) => {
               setTipoPet(e);
@@ -86,7 +86,7 @@ export function AdicionarPetClient({ route, navigation }: any) {
             mensagemError={errors.find((e) => e.field === "tipoPet")?.message}
           />
           <InputForm
-            label='Raça'
+            label='Raça*'
             placeholder='Ex:Pinscher'
             onChange={(e: any) => {
               setRacaPet(e);
@@ -94,7 +94,7 @@ export function AdicionarPetClient({ route, navigation }: any) {
             mensagemError={errors.find((e) => e.field === "racaPet")?.message}
           />
           <InputSelect
-            label='Porte'
+            label='Porte*'
             data={selectPortePets}
             onChange={(e: any) => {
               setPortePet(e);

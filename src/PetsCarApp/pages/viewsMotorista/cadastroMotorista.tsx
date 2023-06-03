@@ -99,27 +99,27 @@ export function CadastroMotorista({ navigation }: any) {
         />
         <View style={styles.formContainer}>
           <InputForm
-            label='Seu Nome'
+            label='Seu Nome*'
             placeholder='Ex. Saul Ramirez'
             onChange={(e: any) => setNome(e)}
             mensagemError={errors.find((e) => e.field === "nome")?.message}
           />
           <InputForm
-            label='E-mail'
+            label='E-mail*'
             placeholder='Ex: abc@example.com'
             inputMode={"email"}
             onChange={(e: any) => setEmail(e)}
             mensagemError={errors.find((e) => e.field === "email")?.message}
           />
           <InputForm
-            label='Senha'
+            label='Senha*'
             placeholder='Ex: •••••••••••••'
             onChange={(e: any) => setSenha(e)}
             mensagemError={errors.find((e) => e.field === "senha")?.message}
             secureTextEntry={true}
           />
           <InputForm
-            label='Telefone'
+            label='Telefone*'
             placeholder='Ex: (99)99999-9999'
             value={telefone}
             maxLength={15}

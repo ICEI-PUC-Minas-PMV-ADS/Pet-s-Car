@@ -192,7 +192,7 @@ export function AdicionarAgendaCliente({ navigation, route }: any) {
         </View>
         <View>
           <InputSelect
-            label='Pet'
+            label='Pet*'
             data={dataPets.map((e) => e.nome)}
             onChange={(selectedItem: any, index: number) => {
               setPet(index);
@@ -222,7 +222,7 @@ export function AdicionarAgendaCliente({ navigation, route }: any) {
             <Text style={styles.subtitleCity}>Alterosa-MG</Text>
           </View>
           <InputForm
-            label={"Bairro"}
+            label={"Bairro*"}
             placeholder={"Ex: Centro"}
             onChange={(e) => {
               setBairroPartida(e);
@@ -232,7 +232,7 @@ export function AdicionarAgendaCliente({ navigation, route }: any) {
             }
           />
           <InputForm
-            label={"Logradouro"}
+            label={"Logradouro*"}
             placeholder={"Ex: Rua Donatello Paccini"}
             onChange={(e) => {
               setLogradouroPartida(e);
@@ -242,7 +242,7 @@ export function AdicionarAgendaCliente({ navigation, route }: any) {
             }
           />
           <InputForm
-            label={"Número"}
+            label={"Número*"}
             placeholder={"Ex: 365"}
             keyboardType={"numeric"}
             onChange={(e) => {
@@ -259,7 +259,7 @@ export function AdicionarAgendaCliente({ navigation, route }: any) {
             <Text style={styles.subtitleCity}>Alterosa-MG</Text>
           </View>
           <InputForm
-            label={"Estabelecimento"}
+            label={"Estabelecimento*"}
             placeholder={"Ex: PetShop Feliz"}
             onChange={(e) => {
               setEstabelecimentoDestino(e);
@@ -269,7 +269,7 @@ export function AdicionarAgendaCliente({ navigation, route }: any) {
             }
           />
           <InputForm
-            label={"Bairro"}
+            label={"Bairro*"}
             placeholder={"Ex: Centro"}
             onChange={(e) => {
               setBairroDestino(e);
@@ -279,7 +279,7 @@ export function AdicionarAgendaCliente({ navigation, route }: any) {
             }
           />
           <InputForm
-            label={"Logradouro"}
+            label={"Logradouro*"}
             placeholder={"Ex: Rua Alcides Terra"}
             onChange={(e) => {
               setLogradouroDestino(e);
@@ -289,7 +289,7 @@ export function AdicionarAgendaCliente({ navigation, route }: any) {
             }
           />
           <InputForm
-            label={"Número"}
+            label={"Número*"}
             placeholder={"Ex: 2688"}
             keyboardType={"numeric"}
             onChange={(e) => {

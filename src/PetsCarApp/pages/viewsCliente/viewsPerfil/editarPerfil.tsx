@@ -83,7 +83,7 @@ export function EditarPerfilCliente({ route, navigation }: any) {
         </View>
         <View>
           <InputForm
-            label='Nome'
+            label='Nome*'
             placeholder='João Silva'
             onChange={(e: string) => {
               setNome(e);
@@ -92,7 +92,7 @@ export function EditarPerfilCliente({ route, navigation }: any) {
             mensagemError={errors.find((e) => e.field === "nome")?.message}
           />
           <InputForm
-            label='E-mail'
+            label='E-mail*'
             placeholder='joao.silva@gmail.com'
             onChange={(e: string) => {
               setEmail(e);
@@ -101,7 +101,7 @@ export function EditarPerfilCliente({ route, navigation }: any) {
             mensagemError={errors.find((e) => e.field === "email")?.message}
           />
           <InputForm
-            label='Telefone'
+            label='Telefone*'
             placeholder='(35) 95655-5553'
             value={telefone}
             maxLength={15}
@@ -119,7 +119,7 @@ export function EditarPerfilCliente({ route, navigation }: any) {
             <Text style={styles.subtitleCity}>Alterosa-MG</Text>
           </View>
           <InputForm
-            label='Bairro'
+            label='Bairro*'
             placeholder='Centro'
             onChange={(e: string) => {
               setBairro(e);
@@ -128,7 +128,7 @@ export function EditarPerfilCliente({ route, navigation }: any) {
             mensagemError={errors.find((e) => e.field === "bairro")?.message}
           />
           <InputForm
-            label='Logradouro'
+            label='Logradouro*'
             placeholder='Rua Donatello Paccini'
             onChange={(e: string) => {
               setLogradouro(e);
@@ -139,7 +139,7 @@ export function EditarPerfilCliente({ route, navigation }: any) {
             }
           />
           <InputForm
-            label='Número'
+            label='Número*'
             placeholder='365'
             onChange={(e: string) => {
               setNumeroResidencia(e);

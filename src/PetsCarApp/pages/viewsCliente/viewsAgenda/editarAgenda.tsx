@@ -214,7 +214,7 @@ export function EditarAgendaCliente({ route, navigation }: any) {
         </View>
         <View>
           <InputSelect
-            label='Pet'
+            label='Pet*'
             data={dataPets.map((e: { nome: any }) => e.nome)}
             onChange={(selectedItem: any, index: number) => {
               setNomePet(selectedItem);
@@ -246,7 +246,7 @@ export function EditarAgendaCliente({ route, navigation }: any) {
             <Text style={styles.subtitleCity}>Alterosa-MG</Text>
           </View>
           <InputForm
-            label={"Bairro"}
+            label={"Bairro*"}
             placeholder={"Ex: Centro"}
             defaultValue={bairroPartida}
             onChange={(e) => {
@@ -257,7 +257,7 @@ export function EditarAgendaCliente({ route, navigation }: any) {
             }
           />
           <InputForm
-            label={"Logradouro"}
+            label={"Logradouro*"}
             placeholder={"Ex: Rua Donatello Paccini"}
             defaultValue={logradouroPartida}
             onChange={(e) => {
@@ -285,7 +285,7 @@ export function EditarAgendaCliente({ route, navigation }: any) {
             <Text style={styles.subtitleCity}>Alterosa-MG</Text>
           </View>
           <InputForm
-            label={"Estabelecimento"}
+            label={"Estabelecimento*"}
             placeholder={"Ex: PetShop Feliz"}
             defaultValue={estabelecimentoDestino}
             onChange={(e) => {
@@ -296,7 +296,7 @@ export function EditarAgendaCliente({ route, navigation }: any) {
             }
           />
           <InputForm
-            label={"Bairro"}
+            label={"Bairro*"}
             placeholder={"Ex: Centro"}
             defaultValue={bairroDestino}
             onChange={(e) => {
@@ -307,7 +307,7 @@ export function EditarAgendaCliente({ route, navigation }: any) {
             }
           />
           <InputForm
-            label={"Logradouro"}
+            label={"Logradouro*"}
             placeholder={"Ex: Rua Alcides Terra"}
             defaultValue={logradouroDestino}
             onChange={(e) => {
@@ -318,7 +318,7 @@ export function EditarAgendaCliente({ route, navigation }: any) {
             }
           />
           <InputForm
-            label={"Número"}
+            label={"Número*"}
             placeholder={"Ex: 2688"}
             defaultValue={numeroDestino}
             onChange={(e) => {

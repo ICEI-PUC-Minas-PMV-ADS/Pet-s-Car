@@ -64,7 +64,7 @@ export function EditarPerfilMotorista({ route, navigation }: any) {
         </View>
         <View>
           <InputForm
-            label='Nome'
+            label='Nome*'
             placeholder='José Silva'
             onChange={(e: any) => {
               setNome(e);
@@ -73,7 +73,7 @@ export function EditarPerfilMotorista({ route, navigation }: any) {
             mensagemError={errors.find((e) => e.field === "nome")?.message}
           />
           <InputForm
-            label='E-mail'
+            label='E-mail*'
             placeholder='jose@gmail.com'
             onChange={(e: any) => {
               setEmail(e);
@@ -82,7 +82,7 @@ export function EditarPerfilMotorista({ route, navigation }: any) {
             mensagemError={errors.find((e) => e.field === "email")?.message}
           />
           <InputForm
-            label='Telefone'
+            label='Telefone*'
             placeholder='(35) 95655-5553'
             value={telefone}
             maxLength={15}

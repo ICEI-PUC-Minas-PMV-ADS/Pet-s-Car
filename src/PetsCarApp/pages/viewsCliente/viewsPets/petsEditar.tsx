@@ -88,7 +88,7 @@ export function EditarPetClient({ route, navigation }: any) {
         </View>
         <View>
           <InputForm
-            label='Nome'
+            label='Nome*'
             placeholder='Ex: Bob'
             onChange={(e: SetStateAction<string>) => {
               setNomePet(e);
@@ -97,7 +97,7 @@ export function EditarPetClient({ route, navigation }: any) {
             mensagemError={errors.find((e) => e.field === "nomePet")?.message}
           />
           <InputSelect
-            label='Tipo'
+            label='Tipo*'
             data={selectTipoPets}
             onChange={(e: SetStateAction<string>) => {
               setTipoPet(e);
@@ -116,7 +116,7 @@ export function EditarPetClient({ route, navigation }: any) {
             mensagemError={errors.find((e) => e.field === "tipoPet")?.message}
           />
           <InputForm
-            label='Raça'
+            label='Raça*'
             placeholder='Ex:Pinscher'
             onChange={(e: SetStateAction<string>) => {
               setRacaPet(e);
@@ -125,7 +125,7 @@ export function EditarPetClient({ route, navigation }: any) {
             mensagemError={errors.find((e) => e.field === "racaPet")?.message}
           />
           <InputSelect
-            label='Porte'
+            label='Porte*'
             data={selectPortePets}
             onChange={(e: SetStateAction<string>) => {
               setPortePet(e);

@@ -151,27 +151,27 @@ export function CadastroCliente({ navigation }: any) {
         />
         <View style={styles.initForm}>
           <InputForm
-            label='Seu Nome'
+            label='Seu Nome*'
             placeholder='Ex. Saul Ramirez'
             onChange={(e) => setNome(e)}
             mensagemError={errors.find((e) => e.field === "nome")?.message}
           />
           <InputForm
-            label='E-mail'
+            label='E-mail*'
             placeholder='Ex: abc@example.com'
             onChange={(e) => setEmail(e)}
             inputMode='email'
             mensagemError={errors.find((e) => e.field === "email")?.message}
           />
           <InputForm
-            label='Senha'
+            label='Senha*'
             placeholder='••••••••••'
             onChange={(e) => setSenha(e)}
             secureTextEntry={true}
             mensagemError={errors.find((e) => e.field === "senha")?.message}
           />
           <InputForm
-            label='Telefone'
+            label='Telefone*'
             placeholder='Ex:(99) 99999-9999'
             value={telefone}
             maxLength={15}
@@ -186,13 +186,13 @@ export function CadastroCliente({ navigation }: any) {
             <Text style={styles.subtitleCity}>Alterosa-MG</Text>
           </View>
           <InputForm
-            label='Bairro'
+            label='Bairro*'
             placeholder='Ex: Centro'
             onChange={(e) => setBairro(e)}
             mensagemError={errors.find((e) => e.field === "bairro")?.message}
           />
           <InputForm
-            label='Logradouro'
+            label='Logradouro*'
             placeholder='Ex: Rua Alcides Terra'
             onChange={(e) => setLogradouro(e)}
             mensagemError={
@@ -200,7 +200,7 @@ export function CadastroCliente({ navigation }: any) {
             }
           />
           <InputForm
-            label='Número'
+            label='Número*'
             placeholder='Ex: 2688'
             onChange={(e) => setNumeroResidencia(e)}
             keyboardType='numeric'
@@ -214,25 +214,25 @@ export function CadastroCliente({ navigation }: any) {
             <Text style={styles.subtitle}>Meu Pet</Text>
           </View>
           <InputForm
-            label='Nome'
+            label='Nome*'
             placeholder='Ex: Bob'
             onChange={(e) => setNomePet(e)}
             mensagemError={errors.find((e) => e.field === "nomePet")?.message}
           />
           <InputSelect
-            label='Tipo'
+            label='Tipo*'
             data={selectTipoPets}
             onChange={(e: any) => setTipoPet(e)}
             mensagemError={errors.find((e) => e.field === "tipoPet")?.message}
           />
           <InputForm
-            label='Raça'
+            label='Raça*'
             placeholder='Ex: Pinscher'
             onChange={(e) => setRacaPet(e)}
             mensagemError={errors.find((e) => e.field === "racaPet")?.message}
           />
           <InputSelect
-            label='Porte'
+            label='Porte*'
             data={selectPortePets}
             onChange={(e: any) => setPortePet(e)}
             mensagemError={errors.find((e) => e.field === "portePet")?.message}

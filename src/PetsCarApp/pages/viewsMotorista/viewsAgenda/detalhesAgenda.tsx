@@ -304,7 +304,7 @@ export function DetalhesAgendaMotorista({ navigation, route }: any) {
               <>
                 <Text style={styles.subtitle}>Informações da Corrida</Text>
                 <InputForm
-                  label={"Valor"}
+                  label={"Valor*"}
                   placeholder={"R$ 0,00"}
                   keyboardType={"numeric"}
                   maxLength={12}

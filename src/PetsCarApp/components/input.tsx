@@ -38,7 +38,7 @@ export const InputData = ({
   return (
     <View style={styles.containerInputForm}>
       <View style={styles.label}>
-        <Text style={styles.textLabelForm}>Data</Text>
+        <Text style={styles.textLabelForm}>Data*</Text>
       </View>
       <TouchableOpacity onPress={onPress} style={styles.inputDataHora}>
         <Text style={styles.textDataHora}>{value.toLocaleDateString()}</Text>
@@ -74,7 +74,7 @@ export const InputHora = ({
   return (
     <View style={styles.containerInputForm}>
       <View style={styles.label}>
-        <Text style={styles.textLabelForm}>Hora</Text>
+        <Text style={styles.textLabelForm}>Hora*</Text>
       </View>
       <TouchableOpacity onPress={onPress} style={styles.inputDataHora}>
         <Text style={styles.textDataHora}>
