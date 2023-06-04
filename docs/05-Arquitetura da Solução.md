@@ -12,12 +12,11 @@ A aplicação será desenvolvida como solução para o negócio, sendo um servi�
 
 ## Diagrama de Classes
 
-O diagrama de classes ilustra graficamente como será a estrutura do software, e como cada uma das classes da sua estrutura estarão interligadas. Essas classes servem de modelo para materializar os objetos que executarão na memória.
+O diagrama de classes ilustra graficamente como será a estrutura do software, e como cada uma das classes da sua estrutura estarão interligadas. Essas classes servem de modelo para materializar os objetos que executarão na memória. 
 
-As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de Classes”.
+Abaixo é possível verificar todas as entidades do sistema e seus respectivos atributos, bem como todos os métodos utilizados para implementar as funcionalidades necessárias. 
 
-> - [Diagramas de Classes - Documentação da IBM](https://www.ibm.com/docs/pt-br/rational-soft-arch/9.6.1?topic=diagrams-class)
-> - [O que é um diagrama de classe UML? | Lucidchart](https://www.lucidchart.com/pages/pt/o-que-e-diagrama-de-classe-uml)
+![Diagrama de Classes Imagem](img/diagramaClasses.png)
 
 ## Modelo ER
 
@@ -29,11 +28,17 @@ O modelo ER proposta representa através de um diagrama como as entidades do sis
 
 Para o esquema relacional foram representadas todas as tabelas que serão armazenadas no banco de dados, bem como suas respectivas colunas, chaves e tipo de dados para garantir a integridade de restrições.
 
-![Esquema Relacional Imagem](img/tabelasBD.png)
+![Esquema Relacional Imagem](img/modeloTabelas.png)
 
 ## Modelo Físico
 
-Entregar um arquivo banco.sql contendo os scripts de criação das tabelas do banco de dados. Este arquivo deverá ser incluído dentro da pasta src\bd.
+Para autenticar usuários e armazenar os dados do aplicativo foi utilizado o Firebase, sendo este um banco de dados NoSQL, que armazena dados em documentos semelhantes a JSON. Um documento é um conjunto de pares chave-valor definidos por um esquema, sendo que um grupo de documentos compõe uma coleção. 
+
+Dessa forma ao fazer a importação do serviço no ambiente de desenvolvimento, obtém-se diversos métodos para consulta, criação de entidades, atualizações, e deletar dados. Para cadastro e login dos usuários no aplicativo também foi utilizado o serviço de autenticação do Firebase, que fornece métodos e APIs para tal finalidade. 
+
+A imagem abaixo representa a organização das coleções e documentos utilizados no aplicativo desenvolvido. 
+
+![modelo Fisico Imagem](img/bd-firebase.png)
 
 ## Tecnologias Utilizadas
 
