@@ -7,7 +7,7 @@
 - Após isso, execute o comando `npx expo start`.
 - Abra o aplicativo Expo Go no celular e leia o QR Code gerado pelo comando anterior.
 
-O aplicativo também poderá ser testado utilizando o arquivos gerados para Android e iOS, basta acessar a pasta <a href="src/BuildsTest">BuildsTest</a>.
+O aplicativo também poderá ser testado utilizando o arquivos gerados para Android e iOS, basta acessar a pasta <a href="BuildsTest">BuildsTest</a>.
 
 ## Histórico de versões
 
