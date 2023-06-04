@@ -1,11 +1,15 @@
 # Plano de Testes de Usabilidade
 
-O teste de usabilidade permite avaliar a qualidade da interface com o usuário da aplicação interativa. O Plano de Testes de Software é gerado a partir da especificação do sistema e consiste em casos de testes que deverão ser executados quando a implementação estiver parcial ou totalmente pronta.
+Os testes de usabilidade têm o propósito de avaliar a qualidade da interface de um sistema, identificando problemas e oportunidades de melhoria. Eles permitem verificar a funcionalidade da aplicação sob a perspectiva do usuário, buscando garantir uma experiência satisfatória.
 
-As referências abaixo irão auxiliá-lo na geração do artefato "Plano de Testes de Usabilidade".
+Esses testes visam verificar se o usuário encontra dificuldades na navegação entre as telas, se as informações e mensagens são claras e compreensíveis, e, por fim, avaliar a satisfação do usuário ao utilizar o sistema. O objetivo é fornecer insights valiosos para aprimorar a usabilidade do sistema, tornando-o mais intuitivo, eficiente e agradável de usar.
 
-> **Links Úteis**:
-> - [Teste De Usabilidade: O Que É e Como Fazer Passo a Passo (neilpatel.com)](https://neilpatel.com/br/blog/teste-de-usabilidade/)
-> - [Teste de usabilidade: tudo o que você precisa saber! | by Jon Vieira | Aela.io | Medium](https://medium.com/aela/teste-de-usabilidade-o-que-voc%C3%AA-precisa-saber-39a36343d9a6/)
-> - [Planejando testes de usabilidade: o que (e o que não) fazer | iMasters](https://imasters.com.br/design-ux/planejando-testes-de-usabilidade-o-que-e-o-que-nao-fazer/)
-> - [Ferramentas de Testes de Usabilidade](https://www.usability.gov/how-to-and-tools/resources/templates.html)
+Serão selecionados 5 participantes, sendo eles voluntários que se encaixam no perfil de persona apresentados neste documento.
+
+Os testes serão realizados de forma online. Os voluntários serão orientados a acessar a aplicação em um computador ou dispositivo móvel e executar as tarefas descritas nos casos de testes a seguir e darão um feedback sobre as dificuldades encontradas e sua satisfação com o produto.
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/Pet-s-Car/assets/123743005/ef8b36d4-9d00-46bb-94b8-b9a058b159b8)
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/Pet-s-Car/assets/123743005/3fbfe824-de12-46f5-b5ff-a952824d5f20)
+
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/Pet-s-Car/assets/123743005/fdf30bf7-c771-4d5a-b74d-1a4fc021fd1e)

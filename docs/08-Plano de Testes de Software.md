@@ -1,4 +1,7 @@
-Abaixo estão os requisitos abordados para a realização dos testes. 
+# Plano de Testes de Software
+
+Abaixo estão os requisitos abordados para a realização dos testes.
+
 O grupo identificou, inicialmente, a necessidade do teste de navegabilidade descrito a seguir:
 
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/Pet-s-Car/assets/123743005/892639e9-a2d5-4a59-b9cf-1c5b3ab26f70)
@@ -30,4 +33,3 @@ O grupo identificou, inicialmente, a necessidade do teste de navegabilidade desc
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/Pet-s-Car/assets/123743005/4da38d46-c026-48e3-913b-c68fa24b3bd6)
 
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/Pet-s-Car/assets/123743005/d8da49ed-7eb1-4b0f-a4c0-3e7a2dabf17d)
-
