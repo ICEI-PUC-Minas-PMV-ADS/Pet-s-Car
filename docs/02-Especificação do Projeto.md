@@ -118,9 +118,9 @@ Os requisitos funcionais do projeto e seus respectivos níveis de prioridade de 
 
 | ID    | Descrição do Requisito                                                                                                                                                 | Prioridade |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| RF-01 | A aplicação deve permitir a criação de usuários clientes, com os seguintes campos de preenchimento: E-mail, senha, telefone e endereço.                                | ALTA       |
-| RF-02 | A aplicação deve permitir a criação de usuários para motoristas, com os seguintes campos de preenchimento: E-mail, senha e telefone.                                   | ALTA       |
-| RF-03 | A aplicação deve permitir o cadastro do(s) pet(s) de cada cliente, que conterá informações como: raça, porte e nome do animal.                                         | ALTA       |
+| RF-01 | A aplicação deve permitir a criação de usuários clientes, com os seguintes campos de preenchimento: Nome, e-mail, senha, telefone e endereço.                                | ALTA       |
+| RF-02 | A aplicação deve permitir a criação de usuários para motoristas, com os seguintes campos de preenchimento: Nome, e-mail, senha e telefone.                                   | ALTA       |
+| RF-03 | A aplicação deve permitir o cadastro do(s) pet(s) de cada cliente, que conterá informações como: raça, porte, tipo e nome do animal.                                         | ALTA       |
 | RF-04 | A aplicação deve permitir o login de clientes utilizando e-mail e senha.                                                                                               | ALTA       |
 | RF-05 | A aplicação deve permitir o login de motoristas utilizando e-mail e senha.                                                                                             | ALTA       |
 | RF-06 | A aplicação deve permitir o agendamento do transporte especificando horário, endereços, informações de contato e seleção do animal transportado, por parte do usuário. | ALTA       |
@@ -155,7 +155,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | RE-01 | O projeto deve ser entregue até dia 23/06/2023.                                                                                                     |
 | RE-02 | A equipe não pode contratar terceiros para o desenvolvimento do projeto.                                                                            |
-| RE-03 | O site deve ser desenvolvido utilizando linguagens de programação Mobile, mais especificamente CSS, JavaScript e bem como o framework React Native. |
+| RE-03 | O site deve ser desenvolvido utilizando linguagens de programação Mobile, mais especificamente CSS, JavaScript, TypeScript e bem como o framework React Native. |
 
 ### Técnica de Priorização de Requisitos
 
