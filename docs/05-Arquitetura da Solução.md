@@ -48,14 +48,7 @@ Para o desenvolvimento do projeto Pet’s Car, utilizaremos o VS Code como IDE p
 
 ## Hospedagem
 
-Explique como a hospedagem e o lançamento da plataforma foi feita.
-
-> **Links Úteis**:
->
-> - [Website com GitHub Pages](https://pages.github.com/)
-> - [Programação colaborativa com Repl.it](https://repl.it/)
-> - [Getting Started with Heroku](https://devcenter.heroku.com/start)
-> - [Publicando Seu Site No Heroku](http://pythonclub.com.br/publicando-seu-hello-world-no-heroku.html)
+Como se trata de aplicativo mobile, após a finalização do desenvolvimento foi utilizado o serviço EAS Build, uma ferramenta desenvolvida pela Expo que permite compilar e construir aplicativos React Native, a conclusão desse processo resultou em dois executáveis, um .ipa (Extensão de aplicativos para IoS) e um .apk (Extensão de aplicativos para Android). 
 
 ## Qualidade de Software
 
