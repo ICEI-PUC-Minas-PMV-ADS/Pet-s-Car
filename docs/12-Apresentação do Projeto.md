@@ -1,27 +1,40 @@
 # Apresentação
 
-<span style="color:red">Pré-requisitos: Todos os demais artefatos</span>
+## Pet's Car
 
-Conjunto de slides em um arquivo PowerPoint ou PDF com a apresentação do projeto contemplando todos os itens trabalhados nos demais artefatos.
-
-## Título do Projeto
-
-Nome e marca do projeto
+A Pet's Car surgiu com o objetivo de trazer uma solução para tutores de pets encontrarem motoristas que possuam os meios adequados e seguros de transporte para animais domésticos de uma maneira fácil e prática.
 
 ## Identidade Visual (Marca, Design)
 
-O grupo deve ter o cuidado em utilizar figuras, imagens, e cores dentro do contexto da solução proposta, de forma a manter a temática do problema.
+Toda a identidade visual foi elaborada e construída a partir de diversas relações de sentimentos que queríamos transmitir ao usuário. Esses sentimentos foram bem definidos e representados por cores, formas e imagens que serão apresentados a seguir:
 
-> **Links Úteis**:
-> - [10 dicas de design para slides](https://rockcontent.com/blog/design-para-slides/)
-> - [7 dicas de design para criar apresentações de PowerPoint incríveis e eficientes](https://www.shutterstock.com/pt/blog/7-dicas-de-design-para-criar-apresentacoes-de-powerpoint-incriveis-e-eficientes)
-> - [Especialista do TED dá 10 dicas para criar slides eficazes e bonitos](https://soap.com.br/blog/especialista-do-ted-da-10-dicas-para-criar-slides-eficazes-e-bonitos)
+![Identidade PetsCar](/docs/img/identidade-petscar.png)
 
-## Conjunto de Slides (Estrutura)
+# Logotipo
 
-O grupo deve distribuir de forma coerente o conteúdo a ser apresentado, dentro do tempo determinado. Importante ressaltar a importância da descrição clara de todo o andamento do projeto, insumos gerados e requisitos atendidos.
- 
-> **Links Úteis**:
-> - [A regra 10-20-30 para apresentações de sucesso](https://revistapegn.globo.com/Noticias/noticia/2014/07/regra-10-20-30-para-apresentacoes-de-sucesso.html)
-> - [Top Tips for Effective Presentations](https://www.skillsyouneed.com/present/presentation-tips.html)
-> - [How to make a great presentation](https://www.ted.com/playlists/574/how_to_make_a_great_presentation)
+O logotipo da plataforma possui em suas características todo o propósito da Pet'sCar e a interligação com o público-alvo. Dessa forma, eis o significado da:
+
+Cachorro: Utilizado para simbolizar os pets em geral, mostrando ao usuário qual público nossa aplicação irá atender;
+Representação do cachorro dirigindo: Utilizado para simbolizar o objetivo de transportar pets com segurança e de forma prática;
+Marca: Nome da plataforma, construída pensada em trazer seriedade para a marca.
+No nome “Pet'sCar” foi utilizado a fonte Raleway.
+
+A fonte possue extremidades mais fechadas nas letras, que traz à marca a sensação de seriedade e evolução que se conecta diretamente ao propósito da Pet'sCar: ser uma aplicação que trará segurança e inovação, pensando sempre no melhor para os pets dos tutores.
+
+# Paleta de Cores
+
+A paleta de cores idealizada para o projeto tem como base as cores azul e preto.
+
+Os tons de cor azul produz segurança, compreensão. Propicia saúde emocional e simboliza lealdade, confiança e tranquilidade.
+
+Já o preto foi utilizado para trazer contrastes e sombra a marca.
+
+# Imagens
+
+As imagens utilizadas no projeto foram usadas com um propósito: conseguir a identificação do público-alvo.
+
+Também tomamos cuidado em utilizar imagens para representação visual de funções do sistema, como os ícones dos menus e da tela inicial. Dessa forma, os usuários possuem uma experiência mais fluida e acessível no aplicativo.
+
+## Conjunto de Slides
+
+[Slide - Apresentação Aplicativo PetsCar](/presentation/Apresenta%C3%A7%C3%A3o%20-%20Aplicativo%20PetsCar.pdf)
