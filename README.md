@@ -21,7 +21,12 @@ Esse projeto é direcionado a empresa Pet’s Car. A aplicação será desenvolv
 
 ## Instruções de utilização
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+- Abra o arquivo <a href="src/PetsCarApp">PetsCarApp</a> pelo terminal.
+- Execute o comando `npm install`.
+- Após isso, execute o comando `npx expo start`.
+- Abra o aplicativo Expo Go no celular e leia o QR Code gerado pelo comando anterior.
+
+O aplicativo também poderá ser testado utilizando o arquivos gerados para Android e iOS, basta acessar a pasta <a href="src/BuildsTest">BuildsTest</a>.
 
 # Documentação
 
