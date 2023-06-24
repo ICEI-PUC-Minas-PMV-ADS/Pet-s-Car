@@ -8,9 +8,6 @@ Nesta seção constam os registros fotográficos dos testes descritos nos casos 
 
 ## CT-02 – Cadastro usuário motorista
 
-docs/img/Testes/Testes 2.png
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/Pet-s-Car/assets/123743005/237dcda5-f0af-44d2-8f98-79a719e631c1)
 
-docs/img/Testes/Testes 2.png
-
-https://github.com/ICEI-PUC-Minas-PMV-ADS/Pet-s-Car/blob/616037859085cc3bccb09cf52ae16688085a60ef/docs/img/Testes/Testes%202.png
 
