@@ -10,3 +10,7 @@ Nesta seção constam os registros fotográficos dos testes descritos nos casos 
 
 docs/img/Testes/Testes 2.png
 
+docs/img/Testes/Testes 2.png
+
+https://github.com/ICEI-PUC-Minas-PMV-ADS/Pet-s-Car/blob/616037859085cc3bccb09cf52ae16688085a60ef/docs/img/Testes/Testes%202.png
+
